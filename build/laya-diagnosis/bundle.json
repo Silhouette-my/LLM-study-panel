@@ -1,0 +1,874 @@
+{
+  "architectures": [
+    {
+      "kind": "architecture",
+      "schemaVersion": "1.0",
+      "snapshot": {
+        "id": "5d76708faf0112a4bcb3c4b5e5787738a9e5d36dfd5a23552ef6969c506c47f6",
+        "model": "DecisionModel",
+        "sourceHash": "f8e4c7408fb72e4088f4ac6db3c6764b387a955aea978e8360e0c189615a9505",
+        "config": {},
+        "mode": "static",
+        "toolVersion": "0.1.0",
+        "executed": false,
+        "parameterCount": null
+      },
+      "definitions": [
+        {
+          "id": "def:DecisionModel",
+          "symbol": "DecisionModel",
+          "sourceRef": "src:DecisionModel:574:658"
+        }
+      ],
+      "instances": [],
+      "parameters": [],
+      "scopes": [
+        {
+          "id": "model",
+          "label": "DecisionModel",
+          "parent": null,
+          "owner": null,
+          "bindings": [],
+          "sourceRef": "src:DecisionModel.forward:609:658"
+        }
+      ],
+      "nodes": [
+        {
+          "id": "model/input:input_ids",
+          "scope": "model",
+          "label": "input_ids",
+          "role": "input",
+          "instance": null,
+          "childScope": null,
+          "sourceRef": "src:DecisionModel.forward:609:658",
+          "explanation": "ex:model/input:input_ids",
+          "opaque": true
+        },
+        {
+          "id": "model/input:attention_mask",
+          "scope": "model",
+          "label": "attention_mask",
+          "role": "input",
+          "instance": null,
+          "childScope": null,
+          "sourceRef": "src:DecisionModel.forward:609:658",
+          "explanation": "ex:model/input:attention_mask",
+          "opaque": true
+        },
+        {
+          "id": "model/input:marker_pos",
+          "scope": "model",
+          "label": "marker_pos",
+          "role": "input",
+          "instance": null,
+          "childScope": null,
+          "sourceRef": "src:DecisionModel.forward:609:658",
+          "explanation": "ex:model/input:marker_pos",
+          "opaque": true
+        },
+        {
+          "id": "model/input:marker_mask",
+          "scope": "model",
+          "label": "marker_mask",
+          "role": "input",
+          "instance": null,
+          "childScope": null,
+          "sourceRef": "src:DecisionModel.forward:609:658",
+          "explanation": "ex:model/input:marker_mask",
+          "opaque": true
+        },
+        {
+          "id": "model/input:qtype",
+          "scope": "model",
+          "label": "qtype",
+          "role": "input",
+          "instance": null,
+          "childScope": null,
+          "sourceRef": "src:DecisionModel.forward:609:658",
+          "explanation": "ex:model/input:qtype",
+          "opaque": true
+        },
+        {
+          "id": "model/input:detach_encoder",
+          "scope": "model",
+          "label": "detach_encoder",
+          "role": "input",
+          "instance": null,
+          "childScope": null,
+          "sourceRef": "src:DecisionModel.forward:609:658",
+          "explanation": "ex:model/input:detach_encoder",
+          "opaque": true
+        },
+        {
+          "id": "model/input:position_ids",
+          "scope": "model",
+          "label": "position_ids",
+          "role": "input",
+          "instance": null,
+          "childScope": null,
+          "sourceRef": "src:DecisionModel.forward:609:658",
+          "explanation": "ex:model/input:position_ids",
+          "opaque": true
+        },
+        {
+          "id": "model/input:option_ids",
+          "scope": "model",
+          "label": "option_ids",
+          "role": "input",
+          "instance": null,
+          "childScope": null,
+          "sourceRef": "src:DecisionModel.forward:609:658",
+          "explanation": "ex:model/input:option_ids",
+          "opaque": true
+        },
+        {
+          "id": "model/dynamic_boundary",
+          "scope": "model",
+          "label": "if option_ids is None:\n    h = self.encoder(input_ids=input_ids, attention_mask=attention_mask).last_hidden_state\nelse:\n    masks = parallel_option_masks(attention_mask, position_ids, option_ids, getattr(self.encoder.config, 'sliding_window', None))\n    h = self.encoder(input_ids=input_ids, attention_mask=masks, position_ids=position_ids).last_hidden_state",
+          "role": "opaque",
+          "instance": null,
+          "childScope": null,
+          "sourceRef": "src:DecisionModel.forward:611:618",
+          "explanation": "ex:model/dynamic_boundary",
+          "opaque": true
+        },
+        {
+          "id": "model/output:opaque",
+          "scope": "model",
+          "label": "未知输出边界",
+          "role": "output",
+          "instance": null,
+          "childScope": null,
+          "sourceRef": "src:DecisionModel.forward:611:618",
+          "explanation": "ex:model/output:opaque",
+          "opaque": true
+        }
+      ],
+      "ports": [
+        {
+          "id": "model/input:input_ids:out",
+          "node": "model/input:input_ids",
+          "direction": "out",
+          "name": "output",
+          "tensor": "model/input:input_ids:tensor"
+        },
+        {
+          "id": "model/input:attention_mask:out",
+          "node": "model/input:attention_mask",
+          "direction": "out",
+          "name": "output",
+          "tensor": "model/input:attention_mask:tensor"
+        },
+        {
+          "id": "model/input:marker_pos:out",
+          "node": "model/input:marker_pos",
+          "direction": "out",
+          "name": "output",
+          "tensor": "model/input:marker_pos:tensor"
+        },
+        {
+          "id": "model/input:marker_mask:out",
+          "node": "model/input:marker_mask",
+          "direction": "out",
+          "name": "output",
+          "tensor": "model/input:marker_mask:tensor"
+        },
+        {
+          "id": "model/input:qtype:out",
+          "node": "model/input:qtype",
+          "direction": "out",
+          "name": "output",
+          "tensor": "model/input:qtype:tensor"
+        },
+        {
+          "id": "model/input:detach_encoder:out",
+          "node": "model/input:detach_encoder",
+          "direction": "out",
+          "name": "output",
+          "tensor": "model/input:detach_encoder:tensor"
+        },
+        {
+          "id": "model/input:position_ids:out",
+          "node": "model/input:position_ids",
+          "direction": "out",
+          "name": "output",
+          "tensor": "model/input:position_ids:tensor"
+        },
+        {
+          "id": "model/input:option_ids:out",
+          "node": "model/input:option_ids",
+          "direction": "out",
+          "name": "output",
+          "tensor": "model/input:option_ids:tensor"
+        },
+        {
+          "id": "model/dynamic_boundary:in0",
+          "node": "model/dynamic_boundary",
+          "direction": "in",
+          "name": "input0",
+          "tensor": "model/input:input_ids:tensor"
+        },
+        {
+          "id": "model/dynamic_boundary:in1",
+          "node": "model/dynamic_boundary",
+          "direction": "in",
+          "name": "input1",
+          "tensor": "model/input:attention_mask:tensor"
+        },
+        {
+          "id": "model/dynamic_boundary:in2",
+          "node": "model/dynamic_boundary",
+          "direction": "in",
+          "name": "input2",
+          "tensor": "model/input:marker_pos:tensor"
+        },
+        {
+          "id": "model/dynamic_boundary:in3",
+          "node": "model/dynamic_boundary",
+          "direction": "in",
+          "name": "input3",
+          "tensor": "model/input:marker_mask:tensor"
+        },
+        {
+          "id": "model/dynamic_boundary:in4",
+          "node": "model/dynamic_boundary",
+          "direction": "in",
+          "name": "input4",
+          "tensor": "model/input:qtype:tensor"
+        },
+        {
+          "id": "model/dynamic_boundary:in5",
+          "node": "model/dynamic_boundary",
+          "direction": "in",
+          "name": "input5",
+          "tensor": "model/input:detach_encoder:tensor"
+        },
+        {
+          "id": "model/dynamic_boundary:in6",
+          "node": "model/dynamic_boundary",
+          "direction": "in",
+          "name": "input6",
+          "tensor": "model/input:position_ids:tensor"
+        },
+        {
+          "id": "model/dynamic_boundary:in7",
+          "node": "model/dynamic_boundary",
+          "direction": "in",
+          "name": "input7",
+          "tensor": "model/input:option_ids:tensor"
+        },
+        {
+          "id": "model/dynamic_boundary:out",
+          "node": "model/dynamic_boundary",
+          "direction": "out",
+          "name": "output",
+          "tensor": "model/dynamic_boundary:tensor"
+        },
+        {
+          "id": "model/output:opaque:in0",
+          "node": "model/output:opaque",
+          "direction": "in",
+          "name": "input0",
+          "tensor": "model/dynamic_boundary:tensor"
+        },
+        {
+          "id": "model/output:opaque:out",
+          "node": "model/output:opaque",
+          "direction": "out",
+          "name": "output",
+          "tensor": "model/output:opaque:tensor"
+        }
+      ],
+      "edges": [
+        {
+          "id": "model/dynamic_boundary:edge0",
+          "scope": "model",
+          "source": "model/input:input_ids:out",
+          "target": "model/dynamic_boundary:in0",
+          "tensor": "model/input:input_ids:tensor",
+          "condition": null
+        },
+        {
+          "id": "model/dynamic_boundary:edge1",
+          "scope": "model",
+          "source": "model/input:attention_mask:out",
+          "target": "model/dynamic_boundary:in1",
+          "tensor": "model/input:attention_mask:tensor",
+          "condition": null
+        },
+        {
+          "id": "model/dynamic_boundary:edge2",
+          "scope": "model",
+          "source": "model/input:marker_pos:out",
+          "target": "model/dynamic_boundary:in2",
+          "tensor": "model/input:marker_pos:tensor",
+          "condition": null
+        },
+        {
+          "id": "model/dynamic_boundary:edge3",
+          "scope": "model",
+          "source": "model/input:marker_mask:out",
+          "target": "model/dynamic_boundary:in3",
+          "tensor": "model/input:marker_mask:tensor",
+          "condition": null
+        },
+        {
+          "id": "model/dynamic_boundary:edge4",
+          "scope": "model",
+          "source": "model/input:qtype:out",
+          "target": "model/dynamic_boundary:in4",
+          "tensor": "model/input:qtype:tensor",
+          "condition": null
+        },
+        {
+          "id": "model/dynamic_boundary:edge5",
+          "scope": "model",
+          "source": "model/input:detach_encoder:out",
+          "target": "model/dynamic_boundary:in5",
+          "tensor": "model/input:detach_encoder:tensor",
+          "condition": null
+        },
+        {
+          "id": "model/dynamic_boundary:edge6",
+          "scope": "model",
+          "source": "model/input:position_ids:out",
+          "target": "model/dynamic_boundary:in6",
+          "tensor": "model/input:position_ids:tensor",
+          "condition": null
+        },
+        {
+          "id": "model/dynamic_boundary:edge7",
+          "scope": "model",
+          "source": "model/input:option_ids:out",
+          "target": "model/dynamic_boundary:in7",
+          "tensor": "model/input:option_ids:tensor",
+          "condition": null
+        },
+        {
+          "id": "model/output:opaque:edge0",
+          "scope": "model",
+          "source": "model/dynamic_boundary:out",
+          "target": "model/output:opaque:in0",
+          "tensor": "model/dynamic_boundary:tensor",
+          "condition": null
+        }
+      ],
+      "tensors": [
+        {
+          "id": "model/input:input_ids:tensor",
+          "name": "input:input_ids",
+          "shape": [
+            null
+          ],
+          "dtype": "float32",
+          "unknownReason": "没有静态输入形状契约；未运行模型采样",
+          "producer": "model/input:input_ids:out",
+          "consumers": [
+            "model/dynamic_boundary:in0"
+          ],
+          "evidence": "ev:model/input:input_ids:tensor"
+        },
+        {
+          "id": "model/input:attention_mask:tensor",
+          "name": "input:attention_mask",
+          "shape": [
+            null
+          ],
+          "dtype": "float32",
+          "unknownReason": "没有静态输入形状契约；未运行模型采样",
+          "producer": "model/input:attention_mask:out",
+          "consumers": [
+            "model/dynamic_boundary:in1"
+          ],
+          "evidence": "ev:model/input:attention_mask:tensor"
+        },
+        {
+          "id": "model/input:marker_pos:tensor",
+          "name": "input:marker_pos",
+          "shape": [
+            null
+          ],
+          "dtype": "float32",
+          "unknownReason": "没有静态输入形状契约；未运行模型采样",
+          "producer": "model/input:marker_pos:out",
+          "consumers": [
+            "model/dynamic_boundary:in2"
+          ],
+          "evidence": "ev:model/input:marker_pos:tensor"
+        },
+        {
+          "id": "model/input:marker_mask:tensor",
+          "name": "input:marker_mask",
+          "shape": [
+            null
+          ],
+          "dtype": "float32",
+          "unknownReason": "没有静态输入形状契约；未运行模型采样",
+          "producer": "model/input:marker_mask:out",
+          "consumers": [
+            "model/dynamic_boundary:in3"
+          ],
+          "evidence": "ev:model/input:marker_mask:tensor"
+        },
+        {
+          "id": "model/input:qtype:tensor",
+          "name": "input:qtype",
+          "shape": [
+            null
+          ],
+          "dtype": "float32",
+          "unknownReason": "没有静态输入形状契约；未运行模型采样",
+          "producer": "model/input:qtype:out",
+          "consumers": [
+            "model/dynamic_boundary:in4"
+          ],
+          "evidence": "ev:model/input:qtype:tensor"
+        },
+        {
+          "id": "model/input:detach_encoder:tensor",
+          "name": "input:detach_encoder",
+          "shape": [
+            null
+          ],
+          "dtype": "float32",
+          "unknownReason": "没有静态输入形状契约；未运行模型采样",
+          "producer": "model/input:detach_encoder:out",
+          "consumers": [
+            "model/dynamic_boundary:in5"
+          ],
+          "evidence": "ev:model/input:detach_encoder:tensor"
+        },
+        {
+          "id": "model/input:position_ids:tensor",
+          "name": "input:position_ids",
+          "shape": [
+            null
+          ],
+          "dtype": "float32",
+          "unknownReason": "没有静态输入形状契约；未运行模型采样",
+          "producer": "model/input:position_ids:out",
+          "consumers": [
+            "model/dynamic_boundary:in6"
+          ],
+          "evidence": "ev:model/input:position_ids:tensor"
+        },
+        {
+          "id": "model/input:option_ids:tensor",
+          "name": "input:option_ids",
+          "shape": [
+            null
+          ],
+          "dtype": "float32",
+          "unknownReason": "没有静态输入形状契约；未运行模型采样",
+          "producer": "model/input:option_ids:out",
+          "consumers": [
+            "model/dynamic_boundary:in7"
+          ],
+          "evidence": "ev:model/input:option_ids:tensor"
+        },
+        {
+          "id": "model/dynamic_boundary:tensor",
+          "name": "dynamic_boundary",
+          "shape": [
+            null
+          ],
+          "dtype": "float32",
+          "unknownReason": "超出受限 AST 支持范围，保留边界",
+          "producer": "model/dynamic_boundary:out",
+          "consumers": [
+            "model/output:opaque:in0"
+          ],
+          "evidence": "ev:model/dynamic_boundary:tensor"
+        },
+        {
+          "id": "model/output:opaque:tensor",
+          "name": "output:opaque",
+          "shape": [
+            null
+          ],
+          "dtype": "float32",
+          "unknownReason": "超出受限 AST 支持范围，保留边界",
+          "producer": "model/output:opaque:out",
+          "consumers": [],
+          "evidence": "ev:model/output:opaque:tensor"
+        }
+      ],
+      "sourceRefs": [
+        {
+          "id": "src:DecisionModel:574:658",
+          "path": "work/laya/laya/common.py",
+          "symbol": "DecisionModel",
+          "start": 574,
+          "end": 658,
+          "hash": "f8e4c7408fb72e4088f4ac6db3c6764b387a955aea978e8360e0c189615a9505",
+          "snippet": "class DecisionModel(nn.Module):\n    \"\"\"Bidirectional transformer encoder backbone + typed decision head.\"\"\"\n\n    def __init__(self, encoder: nn.Module, head_layers: int = 2, n_act: int = 2, dropout: float = 0.1,\n                 no_init: bool = False):\n        super().__init__()\n        self.encoder = encoder\n        d = encoder.config.hidden_size\n        # `no_init` means the caller is about to load every parameter from a checkpoint, so the\n        # head's initial values are pure overhead -- and not just time. transformers'\n        # `no_init_weights()` patches the torch.nn.init functions, but something inside\n        # nn.TransformerEncoderLayer draws from the RNG outside them, so building it still\n        # advanced the global generator and made `load()` a visible side effect. On the meta\n        # device no initialisation kernel runs at all; the layers are materialised empty and the\n        # load fills them.\n        with torch.device(\"meta\") if no_init else nullcontext():\n            nhead = max(1, d // 64)\n            layer = nn.TransformerEncoderLayer(d, nhead, 4 * d, dropout, batch_first=True, norm_first=True)\n            # The stock attention bakes the traced length into an exported graph; see\n            # _DynamicMultiheadAttention. Same parameters, same maths, traceable shapes.\n            layer.self_attn = _DynamicMultiheadAttention(d, nhead, dropout=dropout, batch_first=True)\n            self.head = nn.TransformerEncoder(layer, head_layers, enable_nested_tensor=False) if head_layers > 0 else None\n            self.type_emb = nn.Embedding(3, d)\n            self.scorer = nn.Sequential(nn.LayerNorm(d), nn.Linear(d, d), nn.GELU(), nn.Linear(d, 1))\n            self.act_head = nn.Sequential(nn.Linear(d + 4, 256), nn.GELU(), nn.Linear(256, n_act))\n            self.register_buffer(\"temperature\", torch.ones(3))\n        if no_init:\n            # Only the modules created above are on the meta device; the encoder is already real\n            # and may hold non-persistent buffers (RoPE frequencies) that to_empty would wipe.\n            for module in (self.head, self.type_emb, self.scorer, self.act_head):\n                if module is not None:\n                    module.to_empty(device=\"cpu\")\n            self.temperature = torch.empty_like(self.temperature, device=\"cpu\")\n        self.head_checkpointing = False\n\n    def forward(self, input_ids, attention_mask, marker_pos, marker_mask, qtype, detach_encoder: bool = False,\n                position_ids=None, option_ids=None):\n        if option_ids is None:\n            h = self.encoder(input_ids=input_ids, attention_mask=attention_mask).last_hidden_state\n        else:\n            # Parallel option layout (`parallel_layout`). The head below has no positional\n            # encoding, so with order-blind marker embeddings the logits permute with the options.\n            masks = parallel_option_masks(attention_mask, position_ids, option_ids,\n                                          getattr(self.encoder.config, \"sliding_window\", None))\n            h = self.encoder(input_ids=input_ids, attention_mask=masks, position_ids=position_ids).last_hidden_state\n        if detach_encoder:\n            h = h.detach()\n        h = h + self.type_emb(qtype)[:, None, :]\n        if self.head is not None:\n            pad = ~attention_mask.bool()\n            for layer in self.head.layers:\n                if self.head_checkpointing and self.training and torch.is_grad_enabled():\n                    # Non-reentrant checkpointing also trains the head when its input\n                    # is frozen. Default RNG preservation keeps dropout consistent.\n                    h = checkpoint(layer, h, src_key_padding_mask=pad, use_reentrant=False)\n                else:\n                    h = layer(h, src_key_padding_mask=pad)\n        idx = marker_pos.clamp(min=0)[:, :, None].expand(-1, -1, h.size(-1))\n        m = torch.gather(h, 1, idx)\n        logits = self.scorer(m).squeeze(-1).float()\n        logits = logits.masked_fill(~marker_mask, -1e4)\n\n        p = torch.softmax(logits.detach(), -1)\n        k = marker_mask.sum(-1).clamp(min=2).float()\n        ent = -(p * torch.log(p.clamp_min(1e-9))).sum(-1) / torch.log(k)\n        if p.size(-1) >= 2:\n            top2 = p.topk(2, -1).values\n        else:\n            # A single-option question has exactly one marker, so p.topk(2, ...)\n            # has nothing to select for the second slot and raises. The answer\n            # is still well-defined: softmax over one logit is 1.0 regardless of\n            # its value, so pad the missing second entry with 0.0 - that gives\n            # the act head top1 - top2 == 1.0, the same \"fully decided\" signal\n            # it would see for any other unambiguous top-1-vs-rest gap.\n            top1 = p.topk(1, -1).values\n            top2 = torch.cat([top1, torch.zeros_like(top1)], dim=-1)\n        feats = torch.stack([top2[:, 0], top2[:, 0] - top2[:, 1], ent, k / 255.0], -1)\n        pooled = h[:, 0].float()\n        act_input = torch.cat([pooled, feats], -1)\n        # Explicit-dtype exports run without autocast; keep the confidence maths in fp32,\n        # then match the head's weights. Autocast already chooses the linear's input dtype.\n        if not _autocast_enabled(h.device.type):\n            act_input = act_input.to(self.act_head[0].weight.dtype)\n        act_logits = self.act_head(act_input)\n        return logits, act_logits"
+        },
+        {
+          "id": "src:DecisionModel.forward:609:658",
+          "path": "work/laya/laya/common.py",
+          "symbol": "DecisionModel.forward",
+          "start": 609,
+          "end": 658,
+          "hash": "f8e4c7408fb72e4088f4ac6db3c6764b387a955aea978e8360e0c189615a9505",
+          "snippet": "    def forward(self, input_ids, attention_mask, marker_pos, marker_mask, qtype, detach_encoder: bool = False,\n                position_ids=None, option_ids=None):\n        if option_ids is None:\n            h = self.encoder(input_ids=input_ids, attention_mask=attention_mask).last_hidden_state\n        else:\n            # Parallel option layout (`parallel_layout`). The head below has no positional\n            # encoding, so with order-blind marker embeddings the logits permute with the options.\n            masks = parallel_option_masks(attention_mask, position_ids, option_ids,\n                                          getattr(self.encoder.config, \"sliding_window\", None))\n            h = self.encoder(input_ids=input_ids, attention_mask=masks, position_ids=position_ids).last_hidden_state\n        if detach_encoder:\n            h = h.detach()\n        h = h + self.type_emb(qtype)[:, None, :]\n        if self.head is not None:\n            pad = ~attention_mask.bool()\n            for layer in self.head.layers:\n                if self.head_checkpointing and self.training and torch.is_grad_enabled():\n                    # Non-reentrant checkpointing also trains the head when its input\n                    # is frozen. Default RNG preservation keeps dropout consistent.\n                    h = checkpoint(layer, h, src_key_padding_mask=pad, use_reentrant=False)\n                else:\n                    h = layer(h, src_key_padding_mask=pad)\n        idx = marker_pos.clamp(min=0)[:, :, None].expand(-1, -1, h.size(-1))\n        m = torch.gather(h, 1, idx)\n        logits = self.scorer(m).squeeze(-1).float()\n        logits = logits.masked_fill(~marker_mask, -1e4)\n\n        p = torch.softmax(logits.detach(), -1)\n        k = marker_mask.sum(-1).clamp(min=2).float()\n        ent = -(p * torch.log(p.clamp_min(1e-9))).sum(-1) / torch.log(k)\n        if p.size(-1) >= 2:\n            top2 = p.topk(2, -1).values\n        else:\n            # A single-option question has exactly one marker, so p.topk(2, ...)\n            # has nothing to select for the second slot and raises. The answer\n            # is still well-defined: softmax over one logit is 1.0 regardless of\n            # its value, so pad the missing second entry with 0.0 - that gives\n            # the act head top1 - top2 == 1.0, the same \"fully decided\" signal\n            # it would see for any other unambiguous top-1-vs-rest gap.\n            top1 = p.topk(1, -1).values\n            top2 = torch.cat([top1, torch.zeros_like(top1)], dim=-1)\n        feats = torch.stack([top2[:, 0], top2[:, 0] - top2[:, 1], ent, k / 255.0], -1)\n        pooled = h[:, 0].float()\n        act_input = torch.cat([pooled, feats], -1)\n        # Explicit-dtype exports run without autocast; keep the confidence maths in fp32,\n        # then match the head's weights. Autocast already chooses the linear's input dtype.\n        if not _autocast_enabled(h.device.type):\n            act_input = act_input.to(self.act_head[0].weight.dtype)\n        act_logits = self.act_head(act_input)\n        return logits, act_logits"
+        },
+        {
+          "id": "src:DecisionModel.__init__:589:599",
+          "path": "work/laya/laya/common.py",
+          "symbol": "DecisionModel.__init__",
+          "start": 589,
+          "end": 599,
+          "hash": "f8e4c7408fb72e4088f4ac6db3c6764b387a955aea978e8360e0c189615a9505",
+          "snippet": "        with torch.device(\"meta\") if no_init else nullcontext():\n            nhead = max(1, d // 64)\n            layer = nn.TransformerEncoderLayer(d, nhead, 4 * d, dropout, batch_first=True, norm_first=True)\n            # The stock attention bakes the traced length into an exported graph; see\n            # _DynamicMultiheadAttention. Same parameters, same maths, traceable shapes.\n            layer.self_attn = _DynamicMultiheadAttention(d, nhead, dropout=dropout, batch_first=True)\n            self.head = nn.TransformerEncoder(layer, head_layers, enable_nested_tensor=False) if head_layers > 0 else None\n            self.type_emb = nn.Embedding(3, d)\n            self.scorer = nn.Sequential(nn.LayerNorm(d), nn.Linear(d, d), nn.GELU(), nn.Linear(d, 1))\n            self.act_head = nn.Sequential(nn.Linear(d + 4, 256), nn.GELU(), nn.Linear(256, n_act))\n            self.register_buffer(\"temperature\", torch.ones(3))"
+        },
+        {
+          "id": "src:DecisionModel.__init__:600:606",
+          "path": "work/laya/laya/common.py",
+          "symbol": "DecisionModel.__init__",
+          "start": 600,
+          "end": 606,
+          "hash": "f8e4c7408fb72e4088f4ac6db3c6764b387a955aea978e8360e0c189615a9505",
+          "snippet": "        if no_init:\n            # Only the modules created above are on the meta device; the encoder is already real\n            # and may hold non-persistent buffers (RoPE frequencies) that to_empty would wipe.\n            for module in (self.head, self.type_emb, self.scorer, self.act_head):\n                if module is not None:\n                    module.to_empty(device=\"cpu\")\n            self.temperature = torch.empty_like(self.temperature, device=\"cpu\")"
+        },
+        {
+          "id": "src:DecisionModel.forward:611:618",
+          "path": "work/laya/laya/common.py",
+          "symbol": "DecisionModel.forward",
+          "start": 611,
+          "end": 618,
+          "hash": "f8e4c7408fb72e4088f4ac6db3c6764b387a955aea978e8360e0c189615a9505",
+          "snippet": "        if option_ids is None:\n            h = self.encoder(input_ids=input_ids, attention_mask=attention_mask).last_hidden_state\n        else:\n            # Parallel option layout (`parallel_layout`). The head below has no positional\n            # encoding, so with order-blind marker embeddings the logits permute with the options.\n            masks = parallel_option_masks(attention_mask, position_ids, option_ids,\n                                          getattr(self.encoder.config, \"sliding_window\", None))\n            h = self.encoder(input_ids=input_ids, attention_mask=masks, position_ids=position_ids).last_hidden_state"
+        }
+      ],
+      "evidence": [
+        {
+          "id": "ev:model/input:input_ids:tensor",
+          "kind": "unknown",
+          "target": "/tensors/0/shape",
+          "sourceRefs": [
+            "src:DecisionModel.forward:609:658"
+          ],
+          "assumptions": [],
+          "text": "不支持的运算，形状未知"
+        },
+        {
+          "id": "ev:fact:model/input:input_ids",
+          "kind": "source",
+          "target": "/nodes/0/sourceRef",
+          "sourceRefs": [
+            "src:DecisionModel.forward:609:658"
+          ],
+          "assumptions": [],
+          "text": "该静态调用/运算对应 AST 源码位置；适配器子步骤可共享同一表达式范围"
+        },
+        {
+          "id": "ev:model/input:attention_mask:tensor",
+          "kind": "unknown",
+          "target": "/tensors/1/shape",
+          "sourceRefs": [
+            "src:DecisionModel.forward:609:658"
+          ],
+          "assumptions": [],
+          "text": "不支持的运算，形状未知"
+        },
+        {
+          "id": "ev:fact:model/input:attention_mask",
+          "kind": "source",
+          "target": "/nodes/1/sourceRef",
+          "sourceRefs": [
+            "src:DecisionModel.forward:609:658"
+          ],
+          "assumptions": [],
+          "text": "该静态调用/运算对应 AST 源码位置；适配器子步骤可共享同一表达式范围"
+        },
+        {
+          "id": "ev:model/input:marker_pos:tensor",
+          "kind": "unknown",
+          "target": "/tensors/2/shape",
+          "sourceRefs": [
+            "src:DecisionModel.forward:609:658"
+          ],
+          "assumptions": [],
+          "text": "不支持的运算，形状未知"
+        },
+        {
+          "id": "ev:fact:model/input:marker_pos",
+          "kind": "source",
+          "target": "/nodes/2/sourceRef",
+          "sourceRefs": [
+            "src:DecisionModel.forward:609:658"
+          ],
+          "assumptions": [],
+          "text": "该静态调用/运算对应 AST 源码位置；适配器子步骤可共享同一表达式范围"
+        },
+        {
+          "id": "ev:model/input:marker_mask:tensor",
+          "kind": "unknown",
+          "target": "/tensors/3/shape",
+          "sourceRefs": [
+            "src:DecisionModel.forward:609:658"
+          ],
+          "assumptions": [],
+          "text": "不支持的运算，形状未知"
+        },
+        {
+          "id": "ev:fact:model/input:marker_mask",
+          "kind": "source",
+          "target": "/nodes/3/sourceRef",
+          "sourceRefs": [
+            "src:DecisionModel.forward:609:658"
+          ],
+          "assumptions": [],
+          "text": "该静态调用/运算对应 AST 源码位置；适配器子步骤可共享同一表达式范围"
+        },
+        {
+          "id": "ev:model/input:qtype:tensor",
+          "kind": "unknown",
+          "target": "/tensors/4/shape",
+          "sourceRefs": [
+            "src:DecisionModel.forward:609:658"
+          ],
+          "assumptions": [],
+          "text": "不支持的运算，形状未知"
+        },
+        {
+          "id": "ev:fact:model/input:qtype",
+          "kind": "source",
+          "target": "/nodes/4/sourceRef",
+          "sourceRefs": [
+            "src:DecisionModel.forward:609:658"
+          ],
+          "assumptions": [],
+          "text": "该静态调用/运算对应 AST 源码位置；适配器子步骤可共享同一表达式范围"
+        },
+        {
+          "id": "ev:model/input:detach_encoder:tensor",
+          "kind": "unknown",
+          "target": "/tensors/5/shape",
+          "sourceRefs": [
+            "src:DecisionModel.forward:609:658"
+          ],
+          "assumptions": [],
+          "text": "不支持的运算，形状未知"
+        },
+        {
+          "id": "ev:fact:model/input:detach_encoder",
+          "kind": "source",
+          "target": "/nodes/5/sourceRef",
+          "sourceRefs": [
+            "src:DecisionModel.forward:609:658"
+          ],
+          "assumptions": [],
+          "text": "该静态调用/运算对应 AST 源码位置；适配器子步骤可共享同一表达式范围"
+        },
+        {
+          "id": "ev:model/input:position_ids:tensor",
+          "kind": "unknown",
+          "target": "/tensors/6/shape",
+          "sourceRefs": [
+            "src:DecisionModel.forward:609:658"
+          ],
+          "assumptions": [],
+          "text": "不支持的运算，形状未知"
+        },
+        {
+          "id": "ev:fact:model/input:position_ids",
+          "kind": "source",
+          "target": "/nodes/6/sourceRef",
+          "sourceRefs": [
+            "src:DecisionModel.forward:609:658"
+          ],
+          "assumptions": [],
+          "text": "该静态调用/运算对应 AST 源码位置；适配器子步骤可共享同一表达式范围"
+        },
+        {
+          "id": "ev:model/input:option_ids:tensor",
+          "kind": "unknown",
+          "target": "/tensors/7/shape",
+          "sourceRefs": [
+            "src:DecisionModel.forward:609:658"
+          ],
+          "assumptions": [],
+          "text": "不支持的运算，形状未知"
+        },
+        {
+          "id": "ev:fact:model/input:option_ids",
+          "kind": "source",
+          "target": "/nodes/7/sourceRef",
+          "sourceRefs": [
+            "src:DecisionModel.forward:609:658"
+          ],
+          "assumptions": [],
+          "text": "该静态调用/运算对应 AST 源码位置；适配器子步骤可共享同一表达式范围"
+        },
+        {
+          "id": "ev:model/dynamic_boundary:tensor",
+          "kind": "unknown",
+          "target": "/tensors/8/shape",
+          "sourceRefs": [
+            "src:DecisionModel.forward:611:618"
+          ],
+          "assumptions": [],
+          "text": "不支持的运算，形状未知"
+        },
+        {
+          "id": "ev:fact:model/dynamic_boundary",
+          "kind": "source",
+          "target": "/nodes/8/sourceRef",
+          "sourceRefs": [
+            "src:DecisionModel.forward:611:618"
+          ],
+          "assumptions": [],
+          "text": "该静态调用/运算对应 AST 源码位置；适配器子步骤可共享同一表达式范围"
+        },
+        {
+          "id": "ev:model/output:opaque:tensor",
+          "kind": "unknown",
+          "target": "/tensors/9/shape",
+          "sourceRefs": [
+            "src:DecisionModel.forward:611:618"
+          ],
+          "assumptions": [],
+          "text": "不支持的运算，形状未知"
+        },
+        {
+          "id": "ev:fact:model/output:opaque",
+          "kind": "source",
+          "target": "/nodes/9/sourceRef",
+          "sourceRefs": [
+            "src:DecisionModel.forward:611:618"
+          ],
+          "assumptions": [],
+          "text": "该静态调用/运算对应 AST 源码位置；适配器子步骤可共享同一表达式范围"
+        }
+      ],
+      "claims": [],
+      "explanations": [
+        {
+          "id": "ex:model/input:input_ids",
+          "intuition": "由问题类型、指令、各选项前的 [MASK] 标记和状态文本构成的 token IDs。序列构造见 common.py build_sequence/build_head；这里仅给输入语义，自动张量形状仍未知。",
+          "calculation": "输出形状 [None]；B=batch，T=序列长度。未知尺寸不作猜测。",
+          "implementation": "对应生成时源码快照；静态推导未做运行验证。",
+          "evidence": [
+            "ev:fact:model/input:input_ids",
+            "ev:model/input:input_ids:tensor"
+          ]
+        },
+        {
+          "id": "ex:model/input:attention_mask",
+          "intuition": "标记实际 token 与 padding。普通布局直接供 encoder 使用；parallel option layout 会构造不同选项隔离的掩码。",
+          "calculation": "输出形状 [None]；B=batch，T=序列长度。未知尺寸不作猜测。",
+          "implementation": "对应生成时源码快照；静态推导未做运行验证。",
+          "evidence": [
+            "ev:fact:model/input:attention_mask",
+            "ev:model/input:attention_mask:tensor"
+          ]
+        },
+        {
+          "id": "ex:model/input:marker_pos",
+          "intuition": "各候选项前 [MASK] 的 token 位置；forward 后续通过 torch.gather 提取对应表示。",
+          "calculation": "输出形状 [None]；B=batch，T=序列长度。未知尺寸不作猜测。",
+          "implementation": "对应生成时源码快照；静态推导未做运行验证。",
+          "evidence": [
+            "ev:fact:model/input:marker_pos",
+            "ev:model/input:marker_pos:tensor"
+          ]
+        },
+        {
+          "id": "ex:model/input:marker_mask",
+          "intuition": "有效候选项的掩码；无效候选 logits 在源码中置为 -1e4。",
+          "calculation": "输出形状 [None]；B=batch，T=序列长度。未知尺寸不作猜测。",
+          "implementation": "对应生成时源码快照；静态推导未做运行验证。",
+          "evidence": [
+            "ev:fact:model/input:marker_mask",
+            "ev:model/input:marker_mask:tensor"
+          ]
+        },
+        {
+          "id": "ex:model/input:qtype",
+          "intuition": "choice、score、noul 对应的三类问题类型索引，用于 type_emb。",
+          "calculation": "输出形状 [None]；B=batch，T=序列长度。未知尺寸不作猜测。",
+          "implementation": "对应生成时源码快照；静态推导未做运行验证。",
+          "evidence": [
+            "ev:fact:model/input:qtype",
+            "ev:model/input:qtype:tensor"
+          ]
+        },
+        {
+          "id": "ex:model/input:detach_encoder",
+          "intuition": "训练相关开关，源码为真时 detach 编码器表示；本次未运行任何训练或推理。",
+          "calculation": "输出形状 [None]；B=batch，T=序列长度。未知尺寸不作猜测。",
+          "implementation": "对应生成时源码快照；静态推导未做运行验证。",
+          "evidence": [
+            "ev:fact:model/input:detach_encoder",
+            "ev:model/input:detach_encoder:tensor"
+          ]
+        },
+        {
+          "id": "ex:model/input:position_ids",
+          "intuition": "parallel option layout 的可选位置编号。",
+          "calculation": "输出形状 [None]；B=batch，T=序列长度。未知尺寸不作猜测。",
+          "implementation": "对应生成时源码快照；静态推导未做运行验证。",
+          "evidence": [
+            "ev:fact:model/input:position_ids",
+            "ev:model/input:position_ids:tensor"
+          ]
+        },
+        {
+          "id": "ex:model/input:option_ids",
+          "intuition": "可选的候选项分组编号；None 走普通 encoder 分支。",
+          "calculation": "输出形状 [None]；B=batch，T=序列长度。未知尺寸不作猜测。",
+          "implementation": "对应生成时源码快照；静态推导未做运行验证。",
+          "evidence": [
+            "ev:fact:model/input:option_ids",
+            "ev:model/input:option_ids:tensor"
+          ]
+        },
+        {
+          "id": "ex:model/dynamic_boundary",
+          "intuition": "自动分析在第一个 if 分支处停止，当前节点只表示普通/parallel 布局的编码器选择，不代表完整 Laya 模型。",
+          "calculation": "输出形状 [None]；B=batch，T=序列长度。未知尺寸不作猜测。",
+          "implementation": "人工核对完整 forward（common.py 609–658）：encoder → 加 question-type embedding → Transformer head → gather [MASK] → scorer。另一路由 H[CLS] 与原始 logits 的四项统计特征拼接后进入 action head。该说明没有扩充自动分析图；完整源码可在输入节点的源码面板查看。",
+          "evidence": [
+            "ev:fact:model/dynamic_boundary",
+            "ev:model/dynamic_boundary:tensor"
+          ]
+        },
+        {
+          "id": "ex:model/output:opaque",
+          "intuition": "工具停止后的未知边界。实际 forward 返回 logits 与 act_logits（common.py:658）；温度缩放与 choice/score/noul 解码位于 agent.py:1331–1405，不在本自动分析图中。",
+          "calculation": "输出形状 [None]；B=batch，T=序列长度。未知尺寸不作猜测。",
+          "implementation": "对应生成时源码快照；静态推导未做运行验证。",
+          "evidence": [
+            "ev:fact:model/output:opaque",
+            "ev:model/output:opaque:tensor"
+          ]
+        }
+      ],
+      "views": [],
+      "limitations": [
+        {
+          "reason": "构造器动态控制流：模块/参数注册关系未确认",
+          "sourceRef": "src:DecisionModel.__init__:589:599",
+          "scope": "model"
+        },
+        {
+          "reason": "构造器动态控制流：模块/参数注册关系未确认",
+          "sourceRef": "src:DecisionModel.__init__:600:606",
+          "scope": "model"
+        },
+        {
+          "reason": "动态控制流/循环：整体保留条件及输入输出边界，未选择执行路径；重复层参数与差异未知",
+          "sourceRef": "src:DecisionModel.forward:611:618",
+          "scope": "model"
+        },
+        {
+          "reason": "通用 AST：仅直接注册的 Linear/激活、残差、乘法、多输出、拼接和别名共享；形状未检查输入契约；其他结构 opaque；未执行源码。",
+          "sourceRef": "src:DecisionModel:574:658",
+          "scope": "model"
+        }
+      ]
+    }
+  ],
+  "comparison": null
+}

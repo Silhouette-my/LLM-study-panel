@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+[project]
+name = "model-atlas"
+version = "0.1.1"
+requires-python = ">=3.11"
+dependencies = ["jsonschema==4.26.0"]
+[project.optional-dependencies]
+test = ["pytest==8.4.2"]
+[project.scripts]
+model-atlas = "model_atlas.cli:main"
+[tool.setuptools.packages.find]
+where = ["src"]
+[tool.setuptools.package-data]
+model_atlas = ["resources/*"]
+[tool.pytest.ini_options]
+pythonpath = ["src", "."]
+testpaths = ["tests"]

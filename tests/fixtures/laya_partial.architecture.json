@@ -1,0 +1,5907 @@
+{
+  "kind": "architecture",
+  "schemaVersion": "1.0",
+  "snapshot": {
+    "id": "00c1e180a526cab84c37a38e682f03e18cab4bd95d10e19d99ae0157f732c159",
+    "model": "DecisionModel",
+    "sourceHash": "8cd129db7421768c050f54905368332a184b8da9723ce6f9b564d6922bb89399",
+    "config": {},
+    "mode": "static",
+    "toolVersion": "0.1.1",
+    "executed": false,
+    "parameterCount": null
+  },
+  "definitions": [
+    {
+      "id": "def:DecisionModel",
+      "symbol": "DecisionModel",
+      "sourceRef": "src:DecisionModel:574:658"
+    }
+  ],
+  "instances": [
+    {
+      "id": "inst:encoder",
+      "path": "encoder",
+      "definition": null,
+      "config": {
+        "moduleType": "external:encoder",
+        "sourceExpression": "encoder",
+        "sourceRef": "src:DecisionModel.__init__:580:580",
+        "registrationCondition": null
+      },
+      "parameterIds": []
+    },
+    {
+      "id": "inst:head",
+      "path": "head",
+      "definition": null,
+      "config": {
+        "moduleType": "torch.nn.TransformerEncoder",
+        "sourceExpression": "nn.TransformerEncoder(layer, head_layers, enable_nested_tensor=False)",
+        "sourceRef": "src:DecisionModel.__init__:595:595",
+        "registrationCondition": "torch.device('meta') if no_init else nullcontext(); head_layers > 0"
+      },
+      "parameterIds": []
+    },
+    {
+      "id": "inst:type_emb",
+      "path": "type_emb",
+      "definition": null,
+      "config": {
+        "moduleType": "torch.nn.Embedding",
+        "sourceExpression": "nn.Embedding(3, d)",
+        "sourceRef": "src:DecisionModel.__init__:596:596",
+        "registrationCondition": "torch.device('meta') if no_init else nullcontext()"
+      },
+      "parameterIds": []
+    },
+    {
+      "id": "inst:scorer.0",
+      "path": "scorer.0",
+      "definition": null,
+      "config": {
+        "moduleType": "torch.nn.LayerNorm",
+        "sourceExpression": "nn.LayerNorm(d)",
+        "sourceRef": "src:DecisionModel.__init__:597:597",
+        "registrationCondition": "torch.device('meta') if no_init else nullcontext()"
+      },
+      "parameterIds": []
+    },
+    {
+      "id": "inst:scorer.1",
+      "path": "scorer.1",
+      "definition": null,
+      "config": {
+        "moduleType": "torch.nn.Linear",
+        "sourceExpression": "nn.Linear(d, d)",
+        "sourceRef": "src:DecisionModel.__init__:597:597",
+        "registrationCondition": "torch.device('meta') if no_init else nullcontext()"
+      },
+      "parameterIds": []
+    },
+    {
+      "id": "inst:scorer.2",
+      "path": "scorer.2",
+      "definition": null,
+      "config": {
+        "moduleType": "torch.nn.GELU",
+        "sourceExpression": "nn.GELU()",
+        "sourceRef": "src:DecisionModel.__init__:597:597",
+        "registrationCondition": "torch.device('meta') if no_init else nullcontext()"
+      },
+      "parameterIds": []
+    },
+    {
+      "id": "inst:scorer.3",
+      "path": "scorer.3",
+      "definition": null,
+      "config": {
+        "moduleType": "torch.nn.Linear",
+        "sourceExpression": "nn.Linear(d, 1)",
+        "sourceRef": "src:DecisionModel.__init__:597:597",
+        "registrationCondition": "torch.device('meta') if no_init else nullcontext()"
+      },
+      "parameterIds": []
+    },
+    {
+      "id": "inst:scorer",
+      "path": "scorer",
+      "definition": null,
+      "config": {
+        "moduleType": "torch.nn.Sequential",
+        "sourceExpression": "nn.Sequential(nn.LayerNorm(d), nn.Linear(d, d), nn.GELU(), nn.Linear(d, 1))",
+        "sourceRef": "src:DecisionModel.__init__:597:597",
+        "registrationCondition": "torch.device('meta') if no_init else nullcontext()"
+      },
+      "parameterIds": []
+    },
+    {
+      "id": "inst:act_head.0",
+      "path": "act_head.0",
+      "definition": null,
+      "config": {
+        "moduleType": "torch.nn.Linear",
+        "sourceExpression": "nn.Linear(d + 4, 256)",
+        "sourceRef": "src:DecisionModel.__init__:598:598",
+        "registrationCondition": "torch.device('meta') if no_init else nullcontext()"
+      },
+      "parameterIds": []
+    },
+    {
+      "id": "inst:act_head.1",
+      "path": "act_head.1",
+      "definition": null,
+      "config": {
+        "moduleType": "torch.nn.GELU",
+        "sourceExpression": "nn.GELU()",
+        "sourceRef": "src:DecisionModel.__init__:598:598",
+        "registrationCondition": "torch.device('meta') if no_init else nullcontext()"
+      },
+      "parameterIds": []
+    },
+    {
+      "id": "inst:act_head.2",
+      "path": "act_head.2",
+      "definition": null,
+      "config": {
+        "moduleType": "torch.nn.Linear",
+        "sourceExpression": "nn.Linear(256, n_act)",
+        "sourceRef": "src:DecisionModel.__init__:598:598",
+        "registrationCondition": "torch.device('meta') if no_init else nullcontext()"
+      },
+      "parameterIds": []
+    },
+    {
+      "id": "inst:act_head",
+      "path": "act_head",
+      "definition": null,
+      "config": {
+        "moduleType": "torch.nn.Sequential",
+        "sourceExpression": "nn.Sequential(nn.Linear(d + 4, 256), nn.GELU(), nn.Linear(256, n_act))",
+        "sourceRef": "src:DecisionModel.__init__:598:598",
+        "registrationCondition": "torch.device('meta') if no_init else nullcontext()"
+      },
+      "parameterIds": []
+    }
+  ],
+  "parameters": [],
+  "scopes": [
+    {
+      "id": "model",
+      "label": "DecisionModel",
+      "parent": null,
+      "owner": null,
+      "bindings": [],
+      "sourceRef": "src:DecisionModel.forward:609:658"
+    },
+    {
+      "id": "model/sequence:15",
+      "label": "self.scorer",
+      "parent": "model",
+      "owner": "model/call:15",
+      "bindings": [
+        {
+          "parentPort": "model/call:15:in0",
+          "childPort": "model/sequence:15/call:16:out"
+        },
+        {
+          "parentPort": "model/call:15:out",
+          "childPort": "model/sequence:15/call:21:in0"
+        }
+      ],
+      "sourceRef": "src:DecisionModel.__init__:597:597"
+    },
+    {
+      "id": "model/sequence:52",
+      "label": "self.act_head",
+      "parent": "model",
+      "owner": "model/call:52",
+      "bindings": [
+        {
+          "parentPort": "model/call:52:in0",
+          "childPort": "model/sequence:52/call:53:out"
+        },
+        {
+          "parentPort": "model/call:52:out",
+          "childPort": "model/sequence:52/call:57:in0"
+        }
+      ],
+      "sourceRef": "src:DecisionModel.__init__:598:598"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "model/input:input_ids",
+      "scope": "model",
+      "label": "input_ids",
+      "role": "input",
+      "instance": null,
+      "childScope": null,
+      "sourceRef": "src:DecisionModel.forward:609:658",
+      "explanation": "ex:model/input:input_ids",
+      "opaque": false
+    },
+    {
+      "id": "model/input:attention_mask",
+      "scope": "model",
+      "label": "attention_mask",
+      "role": "input",
+      "instance": null,
+      "childScope": null,
+      "sourceRef": "src:DecisionModel.forward:609:658",
+      "explanation": "ex:model/input:attention_mask",
+      "opaque": false
+    },
+    {
+      "id": "model/input:marker_pos",
+      "scope": "model",
+      "label": "marker_pos",
+      "role": "input",
+      "instance": null,
+      "childScope": null,
+      "sourceRef": "src:DecisionModel.forward:609:658",
+      "explanation": "ex:model/input:marker_pos",
+      "opaque": false
+    },
+    {
+      "id": "model/input:marker_mask",
+      "scope": "model",
+      "label": "marker_mask",
+      "role": "input",
+      "instance": null,
+      "childScope": null,
+      "sourceRef": "src:DecisionModel.forward:609:658",
+      "explanation": "ex:model/input:marker_mask",
+      "opaque": false
+    },
+    {
+      "id": "model/input:qtype",
+      "scope": "model",
+      "label": "qtype",
+      "role": "input",
+      "instance": null,
+      "childScope": null,
+      "sourceRef": "src:DecisionModel.forward:609:658",
+      "explanation": "ex:model/input:qtype",
+      "opaque": false
+    },
+    {
+      "id": "model/input:detach_encoder",
+      "scope": "model",
+      "label": "detach_encoder",
+      "role": "input",
+      "instance": null,
+      "childScope": null,
+      "sourceRef": "src:DecisionModel.forward:609:658",
+      "explanation": "ex:model/input:detach_encoder",
+      "opaque": false
+    },
+    {
+      "id": "model/input:position_ids",
+      "scope": "model",
+      "label": "position_ids",
+      "role": "input",
+      "instance": null,
+      "childScope": null,
+      "sourceRef": "src:DecisionModel.forward:609:658",
+      "explanation": "ex:model/input:position_ids",
+      "opaque": false
+    },
+    {
+      "id": "model/input:option_ids",
+      "scope": "model",
+      "label": "option_ids",
+      "role": "input",
+      "instance": null,
+      "childScope": null,
+      "sourceRef": "src:DecisionModel.forward:609:658",
+      "explanation": "ex:model/input:option_ids",
+      "opaque": false
+    },
+    {
+      "id": "model/call:1",
+      "scope": "model",
+      "label": "option_ids is None（内部未展开）",
+      "role": "opaque",
+      "instance": null,
+      "childScope": null,
+      "sourceRef": "src:DecisionModel.forward:611:618",
+      "explanation": "ex:model/call:1",
+      "opaque": true
+    },
+    {
+      "id": "model/call:2",
+      "scope": "model",
+      "label": "条件结果 h",
+      "role": "conditional_result",
+      "instance": null,
+      "childScope": null,
+      "sourceRef": "src:DecisionModel.forward:611:618",
+      "explanation": "ex:model/call:2",
+      "opaque": true
+    },
+    {
+      "id": "model/call:3",
+      "scope": "model",
+      "label": "detach_encoder（内部未展开）",
+      "role": "opaque",
+      "instance": null,
+      "childScope": null,
+      "sourceRef": "src:DecisionModel.forward:619:620",
+      "explanation": "ex:model/call:3",
+      "opaque": true
+    },
+    {
+      "id": "model/call:4",
+      "scope": "model",
+      "label": "条件结果 h",
+      "role": "conditional_result",
+      "instance": null,
+      "childScope": null,
+      "sourceRef": "src:DecisionModel.forward:619:620",
+      "explanation": "ex:model/call:4",
+      "opaque": true
+    },
+    {
+      "id": "model/call:5",
+      "scope": "model",
+      "label": "self.type_emb",
+      "role": "embedding",
+      "instance": "inst:type_emb",
+      "childScope": null,
+      "sourceRef": "src:DecisionModel.forward:621:621",
+      "explanation": "ex:model/call:5",
+      "opaque": false
+    },
+    {
+      "id": "model/call:6",
+      "scope": "model",
+      "label": "self.type_emb(qtype)[:, None, :]",
+      "role": "index",
+      "instance": null,
+      "childScope": null,
+      "sourceRef": "src:DecisionModel.forward:621:621",
+      "explanation": "ex:model/call:6",
+      "opaque": false
+    },
+    {
+      "id": "model/call:7",
+      "scope": "model",
+      "label": "h + self.type_emb(qtype)[:, None, :]",
+      "role": "add",
+      "instance": null,
+      "childScope": null,
+      "sourceRef": "src:DecisionModel.forward:621:621",
+      "explanation": "ex:model/call:7",
+      "opaque": false
+    },
+    {
+      "id": "model/call:8",
+      "scope": "model",
+      "label": "self.head is not None（内部未展开）",
+      "role": "opaque",
+      "instance": null,
+      "childScope": null,
+      "sourceRef": "src:DecisionModel.forward:622:630",
+      "explanation": "ex:model/call:8",
+      "opaque": true
+    },
+    {
+      "id": "model/call:9",
+      "scope": "model",
+      "label": "条件结果 h",
+      "role": "conditional_result",
+      "instance": null,
+      "childScope": null,
+      "sourceRef": "src:DecisionModel.forward:622:630",
+      "explanation": "ex:model/call:9",
+      "opaque": true
+    },
+    {
+      "id": "model/call:10",
+      "scope": "model",
+      "label": "marker_pos.clamp(min=0)",
+      "role": "clamp",
+      "instance": null,
+      "childScope": null,
+      "sourceRef": "src:DecisionModel.forward:631:631",
+      "explanation": "ex:model/call:10",
+      "opaque": false
+    },
+    {
+      "id": "model/call:11",
+      "scope": "model",
+      "label": "marker_pos.clamp(min=0)[:, :, None]",
+      "role": "index",
+      "instance": null,
+      "childScope": null,
+      "sourceRef": "src:DecisionModel.forward:631:631",
+      "explanation": "ex:model/call:11",
+      "opaque": false
+    },
+    {
+      "id": "model/call:12",
+      "scope": "model",
+      "label": "h.size(-1)",
+      "role": "size",
+      "instance": null,
+      "childScope": null,
+      "sourceRef": "src:DecisionModel.forward:631:631",
+      "explanation": "ex:model/call:12",
+      "opaque": false
+    },
+    {
+      "id": "model/call:13",
+      "scope": "model",
+      "label": "marker_pos.clamp(min=0)[:, :, None].expand(-1, -1, h.size(-1))",
+      "role": "expand",
+      "instance": null,
+      "childScope": null,
+      "sourceRef": "src:DecisionModel.forward:631:631",
+      "explanation": "ex:model/call:13",
+      "opaque": false
+    },
+    {
+      "id": "model/call:14",
+      "scope": "model",
+      "label": "torch.gather(h, 1, idx)",
+      "role": "gather",
+      "instance": null,
+      "childScope": null,
+      "sourceRef": "src:DecisionModel.forward:632:632",
+      "explanation": "ex:model/call:14",
+      "opaque": false
+    },
+    {
+      "id": "model/call:15",
+      "scope": "model",
+      "label": "self.scorer",
+      "role": "sequential",
+      "instance": "inst:scorer",
+      "childScope": "model/sequence:15",
+      "sourceRef": "src:DecisionModel.forward:633:633",
+      "explanation": "ex:model/call:15",
+      "opaque": false
+    },
+    {
+      "id": "model/sequence:15/call:16",
+      "scope": "model/sequence:15",
+      "label": "输入",
+      "role": "input",
+      "instance": null,
+      "childScope": null,
+      "sourceRef": "src:DecisionModel.forward:633:633",
+      "explanation": "ex:model/sequence:15/call:16",
+      "opaque": false
+    },
+    {
+      "id": "model/sequence:15/call:17",
+      "scope": "model/sequence:15",
+      "label": "0: LayerNorm",
+      "role": "layernorm",
+      "instance": "inst:scorer.0",
+      "childScope": null,
+      "sourceRef": "src:DecisionModel.__init__:597:597",
+      "explanation": "ex:model/sequence:15/call:17",
+      "opaque": false
+    },
+    {
+      "id": "model/sequence:15/call:18",
+      "scope": "model/sequence:15",
+      "label": "1: Linear",
+      "role": "linear",
+      "instance": "inst:scorer.1",
+      "childScope": null,
+      "sourceRef": "src:DecisionModel.__init__:597:597",
+      "explanation": "ex:model/sequence:15/call:18",
+      "opaque": false
+    },
+    {
+      "id": "model/sequence:15/call:19",
+      "scope": "model/sequence:15",
+      "label": "2: GELU",
+      "role": "gelu",
+      "instance": "inst:scorer.2",
+      "childScope": null,
+      "sourceRef": "src:DecisionModel.__init__:597:597",
+      "explanation": "ex:model/sequence:15/call:19",
+      "opaque": false
+    },
+    {
+      "id": "model/sequence:15/call:20",
+      "scope": "model/sequence:15",
+      "label": "3: Linear",
+      "role": "linear",
+      "instance": "inst:scorer.3",
+      "childScope": null,
+      "sourceRef": "src:DecisionModel.__init__:597:597",
+      "explanation": "ex:model/sequence:15/call:20",
+      "opaque": false
+    },
+    {
+      "id": "model/sequence:15/call:21",
+      "scope": "model/sequence:15",
+      "label": "输出",
+      "role": "output",
+      "instance": null,
+      "childScope": null,
+      "sourceRef": "src:DecisionModel.forward:633:633",
+      "explanation": "ex:model/sequence:15/call:21",
+      "opaque": false
+    },
+    {
+      "id": "model/call:22",
+      "scope": "model",
+      "label": "self.scorer(m).squeeze(-1)",
+      "role": "squeeze",
+      "instance": null,
+      "childScope": null,
+      "sourceRef": "src:DecisionModel.forward:633:633",
+      "explanation": "ex:model/call:22",
+      "opaque": false
+    },
+    {
+      "id": "model/call:23",
+      "scope": "model",
+      "label": "self.scorer(m).squeeze(-1).float()",
+      "role": "cast",
+      "instance": null,
+      "childScope": null,
+      "sourceRef": "src:DecisionModel.forward:633:633",
+      "explanation": "ex:model/call:23",
+      "opaque": false
+    },
+    {
+      "id": "model/call:24",
+      "scope": "model",
+      "label": "~marker_mask",
+      "role": "unary",
+      "instance": null,
+      "childScope": null,
+      "sourceRef": "src:DecisionModel.forward:634:634",
+      "explanation": "ex:model/call:24",
+      "opaque": false
+    },
+    {
+      "id": "model/call:25",
+      "scope": "model",
+      "label": "logits.masked_fill(~marker_mask, -10000.0)",
+      "role": "masked_fill",
+      "instance": null,
+      "childScope": null,
+      "sourceRef": "src:DecisionModel.forward:634:634",
+      "explanation": "ex:model/call:25",
+      "opaque": false
+    },
+    {
+      "id": "model/call:26",
+      "scope": "model",
+      "label": "logits.detach()",
+      "role": "detach",
+      "instance": null,
+      "childScope": null,
+      "sourceRef": "src:DecisionModel.forward:636:636",
+      "explanation": "ex:model/call:26",
+      "opaque": false
+    },
+    {
+      "id": "model/call:27",
+      "scope": "model",
+      "label": "torch.softmax(logits.detach(), -1)",
+      "role": "softmax",
+      "instance": null,
+      "childScope": null,
+      "sourceRef": "src:DecisionModel.forward:636:636",
+      "explanation": "ex:model/call:27",
+      "opaque": false
+    },
+    {
+      "id": "model/call:28",
+      "scope": "model",
+      "label": "marker_mask.sum(-1)",
+      "role": "sum",
+      "instance": null,
+      "childScope": null,
+      "sourceRef": "src:DecisionModel.forward:637:637",
+      "explanation": "ex:model/call:28",
+      "opaque": false
+    },
+    {
+      "id": "model/call:29",
+      "scope": "model",
+      "label": "marker_mask.sum(-1).clamp(min=2)",
+      "role": "clamp",
+      "instance": null,
+      "childScope": null,
+      "sourceRef": "src:DecisionModel.forward:637:637",
+      "explanation": "ex:model/call:29",
+      "opaque": false
+    },
+    {
+      "id": "model/call:30",
+      "scope": "model",
+      "label": "marker_mask.sum(-1).clamp(min=2).float()",
+      "role": "cast",
+      "instance": null,
+      "childScope": null,
+      "sourceRef": "src:DecisionModel.forward:637:637",
+      "explanation": "ex:model/call:30",
+      "opaque": false
+    },
+    {
+      "id": "model/call:31",
+      "scope": "model",
+      "label": "p.clamp_min(1e-09)",
+      "role": "clamp_min",
+      "instance": null,
+      "childScope": null,
+      "sourceRef": "src:DecisionModel.forward:638:638",
+      "explanation": "ex:model/call:31",
+      "opaque": false
+    },
+    {
+      "id": "model/call:32",
+      "scope": "model",
+      "label": "torch.log(p.clamp_min(1e-09))",
+      "role": "log",
+      "instance": null,
+      "childScope": null,
+      "sourceRef": "src:DecisionModel.forward:638:638",
+      "explanation": "ex:model/call:32",
+      "opaque": false
+    },
+    {
+      "id": "model/call:33",
+      "scope": "model",
+      "label": "p * torch.log(p.clamp_min(1e-09))",
+      "role": "mul",
+      "instance": null,
+      "childScope": null,
+      "sourceRef": "src:DecisionModel.forward:638:638",
+      "explanation": "ex:model/call:33",
+      "opaque": false
+    },
+    {
+      "id": "model/call:34",
+      "scope": "model",
+      "label": "(p * torch.log(p.clamp_min(1e-09))).sum(-1)",
+      "role": "sum",
+      "instance": null,
+      "childScope": null,
+      "sourceRef": "src:DecisionModel.forward:638:638",
+      "explanation": "ex:model/call:34",
+      "opaque": false
+    },
+    {
+      "id": "model/call:35",
+      "scope": "model",
+      "label": "-(p * torch.log(p.clamp_min(1e-09))).sum(-1)",
+      "role": "unary",
+      "instance": null,
+      "childScope": null,
+      "sourceRef": "src:DecisionModel.forward:638:638",
+      "explanation": "ex:model/call:35",
+      "opaque": false
+    },
+    {
+      "id": "model/call:36",
+      "scope": "model",
+      "label": "torch.log(k)",
+      "role": "log",
+      "instance": null,
+      "childScope": null,
+      "sourceRef": "src:DecisionModel.forward:638:638",
+      "explanation": "ex:model/call:36",
+      "opaque": false
+    },
+    {
+      "id": "model/call:37",
+      "scope": "model",
+      "label": "-(p * torch.log(p.clamp_min(1e-09))).sum(-1) / torch.log(k)",
+      "role": "div",
+      "instance": null,
+      "childScope": null,
+      "sourceRef": "src:DecisionModel.forward:638:638",
+      "explanation": "ex:model/call:37",
+      "opaque": false
+    },
+    {
+      "id": "model/call:38",
+      "scope": "model",
+      "label": "p.size(-1) >= 2（内部未展开）",
+      "role": "opaque",
+      "instance": null,
+      "childScope": null,
+      "sourceRef": "src:DecisionModel.forward:639:649",
+      "explanation": "ex:model/call:38",
+      "opaque": true
+    },
+    {
+      "id": "model/call:39",
+      "scope": "model",
+      "label": "条件结果 top2",
+      "role": "conditional_result",
+      "instance": null,
+      "childScope": null,
+      "sourceRef": "src:DecisionModel.forward:639:649",
+      "explanation": "ex:model/call:39",
+      "opaque": true
+    },
+    {
+      "id": "model/call:40",
+      "scope": "model",
+      "label": "top2[:, 0]",
+      "role": "index",
+      "instance": null,
+      "childScope": null,
+      "sourceRef": "src:DecisionModel.forward:650:650",
+      "explanation": "ex:model/call:40",
+      "opaque": false
+    },
+    {
+      "id": "model/call:41",
+      "scope": "model",
+      "label": "top2[:, 0]",
+      "role": "index",
+      "instance": null,
+      "childScope": null,
+      "sourceRef": "src:DecisionModel.forward:650:650",
+      "explanation": "ex:model/call:41",
+      "opaque": false
+    },
+    {
+      "id": "model/call:42",
+      "scope": "model",
+      "label": "top2[:, 1]",
+      "role": "index",
+      "instance": null,
+      "childScope": null,
+      "sourceRef": "src:DecisionModel.forward:650:650",
+      "explanation": "ex:model/call:42",
+      "opaque": false
+    },
+    {
+      "id": "model/call:43",
+      "scope": "model",
+      "label": "top2[:, 0] - top2[:, 1]",
+      "role": "sub",
+      "instance": null,
+      "childScope": null,
+      "sourceRef": "src:DecisionModel.forward:650:650",
+      "explanation": "ex:model/call:43",
+      "opaque": false
+    },
+    {
+      "id": "model/call:44",
+      "scope": "model",
+      "label": "255.0",
+      "role": "constant",
+      "instance": null,
+      "childScope": null,
+      "sourceRef": "src:DecisionModel.forward:650:650",
+      "explanation": "ex:model/call:44",
+      "opaque": false
+    },
+    {
+      "id": "model/call:45",
+      "scope": "model",
+      "label": "k / 255.0",
+      "role": "div",
+      "instance": null,
+      "childScope": null,
+      "sourceRef": "src:DecisionModel.forward:650:650",
+      "explanation": "ex:model/call:45",
+      "opaque": false
+    },
+    {
+      "id": "model/call:46",
+      "scope": "model",
+      "label": "torch.stack([top2[:, 0], top2[:, 0] - top2[:, 1], ent, k / 255.0], -1)",
+      "role": "stack",
+      "instance": null,
+      "childScope": null,
+      "sourceRef": "src:DecisionModel.forward:650:650",
+      "explanation": "ex:model/call:46",
+      "opaque": false
+    },
+    {
+      "id": "model/call:47",
+      "scope": "model",
+      "label": "h[:, 0]",
+      "role": "index",
+      "instance": null,
+      "childScope": null,
+      "sourceRef": "src:DecisionModel.forward:651:651",
+      "explanation": "ex:model/call:47",
+      "opaque": false
+    },
+    {
+      "id": "model/call:48",
+      "scope": "model",
+      "label": "h[:, 0].float()",
+      "role": "cast",
+      "instance": null,
+      "childScope": null,
+      "sourceRef": "src:DecisionModel.forward:651:651",
+      "explanation": "ex:model/call:48",
+      "opaque": false
+    },
+    {
+      "id": "model/call:49",
+      "scope": "model",
+      "label": "torch.cat([pooled, feats], -1)",
+      "role": "cat",
+      "instance": null,
+      "childScope": null,
+      "sourceRef": "src:DecisionModel.forward:652:652",
+      "explanation": "ex:model/call:49",
+      "opaque": false
+    },
+    {
+      "id": "model/call:50",
+      "scope": "model",
+      "label": "not _autocast_enabled(h.device.type)（内部未展开）",
+      "role": "opaque",
+      "instance": null,
+      "childScope": null,
+      "sourceRef": "src:DecisionModel.forward:655:656",
+      "explanation": "ex:model/call:50",
+      "opaque": true
+    },
+    {
+      "id": "model/call:51",
+      "scope": "model",
+      "label": "条件结果 act_input",
+      "role": "conditional_result",
+      "instance": null,
+      "childScope": null,
+      "sourceRef": "src:DecisionModel.forward:655:656",
+      "explanation": "ex:model/call:51",
+      "opaque": true
+    },
+    {
+      "id": "model/call:52",
+      "scope": "model",
+      "label": "self.act_head",
+      "role": "sequential",
+      "instance": "inst:act_head",
+      "childScope": "model/sequence:52",
+      "sourceRef": "src:DecisionModel.forward:657:657",
+      "explanation": "ex:model/call:52",
+      "opaque": false
+    },
+    {
+      "id": "model/sequence:52/call:53",
+      "scope": "model/sequence:52",
+      "label": "输入",
+      "role": "input",
+      "instance": null,
+      "childScope": null,
+      "sourceRef": "src:DecisionModel.forward:657:657",
+      "explanation": "ex:model/sequence:52/call:53",
+      "opaque": false
+    },
+    {
+      "id": "model/sequence:52/call:54",
+      "scope": "model/sequence:52",
+      "label": "0: Linear",
+      "role": "linear",
+      "instance": "inst:act_head.0",
+      "childScope": null,
+      "sourceRef": "src:DecisionModel.__init__:598:598",
+      "explanation": "ex:model/sequence:52/call:54",
+      "opaque": false
+    },
+    {
+      "id": "model/sequence:52/call:55",
+      "scope": "model/sequence:52",
+      "label": "1: GELU",
+      "role": "gelu",
+      "instance": "inst:act_head.1",
+      "childScope": null,
+      "sourceRef": "src:DecisionModel.__init__:598:598",
+      "explanation": "ex:model/sequence:52/call:55",
+      "opaque": false
+    },
+    {
+      "id": "model/sequence:52/call:56",
+      "scope": "model/sequence:52",
+      "label": "2: Linear",
+      "role": "linear",
+      "instance": "inst:act_head.2",
+      "childScope": null,
+      "sourceRef": "src:DecisionModel.__init__:598:598",
+      "explanation": "ex:model/sequence:52/call:56",
+      "opaque": false
+    },
+    {
+      "id": "model/sequence:52/call:57",
+      "scope": "model/sequence:52",
+      "label": "输出",
+      "role": "output",
+      "instance": null,
+      "childScope": null,
+      "sourceRef": "src:DecisionModel.forward:657:657",
+      "explanation": "ex:model/sequence:52/call:57",
+      "opaque": false
+    },
+    {
+      "id": "model/call:58",
+      "scope": "model",
+      "label": "输出 logits",
+      "role": "output",
+      "instance": null,
+      "childScope": null,
+      "sourceRef": "src:DecisionModel.forward:658:658",
+      "explanation": "ex:model/call:58",
+      "opaque": false
+    },
+    {
+      "id": "model/call:59",
+      "scope": "model",
+      "label": "输出 act_logits",
+      "role": "output",
+      "instance": null,
+      "childScope": null,
+      "sourceRef": "src:DecisionModel.forward:658:658",
+      "explanation": "ex:model/call:59",
+      "opaque": false
+    }
+  ],
+  "ports": [
+    {
+      "id": "model/input:input_ids:out",
+      "node": "model/input:input_ids",
+      "direction": "out",
+      "name": "output",
+      "tensor": "model/input:input_ids:tensor"
+    },
+    {
+      "id": "model/input:attention_mask:out",
+      "node": "model/input:attention_mask",
+      "direction": "out",
+      "name": "output",
+      "tensor": "model/input:attention_mask:tensor"
+    },
+    {
+      "id": "model/input:marker_pos:out",
+      "node": "model/input:marker_pos",
+      "direction": "out",
+      "name": "output",
+      "tensor": "model/input:marker_pos:tensor"
+    },
+    {
+      "id": "model/input:marker_mask:out",
+      "node": "model/input:marker_mask",
+      "direction": "out",
+      "name": "output",
+      "tensor": "model/input:marker_mask:tensor"
+    },
+    {
+      "id": "model/input:qtype:out",
+      "node": "model/input:qtype",
+      "direction": "out",
+      "name": "output",
+      "tensor": "model/input:qtype:tensor"
+    },
+    {
+      "id": "model/input:detach_encoder:out",
+      "node": "model/input:detach_encoder",
+      "direction": "out",
+      "name": "output",
+      "tensor": "model/input:detach_encoder:tensor"
+    },
+    {
+      "id": "model/input:position_ids:out",
+      "node": "model/input:position_ids",
+      "direction": "out",
+      "name": "output",
+      "tensor": "model/input:position_ids:tensor"
+    },
+    {
+      "id": "model/input:option_ids:out",
+      "node": "model/input:option_ids",
+      "direction": "out",
+      "name": "output",
+      "tensor": "model/input:option_ids:tensor"
+    },
+    {
+      "id": "model/call:1:in0",
+      "node": "model/call:1",
+      "direction": "in",
+      "name": "input0",
+      "tensor": "model/input:attention_mask:tensor"
+    },
+    {
+      "id": "model/call:1:in1",
+      "node": "model/call:1",
+      "direction": "in",
+      "name": "input1",
+      "tensor": "model/input:input_ids:tensor"
+    },
+    {
+      "id": "model/call:1:in2",
+      "node": "model/call:1",
+      "direction": "in",
+      "name": "input2",
+      "tensor": "model/input:option_ids:tensor"
+    },
+    {
+      "id": "model/call:1:in3",
+      "node": "model/call:1",
+      "direction": "in",
+      "name": "input3",
+      "tensor": "model/input:position_ids:tensor"
+    },
+    {
+      "id": "model/call:1:out",
+      "node": "model/call:1",
+      "direction": "out",
+      "name": "output",
+      "tensor": "model/call:1:tensor"
+    },
+    {
+      "id": "model/call:2:in0",
+      "node": "model/call:2",
+      "direction": "in",
+      "name": "input0",
+      "tensor": "model/call:1:tensor"
+    },
+    {
+      "id": "model/call:2:out",
+      "node": "model/call:2",
+      "direction": "out",
+      "name": "output",
+      "tensor": "model/call:2:tensor"
+    },
+    {
+      "id": "model/call:3:in0",
+      "node": "model/call:3",
+      "direction": "in",
+      "name": "input0",
+      "tensor": "model/input:detach_encoder:tensor"
+    },
+    {
+      "id": "model/call:3:in1",
+      "node": "model/call:3",
+      "direction": "in",
+      "name": "input1",
+      "tensor": "model/call:2:tensor"
+    },
+    {
+      "id": "model/call:3:out",
+      "node": "model/call:3",
+      "direction": "out",
+      "name": "output",
+      "tensor": "model/call:3:tensor"
+    },
+    {
+      "id": "model/call:4:in0",
+      "node": "model/call:4",
+      "direction": "in",
+      "name": "input0",
+      "tensor": "model/call:3:tensor"
+    },
+    {
+      "id": "model/call:4:in1",
+      "node": "model/call:4",
+      "direction": "in",
+      "name": "input1",
+      "tensor": "model/call:2:tensor"
+    },
+    {
+      "id": "model/call:4:out",
+      "node": "model/call:4",
+      "direction": "out",
+      "name": "output",
+      "tensor": "model/call:4:tensor"
+    },
+    {
+      "id": "model/call:5:in0",
+      "node": "model/call:5",
+      "direction": "in",
+      "name": "input0",
+      "tensor": "model/input:qtype:tensor"
+    },
+    {
+      "id": "model/call:5:out",
+      "node": "model/call:5",
+      "direction": "out",
+      "name": "output",
+      "tensor": "model/call:5:tensor"
+    },
+    {
+      "id": "model/call:6:in0",
+      "node": "model/call:6",
+      "direction": "in",
+      "name": "input0",
+      "tensor": "model/call:5:tensor"
+    },
+    {
+      "id": "model/call:6:out",
+      "node": "model/call:6",
+      "direction": "out",
+      "name": "output",
+      "tensor": "model/call:6:tensor"
+    },
+    {
+      "id": "model/call:7:in0",
+      "node": "model/call:7",
+      "direction": "in",
+      "name": "input0",
+      "tensor": "model/call:4:tensor"
+    },
+    {
+      "id": "model/call:7:in1",
+      "node": "model/call:7",
+      "direction": "in",
+      "name": "input1",
+      "tensor": "model/call:6:tensor"
+    },
+    {
+      "id": "model/call:7:out",
+      "node": "model/call:7",
+      "direction": "out",
+      "name": "output",
+      "tensor": "model/call:7:tensor"
+    },
+    {
+      "id": "model/call:8:in0",
+      "node": "model/call:8",
+      "direction": "in",
+      "name": "input0",
+      "tensor": "model/input:attention_mask:tensor"
+    },
+    {
+      "id": "model/call:8:in1",
+      "node": "model/call:8",
+      "direction": "in",
+      "name": "input1",
+      "tensor": "model/call:7:tensor"
+    },
+    {
+      "id": "model/call:8:out",
+      "node": "model/call:8",
+      "direction": "out",
+      "name": "output",
+      "tensor": "model/call:8:tensor"
+    },
+    {
+      "id": "model/call:9:in0",
+      "node": "model/call:9",
+      "direction": "in",
+      "name": "input0",
+      "tensor": "model/call:8:tensor"
+    },
+    {
+      "id": "model/call:9:in1",
+      "node": "model/call:9",
+      "direction": "in",
+      "name": "input1",
+      "tensor": "model/call:7:tensor"
+    },
+    {
+      "id": "model/call:9:out",
+      "node": "model/call:9",
+      "direction": "out",
+      "name": "output",
+      "tensor": "model/call:9:tensor"
+    },
+    {
+      "id": "model/call:10:in0",
+      "node": "model/call:10",
+      "direction": "in",
+      "name": "input0",
+      "tensor": "model/input:marker_pos:tensor"
+    },
+    {
+      "id": "model/call:10:out",
+      "node": "model/call:10",
+      "direction": "out",
+      "name": "output",
+      "tensor": "model/call:10:tensor"
+    },
+    {
+      "id": "model/call:11:in0",
+      "node": "model/call:11",
+      "direction": "in",
+      "name": "input0",
+      "tensor": "model/call:10:tensor"
+    },
+    {
+      "id": "model/call:11:out",
+      "node": "model/call:11",
+      "direction": "out",
+      "name": "output",
+      "tensor": "model/call:11:tensor"
+    },
+    {
+      "id": "model/call:12:in0",
+      "node": "model/call:12",
+      "direction": "in",
+      "name": "input0",
+      "tensor": "model/call:9:tensor"
+    },
+    {
+      "id": "model/call:12:out",
+      "node": "model/call:12",
+      "direction": "out",
+      "name": "output",
+      "tensor": "model/call:12:tensor"
+    },
+    {
+      "id": "model/call:13:in0",
+      "node": "model/call:13",
+      "direction": "in",
+      "name": "input0",
+      "tensor": "model/call:11:tensor"
+    },
+    {
+      "id": "model/call:13:in1",
+      "node": "model/call:13",
+      "direction": "in",
+      "name": "input1",
+      "tensor": "model/call:12:tensor"
+    },
+    {
+      "id": "model/call:13:out",
+      "node": "model/call:13",
+      "direction": "out",
+      "name": "output",
+      "tensor": "model/call:13:tensor"
+    },
+    {
+      "id": "model/call:14:in0",
+      "node": "model/call:14",
+      "direction": "in",
+      "name": "input0",
+      "tensor": "model/call:9:tensor"
+    },
+    {
+      "id": "model/call:14:in1",
+      "node": "model/call:14",
+      "direction": "in",
+      "name": "input1",
+      "tensor": "model/call:13:tensor"
+    },
+    {
+      "id": "model/call:14:out",
+      "node": "model/call:14",
+      "direction": "out",
+      "name": "output",
+      "tensor": "model/call:14:tensor"
+    },
+    {
+      "id": "model/call:15:in0",
+      "node": "model/call:15",
+      "direction": "in",
+      "name": "input0",
+      "tensor": "model/call:14:tensor"
+    },
+    {
+      "id": "model/call:15:out",
+      "node": "model/call:15",
+      "direction": "out",
+      "name": "output",
+      "tensor": "model/call:15:tensor"
+    },
+    {
+      "id": "model/sequence:15/call:16:out",
+      "node": "model/sequence:15/call:16",
+      "direction": "out",
+      "name": "output",
+      "tensor": "model/sequence:15/call:16:tensor"
+    },
+    {
+      "id": "model/sequence:15/call:17:in0",
+      "node": "model/sequence:15/call:17",
+      "direction": "in",
+      "name": "input0",
+      "tensor": "model/sequence:15/call:16:tensor"
+    },
+    {
+      "id": "model/sequence:15/call:17:out",
+      "node": "model/sequence:15/call:17",
+      "direction": "out",
+      "name": "output",
+      "tensor": "model/sequence:15/call:17:tensor"
+    },
+    {
+      "id": "model/sequence:15/call:18:in0",
+      "node": "model/sequence:15/call:18",
+      "direction": "in",
+      "name": "input0",
+      "tensor": "model/sequence:15/call:17:tensor"
+    },
+    {
+      "id": "model/sequence:15/call:18:out",
+      "node": "model/sequence:15/call:18",
+      "direction": "out",
+      "name": "output",
+      "tensor": "model/sequence:15/call:18:tensor"
+    },
+    {
+      "id": "model/sequence:15/call:19:in0",
+      "node": "model/sequence:15/call:19",
+      "direction": "in",
+      "name": "input0",
+      "tensor": "model/sequence:15/call:18:tensor"
+    },
+    {
+      "id": "model/sequence:15/call:19:out",
+      "node": "model/sequence:15/call:19",
+      "direction": "out",
+      "name": "output",
+      "tensor": "model/sequence:15/call:19:tensor"
+    },
+    {
+      "id": "model/sequence:15/call:20:in0",
+      "node": "model/sequence:15/call:20",
+      "direction": "in",
+      "name": "input0",
+      "tensor": "model/sequence:15/call:19:tensor"
+    },
+    {
+      "id": "model/sequence:15/call:20:out",
+      "node": "model/sequence:15/call:20",
+      "direction": "out",
+      "name": "output",
+      "tensor": "model/sequence:15/call:20:tensor"
+    },
+    {
+      "id": "model/sequence:15/call:21:in0",
+      "node": "model/sequence:15/call:21",
+      "direction": "in",
+      "name": "input0",
+      "tensor": "model/sequence:15/call:20:tensor"
+    },
+    {
+      "id": "model/sequence:15/call:21:out",
+      "node": "model/sequence:15/call:21",
+      "direction": "out",
+      "name": "output",
+      "tensor": "model/sequence:15/call:21:tensor"
+    },
+    {
+      "id": "model/call:22:in0",
+      "node": "model/call:22",
+      "direction": "in",
+      "name": "input0",
+      "tensor": "model/call:15:tensor"
+    },
+    {
+      "id": "model/call:22:out",
+      "node": "model/call:22",
+      "direction": "out",
+      "name": "output",
+      "tensor": "model/call:22:tensor"
+    },
+    {
+      "id": "model/call:23:in0",
+      "node": "model/call:23",
+      "direction": "in",
+      "name": "input0",
+      "tensor": "model/call:22:tensor"
+    },
+    {
+      "id": "model/call:23:out",
+      "node": "model/call:23",
+      "direction": "out",
+      "name": "output",
+      "tensor": "model/call:23:tensor"
+    },
+    {
+      "id": "model/call:24:in0",
+      "node": "model/call:24",
+      "direction": "in",
+      "name": "input0",
+      "tensor": "model/input:marker_mask:tensor"
+    },
+    {
+      "id": "model/call:24:out",
+      "node": "model/call:24",
+      "direction": "out",
+      "name": "output",
+      "tensor": "model/call:24:tensor"
+    },
+    {
+      "id": "model/call:25:in0",
+      "node": "model/call:25",
+      "direction": "in",
+      "name": "input0",
+      "tensor": "model/call:23:tensor"
+    },
+    {
+      "id": "model/call:25:in1",
+      "node": "model/call:25",
+      "direction": "in",
+      "name": "input1",
+      "tensor": "model/call:24:tensor"
+    },
+    {
+      "id": "model/call:25:out",
+      "node": "model/call:25",
+      "direction": "out",
+      "name": "output",
+      "tensor": "model/call:25:tensor"
+    },
+    {
+      "id": "model/call:26:in0",
+      "node": "model/call:26",
+      "direction": "in",
+      "name": "input0",
+      "tensor": "model/call:25:tensor"
+    },
+    {
+      "id": "model/call:26:out",
+      "node": "model/call:26",
+      "direction": "out",
+      "name": "output",
+      "tensor": "model/call:26:tensor"
+    },
+    {
+      "id": "model/call:27:in0",
+      "node": "model/call:27",
+      "direction": "in",
+      "name": "input0",
+      "tensor": "model/call:26:tensor"
+    },
+    {
+      "id": "model/call:27:out",
+      "node": "model/call:27",
+      "direction": "out",
+      "name": "output",
+      "tensor": "model/call:27:tensor"
+    },
+    {
+      "id": "model/call:28:in0",
+      "node": "model/call:28",
+      "direction": "in",
+      "name": "input0",
+      "tensor": "model/input:marker_mask:tensor"
+    },
+    {
+      "id": "model/call:28:out",
+      "node": "model/call:28",
+      "direction": "out",
+      "name": "output",
+      "tensor": "model/call:28:tensor"
+    },
+    {
+      "id": "model/call:29:in0",
+      "node": "model/call:29",
+      "direction": "in",
+      "name": "input0",
+      "tensor": "model/call:28:tensor"
+    },
+    {
+      "id": "model/call:29:out",
+      "node": "model/call:29",
+      "direction": "out",
+      "name": "output",
+      "tensor": "model/call:29:tensor"
+    },
+    {
+      "id": "model/call:30:in0",
+      "node": "model/call:30",
+      "direction": "in",
+      "name": "input0",
+      "tensor": "model/call:29:tensor"
+    },
+    {
+      "id": "model/call:30:out",
+      "node": "model/call:30",
+      "direction": "out",
+      "name": "output",
+      "tensor": "model/call:30:tensor"
+    },
+    {
+      "id": "model/call:31:in0",
+      "node": "model/call:31",
+      "direction": "in",
+      "name": "input0",
+      "tensor": "model/call:27:tensor"
+    },
+    {
+      "id": "model/call:31:out",
+      "node": "model/call:31",
+      "direction": "out",
+      "name": "output",
+      "tensor": "model/call:31:tensor"
+    },
+    {
+      "id": "model/call:32:in0",
+      "node": "model/call:32",
+      "direction": "in",
+      "name": "input0",
+      "tensor": "model/call:31:tensor"
+    },
+    {
+      "id": "model/call:32:out",
+      "node": "model/call:32",
+      "direction": "out",
+      "name": "output",
+      "tensor": "model/call:32:tensor"
+    },
+    {
+      "id": "model/call:33:in0",
+      "node": "model/call:33",
+      "direction": "in",
+      "name": "input0",
+      "tensor": "model/call:27:tensor"
+    },
+    {
+      "id": "model/call:33:in1",
+      "node": "model/call:33",
+      "direction": "in",
+      "name": "input1",
+      "tensor": "model/call:32:tensor"
+    },
+    {
+      "id": "model/call:33:out",
+      "node": "model/call:33",
+      "direction": "out",
+      "name": "output",
+      "tensor": "model/call:33:tensor"
+    },
+    {
+      "id": "model/call:34:in0",
+      "node": "model/call:34",
+      "direction": "in",
+      "name": "input0",
+      "tensor": "model/call:33:tensor"
+    },
+    {
+      "id": "model/call:34:out",
+      "node": "model/call:34",
+      "direction": "out",
+      "name": "output",
+      "tensor": "model/call:34:tensor"
+    },
+    {
+      "id": "model/call:35:in0",
+      "node": "model/call:35",
+      "direction": "in",
+      "name": "input0",
+      "tensor": "model/call:34:tensor"
+    },
+    {
+      "id": "model/call:35:out",
+      "node": "model/call:35",
+      "direction": "out",
+      "name": "output",
+      "tensor": "model/call:35:tensor"
+    },
+    {
+      "id": "model/call:36:in0",
+      "node": "model/call:36",
+      "direction": "in",
+      "name": "input0",
+      "tensor": "model/call:30:tensor"
+    },
+    {
+      "id": "model/call:36:out",
+      "node": "model/call:36",
+      "direction": "out",
+      "name": "output",
+      "tensor": "model/call:36:tensor"
+    },
+    {
+      "id": "model/call:37:in0",
+      "node": "model/call:37",
+      "direction": "in",
+      "name": "input0",
+      "tensor": "model/call:35:tensor"
+    },
+    {
+      "id": "model/call:37:in1",
+      "node": "model/call:37",
+      "direction": "in",
+      "name": "input1",
+      "tensor": "model/call:36:tensor"
+    },
+    {
+      "id": "model/call:37:out",
+      "node": "model/call:37",
+      "direction": "out",
+      "name": "output",
+      "tensor": "model/call:37:tensor"
+    },
+    {
+      "id": "model/call:38:in0",
+      "node": "model/call:38",
+      "direction": "in",
+      "name": "input0",
+      "tensor": "model/call:27:tensor"
+    },
+    {
+      "id": "model/call:38:out",
+      "node": "model/call:38",
+      "direction": "out",
+      "name": "output",
+      "tensor": "model/call:38:tensor"
+    },
+    {
+      "id": "model/call:39:in0",
+      "node": "model/call:39",
+      "direction": "in",
+      "name": "input0",
+      "tensor": "model/call:38:tensor"
+    },
+    {
+      "id": "model/call:39:out",
+      "node": "model/call:39",
+      "direction": "out",
+      "name": "output",
+      "tensor": "model/call:39:tensor"
+    },
+    {
+      "id": "model/call:40:in0",
+      "node": "model/call:40",
+      "direction": "in",
+      "name": "input0",
+      "tensor": "model/call:39:tensor"
+    },
+    {
+      "id": "model/call:40:out",
+      "node": "model/call:40",
+      "direction": "out",
+      "name": "output",
+      "tensor": "model/call:40:tensor"
+    },
+    {
+      "id": "model/call:41:in0",
+      "node": "model/call:41",
+      "direction": "in",
+      "name": "input0",
+      "tensor": "model/call:39:tensor"
+    },
+    {
+      "id": "model/call:41:out",
+      "node": "model/call:41",
+      "direction": "out",
+      "name": "output",
+      "tensor": "model/call:41:tensor"
+    },
+    {
+      "id": "model/call:42:in0",
+      "node": "model/call:42",
+      "direction": "in",
+      "name": "input0",
+      "tensor": "model/call:39:tensor"
+    },
+    {
+      "id": "model/call:42:out",
+      "node": "model/call:42",
+      "direction": "out",
+      "name": "output",
+      "tensor": "model/call:42:tensor"
+    },
+    {
+      "id": "model/call:43:in0",
+      "node": "model/call:43",
+      "direction": "in",
+      "name": "input0",
+      "tensor": "model/call:41:tensor"
+    },
+    {
+      "id": "model/call:43:in1",
+      "node": "model/call:43",
+      "direction": "in",
+      "name": "input1",
+      "tensor": "model/call:42:tensor"
+    },
+    {
+      "id": "model/call:43:out",
+      "node": "model/call:43",
+      "direction": "out",
+      "name": "output",
+      "tensor": "model/call:43:tensor"
+    },
+    {
+      "id": "model/call:44:out",
+      "node": "model/call:44",
+      "direction": "out",
+      "name": "output",
+      "tensor": "model/call:44:tensor"
+    },
+    {
+      "id": "model/call:45:in0",
+      "node": "model/call:45",
+      "direction": "in",
+      "name": "input0",
+      "tensor": "model/call:30:tensor"
+    },
+    {
+      "id": "model/call:45:in1",
+      "node": "model/call:45",
+      "direction": "in",
+      "name": "input1",
+      "tensor": "model/call:44:tensor"
+    },
+    {
+      "id": "model/call:45:out",
+      "node": "model/call:45",
+      "direction": "out",
+      "name": "output",
+      "tensor": "model/call:45:tensor"
+    },
+    {
+      "id": "model/call:46:in0",
+      "node": "model/call:46",
+      "direction": "in",
+      "name": "input0",
+      "tensor": "model/call:40:tensor"
+    },
+    {
+      "id": "model/call:46:in1",
+      "node": "model/call:46",
+      "direction": "in",
+      "name": "input1",
+      "tensor": "model/call:43:tensor"
+    },
+    {
+      "id": "model/call:46:in2",
+      "node": "model/call:46",
+      "direction": "in",
+      "name": "input2",
+      "tensor": "model/call:37:tensor"
+    },
+    {
+      "id": "model/call:46:in3",
+      "node": "model/call:46",
+      "direction": "in",
+      "name": "input3",
+      "tensor": "model/call:45:tensor"
+    },
+    {
+      "id": "model/call:46:out",
+      "node": "model/call:46",
+      "direction": "out",
+      "name": "output",
+      "tensor": "model/call:46:tensor"
+    },
+    {
+      "id": "model/call:47:in0",
+      "node": "model/call:47",
+      "direction": "in",
+      "name": "input0",
+      "tensor": "model/call:9:tensor"
+    },
+    {
+      "id": "model/call:47:out",
+      "node": "model/call:47",
+      "direction": "out",
+      "name": "output",
+      "tensor": "model/call:47:tensor"
+    },
+    {
+      "id": "model/call:48:in0",
+      "node": "model/call:48",
+      "direction": "in",
+      "name": "input0",
+      "tensor": "model/call:47:tensor"
+    },
+    {
+      "id": "model/call:48:out",
+      "node": "model/call:48",
+      "direction": "out",
+      "name": "output",
+      "tensor": "model/call:48:tensor"
+    },
+    {
+      "id": "model/call:49:in0",
+      "node": "model/call:49",
+      "direction": "in",
+      "name": "input0",
+      "tensor": "model/call:48:tensor"
+    },
+    {
+      "id": "model/call:49:in1",
+      "node": "model/call:49",
+      "direction": "in",
+      "name": "input1",
+      "tensor": "model/call:46:tensor"
+    },
+    {
+      "id": "model/call:49:out",
+      "node": "model/call:49",
+      "direction": "out",
+      "name": "output",
+      "tensor": "model/call:49:tensor"
+    },
+    {
+      "id": "model/call:50:in0",
+      "node": "model/call:50",
+      "direction": "in",
+      "name": "input0",
+      "tensor": "model/call:49:tensor"
+    },
+    {
+      "id": "model/call:50:in1",
+      "node": "model/call:50",
+      "direction": "in",
+      "name": "input1",
+      "tensor": "model/call:9:tensor"
+    },
+    {
+      "id": "model/call:50:out",
+      "node": "model/call:50",
+      "direction": "out",
+      "name": "output",
+      "tensor": "model/call:50:tensor"
+    },
+    {
+      "id": "model/call:51:in0",
+      "node": "model/call:51",
+      "direction": "in",
+      "name": "input0",
+      "tensor": "model/call:50:tensor"
+    },
+    {
+      "id": "model/call:51:in1",
+      "node": "model/call:51",
+      "direction": "in",
+      "name": "input1",
+      "tensor": "model/call:49:tensor"
+    },
+    {
+      "id": "model/call:51:out",
+      "node": "model/call:51",
+      "direction": "out",
+      "name": "output",
+      "tensor": "model/call:51:tensor"
+    },
+    {
+      "id": "model/call:52:in0",
+      "node": "model/call:52",
+      "direction": "in",
+      "name": "input0",
+      "tensor": "model/call:51:tensor"
+    },
+    {
+      "id": "model/call:52:out",
+      "node": "model/call:52",
+      "direction": "out",
+      "name": "output",
+      "tensor": "model/call:52:tensor"
+    },
+    {
+      "id": "model/sequence:52/call:53:out",
+      "node": "model/sequence:52/call:53",
+      "direction": "out",
+      "name": "output",
+      "tensor": "model/sequence:52/call:53:tensor"
+    },
+    {
+      "id": "model/sequence:52/call:54:in0",
+      "node": "model/sequence:52/call:54",
+      "direction": "in",
+      "name": "input0",
+      "tensor": "model/sequence:52/call:53:tensor"
+    },
+    {
+      "id": "model/sequence:52/call:54:out",
+      "node": "model/sequence:52/call:54",
+      "direction": "out",
+      "name": "output",
+      "tensor": "model/sequence:52/call:54:tensor"
+    },
+    {
+      "id": "model/sequence:52/call:55:in0",
+      "node": "model/sequence:52/call:55",
+      "direction": "in",
+      "name": "input0",
+      "tensor": "model/sequence:52/call:54:tensor"
+    },
+    {
+      "id": "model/sequence:52/call:55:out",
+      "node": "model/sequence:52/call:55",
+      "direction": "out",
+      "name": "output",
+      "tensor": "model/sequence:52/call:55:tensor"
+    },
+    {
+      "id": "model/sequence:52/call:56:in0",
+      "node": "model/sequence:52/call:56",
+      "direction": "in",
+      "name": "input0",
+      "tensor": "model/sequence:52/call:55:tensor"
+    },
+    {
+      "id": "model/sequence:52/call:56:out",
+      "node": "model/sequence:52/call:56",
+      "direction": "out",
+      "name": "output",
+      "tensor": "model/sequence:52/call:56:tensor"
+    },
+    {
+      "id": "model/sequence:52/call:57:in0",
+      "node": "model/sequence:52/call:57",
+      "direction": "in",
+      "name": "input0",
+      "tensor": "model/sequence:52/call:56:tensor"
+    },
+    {
+      "id": "model/sequence:52/call:57:out",
+      "node": "model/sequence:52/call:57",
+      "direction": "out",
+      "name": "output",
+      "tensor": "model/sequence:52/call:57:tensor"
+    },
+    {
+      "id": "model/call:58:in0",
+      "node": "model/call:58",
+      "direction": "in",
+      "name": "input0",
+      "tensor": "model/call:25:tensor"
+    },
+    {
+      "id": "model/call:58:out",
+      "node": "model/call:58",
+      "direction": "out",
+      "name": "output",
+      "tensor": "model/call:58:tensor"
+    },
+    {
+      "id": "model/call:59:in0",
+      "node": "model/call:59",
+      "direction": "in",
+      "name": "input0",
+      "tensor": "model/call:52:tensor"
+    },
+    {
+      "id": "model/call:59:out",
+      "node": "model/call:59",
+      "direction": "out",
+      "name": "output",
+      "tensor": "model/call:59:tensor"
+    }
+  ],
+  "edges": [
+    {
+      "id": "model/call:1:edge0",
+      "scope": "model",
+      "source": "model/input:attention_mask:out",
+      "target": "model/call:1:in0",
+      "tensor": "model/input:attention_mask:tensor",
+      "condition": null
+    },
+    {
+      "id": "model/call:1:edge1",
+      "scope": "model",
+      "source": "model/input:input_ids:out",
+      "target": "model/call:1:in1",
+      "tensor": "model/input:input_ids:tensor",
+      "condition": null
+    },
+    {
+      "id": "model/call:1:edge2",
+      "scope": "model",
+      "source": "model/input:option_ids:out",
+      "target": "model/call:1:in2",
+      "tensor": "model/input:option_ids:tensor",
+      "condition": null
+    },
+    {
+      "id": "model/call:1:edge3",
+      "scope": "model",
+      "source": "model/input:position_ids:out",
+      "target": "model/call:1:in3",
+      "tensor": "model/input:position_ids:tensor",
+      "condition": null
+    },
+    {
+      "id": "model/call:2:edge0",
+      "scope": "model",
+      "source": "model/call:1:out",
+      "target": "model/call:2:in0",
+      "tensor": "model/call:1:tensor",
+      "condition": "变量结果来自控制区域: option_ids is None"
+    },
+    {
+      "id": "model/call:3:edge0",
+      "scope": "model",
+      "source": "model/input:detach_encoder:out",
+      "target": "model/call:3:in0",
+      "tensor": "model/input:detach_encoder:tensor",
+      "condition": null
+    },
+    {
+      "id": "model/call:3:edge1",
+      "scope": "model",
+      "source": "model/call:2:out",
+      "target": "model/call:3:in1",
+      "tensor": "model/call:2:tensor",
+      "condition": null
+    },
+    {
+      "id": "model/call:4:edge0",
+      "scope": "model",
+      "source": "model/call:3:out",
+      "target": "model/call:4:in0",
+      "tensor": "model/call:3:tensor",
+      "condition": "变量结果来自控制区域: detach_encoder"
+    },
+    {
+      "id": "model/call:4:edge1",
+      "scope": "model",
+      "source": "model/call:2:out",
+      "target": "model/call:4:in1",
+      "tensor": "model/call:2:tensor",
+      "condition": "变量结果来自控制区域: detach_encoder"
+    },
+    {
+      "id": "model/call:5:edge0",
+      "scope": "model",
+      "source": "model/input:qtype:out",
+      "target": "model/call:5:in0",
+      "tensor": "model/input:qtype:tensor",
+      "condition": "torch.device('meta') if no_init else nullcontext()"
+    },
+    {
+      "id": "model/call:6:edge0",
+      "scope": "model",
+      "source": "model/call:5:out",
+      "target": "model/call:6:in0",
+      "tensor": "model/call:5:tensor",
+      "condition": null
+    },
+    {
+      "id": "model/call:7:edge0",
+      "scope": "model",
+      "source": "model/call:4:out",
+      "target": "model/call:7:in0",
+      "tensor": "model/call:4:tensor",
+      "condition": null
+    },
+    {
+      "id": "model/call:7:edge1",
+      "scope": "model",
+      "source": "model/call:6:out",
+      "target": "model/call:7:in1",
+      "tensor": "model/call:6:tensor",
+      "condition": null
+    },
+    {
+      "id": "model/call:8:edge0",
+      "scope": "model",
+      "source": "model/input:attention_mask:out",
+      "target": "model/call:8:in0",
+      "tensor": "model/input:attention_mask:tensor",
+      "condition": null
+    },
+    {
+      "id": "model/call:8:edge1",
+      "scope": "model",
+      "source": "model/call:7:out",
+      "target": "model/call:8:in1",
+      "tensor": "model/call:7:tensor",
+      "condition": null
+    },
+    {
+      "id": "model/call:9:edge0",
+      "scope": "model",
+      "source": "model/call:8:out",
+      "target": "model/call:9:in0",
+      "tensor": "model/call:8:tensor",
+      "condition": "变量结果来自控制区域: self.head is not None"
+    },
+    {
+      "id": "model/call:9:edge1",
+      "scope": "model",
+      "source": "model/call:7:out",
+      "target": "model/call:9:in1",
+      "tensor": "model/call:7:tensor",
+      "condition": "变量结果来自控制区域: self.head is not None"
+    },
+    {
+      "id": "model/call:10:edge0",
+      "scope": "model",
+      "source": "model/input:marker_pos:out",
+      "target": "model/call:10:in0",
+      "tensor": "model/input:marker_pos:tensor",
+      "condition": null
+    },
+    {
+      "id": "model/call:11:edge0",
+      "scope": "model",
+      "source": "model/call:10:out",
+      "target": "model/call:11:in0",
+      "tensor": "model/call:10:tensor",
+      "condition": null
+    },
+    {
+      "id": "model/call:12:edge0",
+      "scope": "model",
+      "source": "model/call:9:out",
+      "target": "model/call:12:in0",
+      "tensor": "model/call:9:tensor",
+      "condition": null
+    },
+    {
+      "id": "model/call:13:edge0",
+      "scope": "model",
+      "source": "model/call:11:out",
+      "target": "model/call:13:in0",
+      "tensor": "model/call:11:tensor",
+      "condition": null
+    },
+    {
+      "id": "model/call:13:edge1",
+      "scope": "model",
+      "source": "model/call:12:out",
+      "target": "model/call:13:in1",
+      "tensor": "model/call:12:tensor",
+      "condition": null
+    },
+    {
+      "id": "model/call:14:edge0",
+      "scope": "model",
+      "source": "model/call:9:out",
+      "target": "model/call:14:in0",
+      "tensor": "model/call:9:tensor",
+      "condition": null
+    },
+    {
+      "id": "model/call:14:edge1",
+      "scope": "model",
+      "source": "model/call:13:out",
+      "target": "model/call:14:in1",
+      "tensor": "model/call:13:tensor",
+      "condition": null
+    },
+    {
+      "id": "model/call:15:edge0",
+      "scope": "model",
+      "source": "model/call:14:out",
+      "target": "model/call:15:in0",
+      "tensor": "model/call:14:tensor",
+      "condition": "torch.device('meta') if no_init else nullcontext()"
+    },
+    {
+      "id": "model/sequence:15/call:17:edge0",
+      "scope": "model/sequence:15",
+      "source": "model/sequence:15/call:16:out",
+      "target": "model/sequence:15/call:17:in0",
+      "tensor": "model/sequence:15/call:16:tensor",
+      "condition": "torch.device('meta') if no_init else nullcontext()"
+    },
+    {
+      "id": "model/sequence:15/call:18:edge0",
+      "scope": "model/sequence:15",
+      "source": "model/sequence:15/call:17:out",
+      "target": "model/sequence:15/call:18:in0",
+      "tensor": "model/sequence:15/call:17:tensor",
+      "condition": "torch.device('meta') if no_init else nullcontext()"
+    },
+    {
+      "id": "model/sequence:15/call:19:edge0",
+      "scope": "model/sequence:15",
+      "source": "model/sequence:15/call:18:out",
+      "target": "model/sequence:15/call:19:in0",
+      "tensor": "model/sequence:15/call:18:tensor",
+      "condition": "torch.device('meta') if no_init else nullcontext()"
+    },
+    {
+      "id": "model/sequence:15/call:20:edge0",
+      "scope": "model/sequence:15",
+      "source": "model/sequence:15/call:19:out",
+      "target": "model/sequence:15/call:20:in0",
+      "tensor": "model/sequence:15/call:19:tensor",
+      "condition": "torch.device('meta') if no_init else nullcontext()"
+    },
+    {
+      "id": "model/sequence:15/call:21:edge0",
+      "scope": "model/sequence:15",
+      "source": "model/sequence:15/call:20:out",
+      "target": "model/sequence:15/call:21:in0",
+      "tensor": "model/sequence:15/call:20:tensor",
+      "condition": null
+    },
+    {
+      "id": "model/call:22:edge0",
+      "scope": "model",
+      "source": "model/call:15:out",
+      "target": "model/call:22:in0",
+      "tensor": "model/call:15:tensor",
+      "condition": null
+    },
+    {
+      "id": "model/call:23:edge0",
+      "scope": "model",
+      "source": "model/call:22:out",
+      "target": "model/call:23:in0",
+      "tensor": "model/call:22:tensor",
+      "condition": null
+    },
+    {
+      "id": "model/call:24:edge0",
+      "scope": "model",
+      "source": "model/input:marker_mask:out",
+      "target": "model/call:24:in0",
+      "tensor": "model/input:marker_mask:tensor",
+      "condition": null
+    },
+    {
+      "id": "model/call:25:edge0",
+      "scope": "model",
+      "source": "model/call:23:out",
+      "target": "model/call:25:in0",
+      "tensor": "model/call:23:tensor",
+      "condition": null
+    },
+    {
+      "id": "model/call:25:edge1",
+      "scope": "model",
+      "source": "model/call:24:out",
+      "target": "model/call:25:in1",
+      "tensor": "model/call:24:tensor",
+      "condition": null
+    },
+    {
+      "id": "model/call:26:edge0",
+      "scope": "model",
+      "source": "model/call:25:out",
+      "target": "model/call:26:in0",
+      "tensor": "model/call:25:tensor",
+      "condition": null
+    },
+    {
+      "id": "model/call:27:edge0",
+      "scope": "model",
+      "source": "model/call:26:out",
+      "target": "model/call:27:in0",
+      "tensor": "model/call:26:tensor",
+      "condition": null
+    },
+    {
+      "id": "model/call:28:edge0",
+      "scope": "model",
+      "source": "model/input:marker_mask:out",
+      "target": "model/call:28:in0",
+      "tensor": "model/input:marker_mask:tensor",
+      "condition": null
+    },
+    {
+      "id": "model/call:29:edge0",
+      "scope": "model",
+      "source": "model/call:28:out",
+      "target": "model/call:29:in0",
+      "tensor": "model/call:28:tensor",
+      "condition": null
+    },
+    {
+      "id": "model/call:30:edge0",
+      "scope": "model",
+      "source": "model/call:29:out",
+      "target": "model/call:30:in0",
+      "tensor": "model/call:29:tensor",
+      "condition": null
+    },
+    {
+      "id": "model/call:31:edge0",
+      "scope": "model",
+      "source": "model/call:27:out",
+      "target": "model/call:31:in0",
+      "tensor": "model/call:27:tensor",
+      "condition": null
+    },
+    {
+      "id": "model/call:32:edge0",
+      "scope": "model",
+      "source": "model/call:31:out",
+      "target": "model/call:32:in0",
+      "tensor": "model/call:31:tensor",
+      "condition": null
+    },
+    {
+      "id": "model/call:33:edge0",
+      "scope": "model",
+      "source": "model/call:27:out",
+      "target": "model/call:33:in0",
+      "tensor": "model/call:27:tensor",
+      "condition": null
+    },
+    {
+      "id": "model/call:33:edge1",
+      "scope": "model",
+      "source": "model/call:32:out",
+      "target": "model/call:33:in1",
+      "tensor": "model/call:32:tensor",
+      "condition": null
+    },
+    {
+      "id": "model/call:34:edge0",
+      "scope": "model",
+      "source": "model/call:33:out",
+      "target": "model/call:34:in0",
+      "tensor": "model/call:33:tensor",
+      "condition": null
+    },
+    {
+      "id": "model/call:35:edge0",
+      "scope": "model",
+      "source": "model/call:34:out",
+      "target": "model/call:35:in0",
+      "tensor": "model/call:34:tensor",
+      "condition": null
+    },
+    {
+      "id": "model/call:36:edge0",
+      "scope": "model",
+      "source": "model/call:30:out",
+      "target": "model/call:36:in0",
+      "tensor": "model/call:30:tensor",
+      "condition": null
+    },
+    {
+      "id": "model/call:37:edge0",
+      "scope": "model",
+      "source": "model/call:35:out",
+      "target": "model/call:37:in0",
+      "tensor": "model/call:35:tensor",
+      "condition": null
+    },
+    {
+      "id": "model/call:37:edge1",
+      "scope": "model",
+      "source": "model/call:36:out",
+      "target": "model/call:37:in1",
+      "tensor": "model/call:36:tensor",
+      "condition": null
+    },
+    {
+      "id": "model/call:38:edge0",
+      "scope": "model",
+      "source": "model/call:27:out",
+      "target": "model/call:38:in0",
+      "tensor": "model/call:27:tensor",
+      "condition": null
+    },
+    {
+      "id": "model/call:39:edge0",
+      "scope": "model",
+      "source": "model/call:38:out",
+      "target": "model/call:39:in0",
+      "tensor": "model/call:38:tensor",
+      "condition": "变量结果来自控制区域: p.size(-1) >= 2"
+    },
+    {
+      "id": "model/call:40:edge0",
+      "scope": "model",
+      "source": "model/call:39:out",
+      "target": "model/call:40:in0",
+      "tensor": "model/call:39:tensor",
+      "condition": null
+    },
+    {
+      "id": "model/call:41:edge0",
+      "scope": "model",
+      "source": "model/call:39:out",
+      "target": "model/call:41:in0",
+      "tensor": "model/call:39:tensor",
+      "condition": null
+    },
+    {
+      "id": "model/call:42:edge0",
+      "scope": "model",
+      "source": "model/call:39:out",
+      "target": "model/call:42:in0",
+      "tensor": "model/call:39:tensor",
+      "condition": null
+    },
+    {
+      "id": "model/call:43:edge0",
+      "scope": "model",
+      "source": "model/call:41:out",
+      "target": "model/call:43:in0",
+      "tensor": "model/call:41:tensor",
+      "condition": null
+    },
+    {
+      "id": "model/call:43:edge1",
+      "scope": "model",
+      "source": "model/call:42:out",
+      "target": "model/call:43:in1",
+      "tensor": "model/call:42:tensor",
+      "condition": null
+    },
+    {
+      "id": "model/call:45:edge0",
+      "scope": "model",
+      "source": "model/call:30:out",
+      "target": "model/call:45:in0",
+      "tensor": "model/call:30:tensor",
+      "condition": null
+    },
+    {
+      "id": "model/call:45:edge1",
+      "scope": "model",
+      "source": "model/call:44:out",
+      "target": "model/call:45:in1",
+      "tensor": "model/call:44:tensor",
+      "condition": null
+    },
+    {
+      "id": "model/call:46:edge0",
+      "scope": "model",
+      "source": "model/call:40:out",
+      "target": "model/call:46:in0",
+      "tensor": "model/call:40:tensor",
+      "condition": null
+    },
+    {
+      "id": "model/call:46:edge1",
+      "scope": "model",
+      "source": "model/call:43:out",
+      "target": "model/call:46:in1",
+      "tensor": "model/call:43:tensor",
+      "condition": null
+    },
+    {
+      "id": "model/call:46:edge2",
+      "scope": "model",
+      "source": "model/call:37:out",
+      "target": "model/call:46:in2",
+      "tensor": "model/call:37:tensor",
+      "condition": null
+    },
+    {
+      "id": "model/call:46:edge3",
+      "scope": "model",
+      "source": "model/call:45:out",
+      "target": "model/call:46:in3",
+      "tensor": "model/call:45:tensor",
+      "condition": null
+    },
+    {
+      "id": "model/call:47:edge0",
+      "scope": "model",
+      "source": "model/call:9:out",
+      "target": "model/call:47:in0",
+      "tensor": "model/call:9:tensor",
+      "condition": null
+    },
+    {
+      "id": "model/call:48:edge0",
+      "scope": "model",
+      "source": "model/call:47:out",
+      "target": "model/call:48:in0",
+      "tensor": "model/call:47:tensor",
+      "condition": null
+    },
+    {
+      "id": "model/call:49:edge0",
+      "scope": "model",
+      "source": "model/call:48:out",
+      "target": "model/call:49:in0",
+      "tensor": "model/call:48:tensor",
+      "condition": null
+    },
+    {
+      "id": "model/call:49:edge1",
+      "scope": "model",
+      "source": "model/call:46:out",
+      "target": "model/call:49:in1",
+      "tensor": "model/call:46:tensor",
+      "condition": null
+    },
+    {
+      "id": "model/call:50:edge0",
+      "scope": "model",
+      "source": "model/call:49:out",
+      "target": "model/call:50:in0",
+      "tensor": "model/call:49:tensor",
+      "condition": null
+    },
+    {
+      "id": "model/call:50:edge1",
+      "scope": "model",
+      "source": "model/call:9:out",
+      "target": "model/call:50:in1",
+      "tensor": "model/call:9:tensor",
+      "condition": null
+    },
+    {
+      "id": "model/call:51:edge0",
+      "scope": "model",
+      "source": "model/call:50:out",
+      "target": "model/call:51:in0",
+      "tensor": "model/call:50:tensor",
+      "condition": "变量结果来自控制区域: not _autocast_enabled(h.device.type)"
+    },
+    {
+      "id": "model/call:51:edge1",
+      "scope": "model",
+      "source": "model/call:49:out",
+      "target": "model/call:51:in1",
+      "tensor": "model/call:49:tensor",
+      "condition": "变量结果来自控制区域: not _autocast_enabled(h.device.type)"
+    },
+    {
+      "id": "model/call:52:edge0",
+      "scope": "model",
+      "source": "model/call:51:out",
+      "target": "model/call:52:in0",
+      "tensor": "model/call:51:tensor",
+      "condition": "torch.device('meta') if no_init else nullcontext()"
+    },
+    {
+      "id": "model/sequence:52/call:54:edge0",
+      "scope": "model/sequence:52",
+      "source": "model/sequence:52/call:53:out",
+      "target": "model/sequence:52/call:54:in0",
+      "tensor": "model/sequence:52/call:53:tensor",
+      "condition": "torch.device('meta') if no_init else nullcontext()"
+    },
+    {
+      "id": "model/sequence:52/call:55:edge0",
+      "scope": "model/sequence:52",
+      "source": "model/sequence:52/call:54:out",
+      "target": "model/sequence:52/call:55:in0",
+      "tensor": "model/sequence:52/call:54:tensor",
+      "condition": "torch.device('meta') if no_init else nullcontext()"
+    },
+    {
+      "id": "model/sequence:52/call:56:edge0",
+      "scope": "model/sequence:52",
+      "source": "model/sequence:52/call:55:out",
+      "target": "model/sequence:52/call:56:in0",
+      "tensor": "model/sequence:52/call:55:tensor",
+      "condition": "torch.device('meta') if no_init else nullcontext()"
+    },
+    {
+      "id": "model/sequence:52/call:57:edge0",
+      "scope": "model/sequence:52",
+      "source": "model/sequence:52/call:56:out",
+      "target": "model/sequence:52/call:57:in0",
+      "tensor": "model/sequence:52/call:56:tensor",
+      "condition": null
+    },
+    {
+      "id": "model/call:58:edge0",
+      "scope": "model",
+      "source": "model/call:25:out",
+      "target": "model/call:58:in0",
+      "tensor": "model/call:25:tensor",
+      "condition": null
+    },
+    {
+      "id": "model/call:59:edge0",
+      "scope": "model",
+      "source": "model/call:52:out",
+      "target": "model/call:59:in0",
+      "tensor": "model/call:52:tensor",
+      "condition": null
+    }
+  ],
+  "tensors": [
+    {
+      "id": "model/input:input_ids:tensor",
+      "name": "input:input_ids",
+      "shape": [
+        null
+      ],
+      "dtype": "unknown",
+      "unknownReason": "没有静态输入形状契约；未运行模型采样",
+      "producer": "model/input:input_ids:out",
+      "consumers": [
+        "model/call:1:in1"
+      ],
+      "evidence": "ev:model/input:input_ids:tensor"
+    },
+    {
+      "id": "model/input:attention_mask:tensor",
+      "name": "input:attention_mask",
+      "shape": [
+        null
+      ],
+      "dtype": "unknown",
+      "unknownReason": "没有静态输入形状契约；未运行模型采样",
+      "producer": "model/input:attention_mask:out",
+      "consumers": [
+        "model/call:1:in0",
+        "model/call:8:in0"
+      ],
+      "evidence": "ev:model/input:attention_mask:tensor"
+    },
+    {
+      "id": "model/input:marker_pos:tensor",
+      "name": "input:marker_pos",
+      "shape": [
+        null
+      ],
+      "dtype": "unknown",
+      "unknownReason": "没有静态输入形状契约；未运行模型采样",
+      "producer": "model/input:marker_pos:out",
+      "consumers": [
+        "model/call:10:in0"
+      ],
+      "evidence": "ev:model/input:marker_pos:tensor"
+    },
+    {
+      "id": "model/input:marker_mask:tensor",
+      "name": "input:marker_mask",
+      "shape": [
+        null
+      ],
+      "dtype": "unknown",
+      "unknownReason": "没有静态输入形状契约；未运行模型采样",
+      "producer": "model/input:marker_mask:out",
+      "consumers": [
+        "model/call:24:in0",
+        "model/call:28:in0"
+      ],
+      "evidence": "ev:model/input:marker_mask:tensor"
+    },
+    {
+      "id": "model/input:qtype:tensor",
+      "name": "input:qtype",
+      "shape": [
+        null
+      ],
+      "dtype": "unknown",
+      "unknownReason": "没有静态输入形状契约；未运行模型采样",
+      "producer": "model/input:qtype:out",
+      "consumers": [
+        "model/call:5:in0"
+      ],
+      "evidence": "ev:model/input:qtype:tensor"
+    },
+    {
+      "id": "model/input:detach_encoder:tensor",
+      "name": "input:detach_encoder",
+      "shape": [
+        null
+      ],
+      "dtype": "unknown",
+      "unknownReason": "没有静态输入形状契约；未运行模型采样",
+      "producer": "model/input:detach_encoder:out",
+      "consumers": [
+        "model/call:3:in0"
+      ],
+      "evidence": "ev:model/input:detach_encoder:tensor"
+    },
+    {
+      "id": "model/input:position_ids:tensor",
+      "name": "input:position_ids",
+      "shape": [
+        null
+      ],
+      "dtype": "unknown",
+      "unknownReason": "没有静态输入形状契约；未运行模型采样",
+      "producer": "model/input:position_ids:out",
+      "consumers": [
+        "model/call:1:in3"
+      ],
+      "evidence": "ev:model/input:position_ids:tensor"
+    },
+    {
+      "id": "model/input:option_ids:tensor",
+      "name": "input:option_ids",
+      "shape": [
+        null
+      ],
+      "dtype": "unknown",
+      "unknownReason": "没有静态输入形状契约；未运行模型采样",
+      "producer": "model/input:option_ids:out",
+      "consumers": [
+        "model/call:1:in2"
+      ],
+      "evidence": "ev:model/input:option_ids:tensor"
+    },
+    {
+      "id": "model/call:1:tensor",
+      "name": "call:1",
+      "shape": [
+        null
+      ],
+      "dtype": "unknown",
+      "unknownReason": "超出受限 AST 支持范围，保留边界",
+      "producer": "model/call:1:out",
+      "consumers": [
+        "model/call:2:in0"
+      ],
+      "evidence": "ev:model/call:1:tensor"
+    },
+    {
+      "id": "model/call:2:tensor",
+      "name": "call:2",
+      "shape": [
+        null
+      ],
+      "dtype": "unknown",
+      "unknownReason": "超出受限 AST 支持范围，保留边界",
+      "producer": "model/call:2:out",
+      "consumers": [
+        "model/call:3:in1",
+        "model/call:4:in1"
+      ],
+      "evidence": "ev:model/call:2:tensor"
+    },
+    {
+      "id": "model/call:3:tensor",
+      "name": "call:3",
+      "shape": [
+        null
+      ],
+      "dtype": "unknown",
+      "unknownReason": "超出受限 AST 支持范围，保留边界",
+      "producer": "model/call:3:out",
+      "consumers": [
+        "model/call:4:in0"
+      ],
+      "evidence": "ev:model/call:3:tensor"
+    },
+    {
+      "id": "model/call:4:tensor",
+      "name": "call:4",
+      "shape": [
+        null
+      ],
+      "dtype": "unknown",
+      "unknownReason": "超出受限 AST 支持范围，保留边界",
+      "producer": "model/call:4:out",
+      "consumers": [
+        "model/call:7:in0"
+      ],
+      "evidence": "ev:model/call:4:tensor"
+    },
+    {
+      "id": "model/call:5:tensor",
+      "name": "call:5",
+      "shape": [
+        null
+      ],
+      "dtype": "unknown",
+      "unknownReason": "输入尺寸、广播或拼接条件未确认，不能推导完整形状",
+      "producer": "model/call:5:out",
+      "consumers": [
+        "model/call:6:in0"
+      ],
+      "evidence": "ev:model/call:5:tensor"
+    },
+    {
+      "id": "model/call:6:tensor",
+      "name": "call:6",
+      "shape": [
+        null
+      ],
+      "dtype": "unknown",
+      "unknownReason": "输入尺寸、广播或拼接条件未确认，不能推导完整形状",
+      "producer": "model/call:6:out",
+      "consumers": [
+        "model/call:7:in1"
+      ],
+      "evidence": "ev:model/call:6:tensor"
+    },
+    {
+      "id": "model/call:7:tensor",
+      "name": "call:7",
+      "shape": [
+        null
+      ],
+      "dtype": "unknown",
+      "unknownReason": "输入尺寸、广播或拼接条件未确认，不能推导完整形状",
+      "producer": "model/call:7:out",
+      "consumers": [
+        "model/call:8:in1",
+        "model/call:9:in1"
+      ],
+      "evidence": "ev:model/call:7:tensor"
+    },
+    {
+      "id": "model/call:8:tensor",
+      "name": "call:8",
+      "shape": [
+        null
+      ],
+      "dtype": "unknown",
+      "unknownReason": "超出受限 AST 支持范围，保留边界",
+      "producer": "model/call:8:out",
+      "consumers": [
+        "model/call:9:in0"
+      ],
+      "evidence": "ev:model/call:8:tensor"
+    },
+    {
+      "id": "model/call:9:tensor",
+      "name": "call:9",
+      "shape": [
+        null
+      ],
+      "dtype": "unknown",
+      "unknownReason": "超出受限 AST 支持范围，保留边界",
+      "producer": "model/call:9:out",
+      "consumers": [
+        "model/call:12:in0",
+        "model/call:14:in0",
+        "model/call:47:in0",
+        "model/call:50:in1"
+      ],
+      "evidence": "ev:model/call:9:tensor"
+    },
+    {
+      "id": "model/call:10:tensor",
+      "name": "call:10",
+      "shape": [
+        null
+      ],
+      "dtype": "unknown",
+      "unknownReason": "输入尺寸、广播或拼接条件未确认，不能推导完整形状",
+      "producer": "model/call:10:out",
+      "consumers": [
+        "model/call:11:in0"
+      ],
+      "evidence": "ev:model/call:10:tensor"
+    },
+    {
+      "id": "model/call:11:tensor",
+      "name": "call:11",
+      "shape": [
+        null
+      ],
+      "dtype": "unknown",
+      "unknownReason": "输入尺寸、广播或拼接条件未确认，不能推导完整形状",
+      "producer": "model/call:11:out",
+      "consumers": [
+        "model/call:13:in0"
+      ],
+      "evidence": "ev:model/call:11:tensor"
+    },
+    {
+      "id": "model/call:12:tensor",
+      "name": "call:12",
+      "shape": [
+        null
+      ],
+      "dtype": "unknown",
+      "unknownReason": "输入尺寸、广播或拼接条件未确认，不能推导完整形状",
+      "producer": "model/call:12:out",
+      "consumers": [
+        "model/call:13:in1"
+      ],
+      "evidence": "ev:model/call:12:tensor"
+    },
+    {
+      "id": "model/call:13:tensor",
+      "name": "call:13",
+      "shape": [
+        null
+      ],
+      "dtype": "unknown",
+      "unknownReason": "输入尺寸、广播或拼接条件未确认，不能推导完整形状",
+      "producer": "model/call:13:out",
+      "consumers": [
+        "model/call:14:in1"
+      ],
+      "evidence": "ev:model/call:13:tensor"
+    },
+    {
+      "id": "model/call:14:tensor",
+      "name": "call:14",
+      "shape": [
+        null
+      ],
+      "dtype": "unknown",
+      "unknownReason": "输入尺寸、广播或拼接条件未确认，不能推导完整形状",
+      "producer": "model/call:14:out",
+      "consumers": [
+        "model/call:15:in0"
+      ],
+      "evidence": "ev:model/call:14:tensor"
+    },
+    {
+      "id": "model/call:15:tensor",
+      "name": "call:15",
+      "shape": [
+        null
+      ],
+      "dtype": "unknown",
+      "unknownReason": "输入尺寸、广播或拼接条件未确认，不能推导完整形状",
+      "producer": "model/call:15:out",
+      "consumers": [
+        "model/call:22:in0"
+      ],
+      "evidence": "ev:model/call:15:tensor"
+    },
+    {
+      "id": "model/sequence:15/call:16:tensor",
+      "name": "call:16",
+      "shape": [
+        null
+      ],
+      "dtype": "unknown",
+      "unknownReason": "没有静态输入形状契约；未运行模型采样",
+      "producer": "model/sequence:15/call:16:out",
+      "consumers": [
+        "model/sequence:15/call:17:in0"
+      ],
+      "evidence": "ev:model/sequence:15/call:16:tensor"
+    },
+    {
+      "id": "model/sequence:15/call:17:tensor",
+      "name": "call:17",
+      "shape": [
+        null
+      ],
+      "dtype": "unknown",
+      "unknownReason": "输入尺寸、广播或拼接条件未确认，不能推导完整形状",
+      "producer": "model/sequence:15/call:17:out",
+      "consumers": [
+        "model/sequence:15/call:18:in0"
+      ],
+      "evidence": "ev:model/sequence:15/call:17:tensor"
+    },
+    {
+      "id": "model/sequence:15/call:18:tensor",
+      "name": "call:18",
+      "shape": [
+        null
+      ],
+      "dtype": "unknown",
+      "unknownReason": "输入尺寸、广播或拼接条件未确认，不能推导完整形状",
+      "producer": "model/sequence:15/call:18:out",
+      "consumers": [
+        "model/sequence:15/call:19:in0"
+      ],
+      "evidence": "ev:model/sequence:15/call:18:tensor"
+    },
+    {
+      "id": "model/sequence:15/call:19:tensor",
+      "name": "call:19",
+      "shape": [
+        null
+      ],
+      "dtype": "unknown",
+      "unknownReason": "输入尺寸、广播或拼接条件未确认，不能推导完整形状",
+      "producer": "model/sequence:15/call:19:out",
+      "consumers": [
+        "model/sequence:15/call:20:in0"
+      ],
+      "evidence": "ev:model/sequence:15/call:19:tensor"
+    },
+    {
+      "id": "model/sequence:15/call:20:tensor",
+      "name": "call:20",
+      "shape": [
+        null
+      ],
+      "dtype": "unknown",
+      "unknownReason": "输入尺寸、广播或拼接条件未确认，不能推导完整形状",
+      "producer": "model/sequence:15/call:20:out",
+      "consumers": [
+        "model/sequence:15/call:21:in0"
+      ],
+      "evidence": "ev:model/sequence:15/call:20:tensor"
+    },
+    {
+      "id": "model/sequence:15/call:21:tensor",
+      "name": "call:21",
+      "shape": [
+        null
+      ],
+      "dtype": "unknown",
+      "unknownReason": "输入尺寸、广播或拼接条件未确认，不能推导完整形状",
+      "producer": "model/sequence:15/call:21:out",
+      "consumers": [],
+      "evidence": "ev:model/sequence:15/call:21:tensor"
+    },
+    {
+      "id": "model/call:22:tensor",
+      "name": "call:22",
+      "shape": [
+        null
+      ],
+      "dtype": "unknown",
+      "unknownReason": "输入尺寸、广播或拼接条件未确认，不能推导完整形状",
+      "producer": "model/call:22:out",
+      "consumers": [
+        "model/call:23:in0"
+      ],
+      "evidence": "ev:model/call:22:tensor"
+    },
+    {
+      "id": "model/call:23:tensor",
+      "name": "call:23",
+      "shape": [
+        null
+      ],
+      "dtype": "float32",
+      "unknownReason": "输入尺寸、广播或拼接条件未确认，不能推导完整形状",
+      "producer": "model/call:23:out",
+      "consumers": [
+        "model/call:25:in0"
+      ],
+      "evidence": "ev:model/call:23:tensor"
+    },
+    {
+      "id": "model/call:24:tensor",
+      "name": "call:24",
+      "shape": [
+        null
+      ],
+      "dtype": "unknown",
+      "unknownReason": "输入尺寸、广播或拼接条件未确认，不能推导完整形状",
+      "producer": "model/call:24:out",
+      "consumers": [
+        "model/call:25:in1"
+      ],
+      "evidence": "ev:model/call:24:tensor"
+    },
+    {
+      "id": "model/call:25:tensor",
+      "name": "call:25",
+      "shape": [
+        null
+      ],
+      "dtype": "unknown",
+      "unknownReason": "输入尺寸、广播或拼接条件未确认，不能推导完整形状",
+      "producer": "model/call:25:out",
+      "consumers": [
+        "model/call:26:in0",
+        "model/call:58:in0"
+      ],
+      "evidence": "ev:model/call:25:tensor"
+    },
+    {
+      "id": "model/call:26:tensor",
+      "name": "call:26",
+      "shape": [
+        null
+      ],
+      "dtype": "unknown",
+      "unknownReason": "输入尺寸、广播或拼接条件未确认，不能推导完整形状",
+      "producer": "model/call:26:out",
+      "consumers": [
+        "model/call:27:in0"
+      ],
+      "evidence": "ev:model/call:26:tensor"
+    },
+    {
+      "id": "model/call:27:tensor",
+      "name": "call:27",
+      "shape": [
+        null
+      ],
+      "dtype": "unknown",
+      "unknownReason": "输入尺寸、广播或拼接条件未确认，不能推导完整形状",
+      "producer": "model/call:27:out",
+      "consumers": [
+        "model/call:31:in0",
+        "model/call:33:in0",
+        "model/call:38:in0"
+      ],
+      "evidence": "ev:model/call:27:tensor"
+    },
+    {
+      "id": "model/call:28:tensor",
+      "name": "call:28",
+      "shape": [
+        null
+      ],
+      "dtype": "unknown",
+      "unknownReason": "输入尺寸、广播或拼接条件未确认，不能推导完整形状",
+      "producer": "model/call:28:out",
+      "consumers": [
+        "model/call:29:in0"
+      ],
+      "evidence": "ev:model/call:28:tensor"
+    },
+    {
+      "id": "model/call:29:tensor",
+      "name": "call:29",
+      "shape": [
+        null
+      ],
+      "dtype": "unknown",
+      "unknownReason": "输入尺寸、广播或拼接条件未确认，不能推导完整形状",
+      "producer": "model/call:29:out",
+      "consumers": [
+        "model/call:30:in0"
+      ],
+      "evidence": "ev:model/call:29:tensor"
+    },
+    {
+      "id": "model/call:30:tensor",
+      "name": "call:30",
+      "shape": [
+        null
+      ],
+      "dtype": "float32",
+      "unknownReason": "输入尺寸、广播或拼接条件未确认，不能推导完整形状",
+      "producer": "model/call:30:out",
+      "consumers": [
+        "model/call:36:in0",
+        "model/call:45:in0"
+      ],
+      "evidence": "ev:model/call:30:tensor"
+    },
+    {
+      "id": "model/call:31:tensor",
+      "name": "call:31",
+      "shape": [
+        null
+      ],
+      "dtype": "unknown",
+      "unknownReason": "输入尺寸、广播或拼接条件未确认，不能推导完整形状",
+      "producer": "model/call:31:out",
+      "consumers": [
+        "model/call:32:in0"
+      ],
+      "evidence": "ev:model/call:31:tensor"
+    },
+    {
+      "id": "model/call:32:tensor",
+      "name": "call:32",
+      "shape": [
+        null
+      ],
+      "dtype": "unknown",
+      "unknownReason": "输入尺寸、广播或拼接条件未确认，不能推导完整形状",
+      "producer": "model/call:32:out",
+      "consumers": [
+        "model/call:33:in1"
+      ],
+      "evidence": "ev:model/call:32:tensor"
+    },
+    {
+      "id": "model/call:33:tensor",
+      "name": "call:33",
+      "shape": [
+        null
+      ],
+      "dtype": "unknown",
+      "unknownReason": "输入尺寸、广播或拼接条件未确认，不能推导完整形状",
+      "producer": "model/call:33:out",
+      "consumers": [
+        "model/call:34:in0"
+      ],
+      "evidence": "ev:model/call:33:tensor"
+    },
+    {
+      "id": "model/call:34:tensor",
+      "name": "call:34",
+      "shape": [
+        null
+      ],
+      "dtype": "unknown",
+      "unknownReason": "输入尺寸、广播或拼接条件未确认，不能推导完整形状",
+      "producer": "model/call:34:out",
+      "consumers": [
+        "model/call:35:in0"
+      ],
+      "evidence": "ev:model/call:34:tensor"
+    },
+    {
+      "id": "model/call:35:tensor",
+      "name": "call:35",
+      "shape": [
+        null
+      ],
+      "dtype": "unknown",
+      "unknownReason": "输入尺寸、广播或拼接条件未确认，不能推导完整形状",
+      "producer": "model/call:35:out",
+      "consumers": [
+        "model/call:37:in0"
+      ],
+      "evidence": "ev:model/call:35:tensor"
+    },
+    {
+      "id": "model/call:36:tensor",
+      "name": "call:36",
+      "shape": [
+        null
+      ],
+      "dtype": "unknown",
+      "unknownReason": "输入尺寸、广播或拼接条件未确认，不能推导完整形状",
+      "producer": "model/call:36:out",
+      "consumers": [
+        "model/call:37:in1"
+      ],
+      "evidence": "ev:model/call:36:tensor"
+    },
+    {
+      "id": "model/call:37:tensor",
+      "name": "call:37",
+      "shape": [
+        null
+      ],
+      "dtype": "unknown",
+      "unknownReason": "输入尺寸、广播或拼接条件未确认，不能推导完整形状",
+      "producer": "model/call:37:out",
+      "consumers": [
+        "model/call:46:in2"
+      ],
+      "evidence": "ev:model/call:37:tensor"
+    },
+    {
+      "id": "model/call:38:tensor",
+      "name": "call:38",
+      "shape": [
+        null
+      ],
+      "dtype": "unknown",
+      "unknownReason": "超出受限 AST 支持范围，保留边界",
+      "producer": "model/call:38:out",
+      "consumers": [
+        "model/call:39:in0"
+      ],
+      "evidence": "ev:model/call:38:tensor"
+    },
+    {
+      "id": "model/call:39:tensor",
+      "name": "call:39",
+      "shape": [
+        null
+      ],
+      "dtype": "unknown",
+      "unknownReason": "超出受限 AST 支持范围，保留边界",
+      "producer": "model/call:39:out",
+      "consumers": [
+        "model/call:40:in0",
+        "model/call:41:in0",
+        "model/call:42:in0"
+      ],
+      "evidence": "ev:model/call:39:tensor"
+    },
+    {
+      "id": "model/call:40:tensor",
+      "name": "call:40",
+      "shape": [
+        null
+      ],
+      "dtype": "unknown",
+      "unknownReason": "输入尺寸、广播或拼接条件未确认，不能推导完整形状",
+      "producer": "model/call:40:out",
+      "consumers": [
+        "model/call:46:in0"
+      ],
+      "evidence": "ev:model/call:40:tensor"
+    },
+    {
+      "id": "model/call:41:tensor",
+      "name": "call:41",
+      "shape": [
+        null
+      ],
+      "dtype": "unknown",
+      "unknownReason": "输入尺寸、广播或拼接条件未确认，不能推导完整形状",
+      "producer": "model/call:41:out",
+      "consumers": [
+        "model/call:43:in0"
+      ],
+      "evidence": "ev:model/call:41:tensor"
+    },
+    {
+      "id": "model/call:42:tensor",
+      "name": "call:42",
+      "shape": [
+        null
+      ],
+      "dtype": "unknown",
+      "unknownReason": "输入尺寸、广播或拼接条件未确认，不能推导完整形状",
+      "producer": "model/call:42:out",
+      "consumers": [
+        "model/call:43:in1"
+      ],
+      "evidence": "ev:model/call:42:tensor"
+    },
+    {
+      "id": "model/call:43:tensor",
+      "name": "call:43",
+      "shape": [
+        null
+      ],
+      "dtype": "unknown",
+      "unknownReason": "输入尺寸、广播或拼接条件未确认，不能推导完整形状",
+      "producer": "model/call:43:out",
+      "consumers": [
+        "model/call:46:in1"
+      ],
+      "evidence": "ev:model/call:43:tensor"
+    },
+    {
+      "id": "model/call:44:tensor",
+      "name": "call:44",
+      "shape": [],
+      "dtype": "float",
+      "unknownReason": null,
+      "producer": "model/call:44:out",
+      "consumers": [
+        "model/call:45:in1"
+      ],
+      "evidence": "ev:model/call:44:tensor"
+    },
+    {
+      "id": "model/call:45:tensor",
+      "name": "call:45",
+      "shape": [
+        null
+      ],
+      "dtype": "unknown",
+      "unknownReason": "输入尺寸、广播或拼接条件未确认，不能推导完整形状",
+      "producer": "model/call:45:out",
+      "consumers": [
+        "model/call:46:in3"
+      ],
+      "evidence": "ev:model/call:45:tensor"
+    },
+    {
+      "id": "model/call:46:tensor",
+      "name": "call:46",
+      "shape": [
+        null
+      ],
+      "dtype": "unknown",
+      "unknownReason": "输入尺寸、广播或拼接条件未确认，不能推导完整形状",
+      "producer": "model/call:46:out",
+      "consumers": [
+        "model/call:49:in1"
+      ],
+      "evidence": "ev:model/call:46:tensor"
+    },
+    {
+      "id": "model/call:47:tensor",
+      "name": "call:47",
+      "shape": [
+        null
+      ],
+      "dtype": "unknown",
+      "unknownReason": "输入尺寸、广播或拼接条件未确认，不能推导完整形状",
+      "producer": "model/call:47:out",
+      "consumers": [
+        "model/call:48:in0"
+      ],
+      "evidence": "ev:model/call:47:tensor"
+    },
+    {
+      "id": "model/call:48:tensor",
+      "name": "call:48",
+      "shape": [
+        null
+      ],
+      "dtype": "float32",
+      "unknownReason": "输入尺寸、广播或拼接条件未确认，不能推导完整形状",
+      "producer": "model/call:48:out",
+      "consumers": [
+        "model/call:49:in0"
+      ],
+      "evidence": "ev:model/call:48:tensor"
+    },
+    {
+      "id": "model/call:49:tensor",
+      "name": "call:49",
+      "shape": [
+        null
+      ],
+      "dtype": "unknown",
+      "unknownReason": "输入尺寸、广播或拼接条件未确认，不能推导完整形状",
+      "producer": "model/call:49:out",
+      "consumers": [
+        "model/call:50:in0",
+        "model/call:51:in1"
+      ],
+      "evidence": "ev:model/call:49:tensor"
+    },
+    {
+      "id": "model/call:50:tensor",
+      "name": "call:50",
+      "shape": [
+        null
+      ],
+      "dtype": "unknown",
+      "unknownReason": "超出受限 AST 支持范围，保留边界",
+      "producer": "model/call:50:out",
+      "consumers": [
+        "model/call:51:in0"
+      ],
+      "evidence": "ev:model/call:50:tensor"
+    },
+    {
+      "id": "model/call:51:tensor",
+      "name": "call:51",
+      "shape": [
+        null
+      ],
+      "dtype": "unknown",
+      "unknownReason": "超出受限 AST 支持范围，保留边界",
+      "producer": "model/call:51:out",
+      "consumers": [
+        "model/call:52:in0"
+      ],
+      "evidence": "ev:model/call:51:tensor"
+    },
+    {
+      "id": "model/call:52:tensor",
+      "name": "call:52",
+      "shape": [
+        null
+      ],
+      "dtype": "unknown",
+      "unknownReason": "输入尺寸、广播或拼接条件未确认，不能推导完整形状",
+      "producer": "model/call:52:out",
+      "consumers": [
+        "model/call:59:in0"
+      ],
+      "evidence": "ev:model/call:52:tensor"
+    },
+    {
+      "id": "model/sequence:52/call:53:tensor",
+      "name": "call:53",
+      "shape": [
+        null
+      ],
+      "dtype": "unknown",
+      "unknownReason": "没有静态输入形状契约；未运行模型采样",
+      "producer": "model/sequence:52/call:53:out",
+      "consumers": [
+        "model/sequence:52/call:54:in0"
+      ],
+      "evidence": "ev:model/sequence:52/call:53:tensor"
+    },
+    {
+      "id": "model/sequence:52/call:54:tensor",
+      "name": "call:54",
+      "shape": [
+        null
+      ],
+      "dtype": "unknown",
+      "unknownReason": "输入尺寸、广播或拼接条件未确认，不能推导完整形状",
+      "producer": "model/sequence:52/call:54:out",
+      "consumers": [
+        "model/sequence:52/call:55:in0"
+      ],
+      "evidence": "ev:model/sequence:52/call:54:tensor"
+    },
+    {
+      "id": "model/sequence:52/call:55:tensor",
+      "name": "call:55",
+      "shape": [
+        null
+      ],
+      "dtype": "unknown",
+      "unknownReason": "输入尺寸、广播或拼接条件未确认，不能推导完整形状",
+      "producer": "model/sequence:52/call:55:out",
+      "consumers": [
+        "model/sequence:52/call:56:in0"
+      ],
+      "evidence": "ev:model/sequence:52/call:55:tensor"
+    },
+    {
+      "id": "model/sequence:52/call:56:tensor",
+      "name": "call:56",
+      "shape": [
+        null
+      ],
+      "dtype": "unknown",
+      "unknownReason": "输入尺寸、广播或拼接条件未确认，不能推导完整形状",
+      "producer": "model/sequence:52/call:56:out",
+      "consumers": [
+        "model/sequence:52/call:57:in0"
+      ],
+      "evidence": "ev:model/sequence:52/call:56:tensor"
+    },
+    {
+      "id": "model/sequence:52/call:57:tensor",
+      "name": "call:57",
+      "shape": [
+        null
+      ],
+      "dtype": "unknown",
+      "unknownReason": "输入尺寸、广播或拼接条件未确认，不能推导完整形状",
+      "producer": "model/sequence:52/call:57:out",
+      "consumers": [],
+      "evidence": "ev:model/sequence:52/call:57:tensor"
+    },
+    {
+      "id": "model/call:58:tensor",
+      "name": "call:58",
+      "shape": [
+        null
+      ],
+      "dtype": "unknown",
+      "unknownReason": "输入尺寸、广播或拼接条件未确认，不能推导完整形状",
+      "producer": "model/call:58:out",
+      "consumers": [],
+      "evidence": "ev:model/call:58:tensor"
+    },
+    {
+      "id": "model/call:59:tensor",
+      "name": "call:59",
+      "shape": [
+        null
+      ],
+      "dtype": "unknown",
+      "unknownReason": "输入尺寸、广播或拼接条件未确认，不能推导完整形状",
+      "producer": "model/call:59:out",
+      "consumers": [],
+      "evidence": "ev:model/call:59:tensor"
+    }
+  ],
+  "sourceRefs": [
+    {
+      "id": "src:DecisionModel:574:658",
+      "path": "tests/fixtures/laya_decision_excerpt.py",
+      "symbol": "DecisionModel",
+      "start": 574,
+      "end": 658,
+      "hash": "8cd129db7421768c050f54905368332a184b8da9723ce6f9b564d6922bb89399",
+      "snippet": "class DecisionModel(nn.Module):\n    \"\"\"Bidirectional transformer encoder backbone + typed decision head.\"\"\"\n\n    def __init__(self, encoder: nn.Module, head_layers: int = 2, n_act: int = 2, dropout: float = 0.1,\n                 no_init: bool = False):\n        super().__init__()\n        self.encoder = encoder\n        d = encoder.config.hidden_size\n        # `no_init` means the caller is about to load every parameter from a checkpoint, so the\n        # head's initial values are pure overhead -- and not just time. transformers'\n        # `no_init_weights()` patches the torch.nn.init functions, but something inside\n        # nn.TransformerEncoderLayer draws from the RNG outside them, so building it still\n        # advanced the global generator and made `load()` a visible side effect. On the meta\n        # device no initialisation kernel runs at all; the layers are materialised empty and the\n        # load fills them.\n        with torch.device(\"meta\") if no_init else nullcontext():\n            nhead = max(1, d // 64)\n            layer = nn.TransformerEncoderLayer(d, nhead, 4 * d, dropout, batch_first=True, norm_first=True)\n            # The stock attention bakes the traced length into an exported graph; see\n            # _DynamicMultiheadAttention. Same parameters, same maths, traceable shapes.\n            layer.self_attn = _DynamicMultiheadAttention(d, nhead, dropout=dropout, batch_first=True)\n            self.head = nn.TransformerEncoder(layer, head_layers, enable_nested_tensor=False) if head_layers > 0 else None\n            self.type_emb = nn.Embedding(3, d)\n            self.scorer = nn.Sequential(nn.LayerNorm(d), nn.Linear(d, d), nn.GELU(), nn.Linear(d, 1))\n            self.act_head = nn.Sequential(nn.Linear(d + 4, 256), nn.GELU(), nn.Linear(256, n_act))\n            self.register_buffer(\"temperature\", torch.ones(3))\n        if no_init:\n            # Only the modules created above are on the meta device; the encoder is already real\n            # and may hold non-persistent buffers (RoPE frequencies) that to_empty would wipe.\n            for module in (self.head, self.type_emb, self.scorer, self.act_head):\n                if module is not None:\n                    module.to_empty(device=\"cpu\")\n            self.temperature = torch.empty_like(self.temperature, device=\"cpu\")\n        self.head_checkpointing = False\n\n    def forward(self, input_ids, attention_mask, marker_pos, marker_mask, qtype, detach_encoder: bool = False,\n                position_ids=None, option_ids=None):\n        if option_ids is None:\n            h = self.encoder(input_ids=input_ids, attention_mask=attention_mask).last_hidden_state\n        else:\n            # Parallel option layout (`parallel_layout`). The head below has no positional\n            # encoding, so with order-blind marker embeddings the logits permute with the options.\n            masks = parallel_option_masks(attention_mask, position_ids, option_ids,\n                                          getattr(self.encoder.config, \"sliding_window\", None))\n            h = self.encoder(input_ids=input_ids, attention_mask=masks, position_ids=position_ids).last_hidden_state\n        if detach_encoder:\n            h = h.detach()\n        h = h + self.type_emb(qtype)[:, None, :]\n        if self.head is not None:\n            pad = ~attention_mask.bool()\n            for layer in self.head.layers:\n                if self.head_checkpointing and self.training and torch.is_grad_enabled():\n                    # Non-reentrant checkpointing also trains the head when its input\n                    # is frozen. Default RNG preservation keeps dropout consistent.\n                    h = checkpoint(layer, h, src_key_padding_mask=pad, use_reentrant=False)\n                else:\n                    h = layer(h, src_key_padding_mask=pad)\n        idx = marker_pos.clamp(min=0)[:, :, None].expand(-1, -1, h.size(-1))\n        m = torch.gather(h, 1, idx)\n        logits = self.scorer(m).squeeze(-1).float()\n        logits = logits.masked_fill(~marker_mask, -1e4)\n\n        p = torch.softmax(logits.detach(), -1)\n        k = marker_mask.sum(-1).clamp(min=2).float()\n        ent = -(p * torch.log(p.clamp_min(1e-9))).sum(-1) / torch.log(k)\n        if p.size(-1) >= 2:\n            top2 = p.topk(2, -1).values\n        else:\n            # A single-option question has exactly one marker, so p.topk(2, ...)\n            # has nothing to select for the second slot and raises. The answer\n            # is still well-defined: softmax over one logit is 1.0 regardless of\n            # its value, so pad the missing second entry with 0.0 - that gives\n            # the act head top1 - top2 == 1.0, the same \"fully decided\" signal\n            # it would see for any other unambiguous top-1-vs-rest gap.\n            top1 = p.topk(1, -1).values\n            top2 = torch.cat([top1, torch.zeros_like(top1)], dim=-1)\n        feats = torch.stack([top2[:, 0], top2[:, 0] - top2[:, 1], ent, k / 255.0], -1)\n        pooled = h[:, 0].float()\n        act_input = torch.cat([pooled, feats], -1)\n        # Explicit-dtype exports run without autocast; keep the confidence maths in fp32,\n        # then match the head's weights. Autocast already chooses the linear's input dtype.\n        if not _autocast_enabled(h.device.type):\n            act_input = act_input.to(self.act_head[0].weight.dtype)\n        act_logits = self.act_head(act_input)\n        return logits, act_logits"
+    },
+    {
+      "id": "src:DecisionModel.forward:609:658",
+      "path": "tests/fixtures/laya_decision_excerpt.py",
+      "symbol": "DecisionModel.forward",
+      "start": 609,
+      "end": 658,
+      "hash": "8cd129db7421768c050f54905368332a184b8da9723ce6f9b564d6922bb89399",
+      "snippet": "    def forward(self, input_ids, attention_mask, marker_pos, marker_mask, qtype, detach_encoder: bool = False,\n                position_ids=None, option_ids=None):\n        if option_ids is None:\n            h = self.encoder(input_ids=input_ids, attention_mask=attention_mask).last_hidden_state\n        else:\n            # Parallel option layout (`parallel_layout`). The head below has no positional\n            # encoding, so with order-blind marker embeddings the logits permute with the options.\n            masks = parallel_option_masks(attention_mask, position_ids, option_ids,\n                                          getattr(self.encoder.config, \"sliding_window\", None))\n            h = self.encoder(input_ids=input_ids, attention_mask=masks, position_ids=position_ids).last_hidden_state\n        if detach_encoder:\n            h = h.detach()\n        h = h + self.type_emb(qtype)[:, None, :]\n        if self.head is not None:\n            pad = ~attention_mask.bool()\n            for layer in self.head.layers:\n                if self.head_checkpointing and self.training and torch.is_grad_enabled():\n                    # Non-reentrant checkpointing also trains the head when its input\n                    # is frozen. Default RNG preservation keeps dropout consistent.\n                    h = checkpoint(layer, h, src_key_padding_mask=pad, use_reentrant=False)\n                else:\n                    h = layer(h, src_key_padding_mask=pad)\n        idx = marker_pos.clamp(min=0)[:, :, None].expand(-1, -1, h.size(-1))\n        m = torch.gather(h, 1, idx)\n        logits = self.scorer(m).squeeze(-1).float()\n        logits = logits.masked_fill(~marker_mask, -1e4)\n\n        p = torch.softmax(logits.detach(), -1)\n        k = marker_mask.sum(-1).clamp(min=2).float()\n        ent = -(p * torch.log(p.clamp_min(1e-9))).sum(-1) / torch.log(k)\n        if p.size(-1) >= 2:\n            top2 = p.topk(2, -1).values\n        else:\n            # A single-option question has exactly one marker, so p.topk(2, ...)\n            # has nothing to select for the second slot and raises. The answer\n            # is still well-defined: softmax over one logit is 1.0 regardless of\n            # its value, so pad the missing second entry with 0.0 - that gives\n            # the act head top1 - top2 == 1.0, the same \"fully decided\" signal\n            # it would see for any other unambiguous top-1-vs-rest gap.\n            top1 = p.topk(1, -1).values\n            top2 = torch.cat([top1, torch.zeros_like(top1)], dim=-1)\n        feats = torch.stack([top2[:, 0], top2[:, 0] - top2[:, 1], ent, k / 255.0], -1)\n        pooled = h[:, 0].float()\n        act_input = torch.cat([pooled, feats], -1)\n        # Explicit-dtype exports run without autocast; keep the confidence maths in fp32,\n        # then match the head's weights. Autocast already chooses the linear's input dtype.\n        if not _autocast_enabled(h.device.type):\n            act_input = act_input.to(self.act_head[0].weight.dtype)\n        act_logits = self.act_head(act_input)\n        return logits, act_logits"
+    },
+    {
+      "id": "src:DecisionModel.__init__:580:580",
+      "path": "tests/fixtures/laya_decision_excerpt.py",
+      "symbol": "DecisionModel.__init__",
+      "start": 580,
+      "end": 580,
+      "hash": "8cd129db7421768c050f54905368332a184b8da9723ce6f9b564d6922bb89399",
+      "snippet": "        self.encoder = encoder"
+    },
+    {
+      "id": "src:DecisionModel.__init__:589:599",
+      "path": "tests/fixtures/laya_decision_excerpt.py",
+      "symbol": "DecisionModel.__init__",
+      "start": 589,
+      "end": 599,
+      "hash": "8cd129db7421768c050f54905368332a184b8da9723ce6f9b564d6922bb89399",
+      "snippet": "        with torch.device(\"meta\") if no_init else nullcontext():\n            nhead = max(1, d // 64)\n            layer = nn.TransformerEncoderLayer(d, nhead, 4 * d, dropout, batch_first=True, norm_first=True)\n            # The stock attention bakes the traced length into an exported graph; see\n            # _DynamicMultiheadAttention. Same parameters, same maths, traceable shapes.\n            layer.self_attn = _DynamicMultiheadAttention(d, nhead, dropout=dropout, batch_first=True)\n            self.head = nn.TransformerEncoder(layer, head_layers, enable_nested_tensor=False) if head_layers > 0 else None\n            self.type_emb = nn.Embedding(3, d)\n            self.scorer = nn.Sequential(nn.LayerNorm(d), nn.Linear(d, d), nn.GELU(), nn.Linear(d, 1))\n            self.act_head = nn.Sequential(nn.Linear(d + 4, 256), nn.GELU(), nn.Linear(256, n_act))\n            self.register_buffer(\"temperature\", torch.ones(3))"
+    },
+    {
+      "id": "src:DecisionModel.__init__:595:595",
+      "path": "tests/fixtures/laya_decision_excerpt.py",
+      "symbol": "DecisionModel.__init__",
+      "start": 595,
+      "end": 595,
+      "hash": "8cd129db7421768c050f54905368332a184b8da9723ce6f9b564d6922bb89399",
+      "snippet": "            self.head = nn.TransformerEncoder(layer, head_layers, enable_nested_tensor=False) if head_layers > 0 else None"
+    },
+    {
+      "id": "src:DecisionModel.__init__:596:596",
+      "path": "tests/fixtures/laya_decision_excerpt.py",
+      "symbol": "DecisionModel.__init__",
+      "start": 596,
+      "end": 596,
+      "hash": "8cd129db7421768c050f54905368332a184b8da9723ce6f9b564d6922bb89399",
+      "snippet": "            self.type_emb = nn.Embedding(3, d)"
+    },
+    {
+      "id": "src:DecisionModel.__init__:597:597",
+      "path": "tests/fixtures/laya_decision_excerpt.py",
+      "symbol": "DecisionModel.__init__",
+      "start": 597,
+      "end": 597,
+      "hash": "8cd129db7421768c050f54905368332a184b8da9723ce6f9b564d6922bb89399",
+      "snippet": "            self.scorer = nn.Sequential(nn.LayerNorm(d), nn.Linear(d, d), nn.GELU(), nn.Linear(d, 1))"
+    },
+    {
+      "id": "src:DecisionModel.__init__:598:598",
+      "path": "tests/fixtures/laya_decision_excerpt.py",
+      "symbol": "DecisionModel.__init__",
+      "start": 598,
+      "end": 598,
+      "hash": "8cd129db7421768c050f54905368332a184b8da9723ce6f9b564d6922bb89399",
+      "snippet": "            self.act_head = nn.Sequential(nn.Linear(d + 4, 256), nn.GELU(), nn.Linear(256, n_act))"
+    },
+    {
+      "id": "src:DecisionModel.__init__:600:606",
+      "path": "tests/fixtures/laya_decision_excerpt.py",
+      "symbol": "DecisionModel.__init__",
+      "start": 600,
+      "end": 606,
+      "hash": "8cd129db7421768c050f54905368332a184b8da9723ce6f9b564d6922bb89399",
+      "snippet": "        if no_init:\n            # Only the modules created above are on the meta device; the encoder is already real\n            # and may hold non-persistent buffers (RoPE frequencies) that to_empty would wipe.\n            for module in (self.head, self.type_emb, self.scorer, self.act_head):\n                if module is not None:\n                    module.to_empty(device=\"cpu\")\n            self.temperature = torch.empty_like(self.temperature, device=\"cpu\")"
+    },
+    {
+      "id": "src:DecisionModel.__init__:603:605",
+      "path": "tests/fixtures/laya_decision_excerpt.py",
+      "symbol": "DecisionModel.__init__",
+      "start": 603,
+      "end": 605,
+      "hash": "8cd129db7421768c050f54905368332a184b8da9723ce6f9b564d6922bb89399",
+      "snippet": "            for module in (self.head, self.type_emb, self.scorer, self.act_head):\n                if module is not None:\n                    module.to_empty(device=\"cpu\")"
+    },
+    {
+      "id": "src:DecisionModel.__init__:606:606",
+      "path": "tests/fixtures/laya_decision_excerpt.py",
+      "symbol": "DecisionModel.__init__",
+      "start": 606,
+      "end": 606,
+      "hash": "8cd129db7421768c050f54905368332a184b8da9723ce6f9b564d6922bb89399",
+      "snippet": "            self.temperature = torch.empty_like(self.temperature, device=\"cpu\")"
+    },
+    {
+      "id": "src:DecisionModel.forward:611:618",
+      "path": "tests/fixtures/laya_decision_excerpt.py",
+      "symbol": "DecisionModel.forward",
+      "start": 611,
+      "end": 618,
+      "hash": "8cd129db7421768c050f54905368332a184b8da9723ce6f9b564d6922bb89399",
+      "snippet": "        if option_ids is None:\n            h = self.encoder(input_ids=input_ids, attention_mask=attention_mask).last_hidden_state\n        else:\n            # Parallel option layout (`parallel_layout`). The head below has no positional\n            # encoding, so with order-blind marker embeddings the logits permute with the options.\n            masks = parallel_option_masks(attention_mask, position_ids, option_ids,\n                                          getattr(self.encoder.config, \"sliding_window\", None))\n            h = self.encoder(input_ids=input_ids, attention_mask=masks, position_ids=position_ids).last_hidden_state"
+    },
+    {
+      "id": "src:DecisionModel.forward:619:620",
+      "path": "tests/fixtures/laya_decision_excerpt.py",
+      "symbol": "DecisionModel.forward",
+      "start": 619,
+      "end": 620,
+      "hash": "8cd129db7421768c050f54905368332a184b8da9723ce6f9b564d6922bb89399",
+      "snippet": "        if detach_encoder:\n            h = h.detach()"
+    },
+    {
+      "id": "src:DecisionModel.forward:621:621",
+      "path": "tests/fixtures/laya_decision_excerpt.py",
+      "symbol": "DecisionModel.forward",
+      "start": 621,
+      "end": 621,
+      "hash": "8cd129db7421768c050f54905368332a184b8da9723ce6f9b564d6922bb89399",
+      "snippet": "        h = h + self.type_emb(qtype)[:, None, :]"
+    },
+    {
+      "id": "src:DecisionModel.forward:622:630",
+      "path": "tests/fixtures/laya_decision_excerpt.py",
+      "symbol": "DecisionModel.forward",
+      "start": 622,
+      "end": 630,
+      "hash": "8cd129db7421768c050f54905368332a184b8da9723ce6f9b564d6922bb89399",
+      "snippet": "        if self.head is not None:\n            pad = ~attention_mask.bool()\n            for layer in self.head.layers:\n                if self.head_checkpointing and self.training and torch.is_grad_enabled():\n                    # Non-reentrant checkpointing also trains the head when its input\n                    # is frozen. Default RNG preservation keeps dropout consistent.\n                    h = checkpoint(layer, h, src_key_padding_mask=pad, use_reentrant=False)\n                else:\n                    h = layer(h, src_key_padding_mask=pad)"
+    },
+    {
+      "id": "src:DecisionModel.forward:631:631",
+      "path": "tests/fixtures/laya_decision_excerpt.py",
+      "symbol": "DecisionModel.forward",
+      "start": 631,
+      "end": 631,
+      "hash": "8cd129db7421768c050f54905368332a184b8da9723ce6f9b564d6922bb89399",
+      "snippet": "        idx = marker_pos.clamp(min=0)[:, :, None].expand(-1, -1, h.size(-1))"
+    },
+    {
+      "id": "src:DecisionModel.forward:632:632",
+      "path": "tests/fixtures/laya_decision_excerpt.py",
+      "symbol": "DecisionModel.forward",
+      "start": 632,
+      "end": 632,
+      "hash": "8cd129db7421768c050f54905368332a184b8da9723ce6f9b564d6922bb89399",
+      "snippet": "        m = torch.gather(h, 1, idx)"
+    },
+    {
+      "id": "src:DecisionModel.forward:633:633",
+      "path": "tests/fixtures/laya_decision_excerpt.py",
+      "symbol": "DecisionModel.forward",
+      "start": 633,
+      "end": 633,
+      "hash": "8cd129db7421768c050f54905368332a184b8da9723ce6f9b564d6922bb89399",
+      "snippet": "        logits = self.scorer(m).squeeze(-1).float()"
+    },
+    {
+      "id": "src:DecisionModel.forward:634:634",
+      "path": "tests/fixtures/laya_decision_excerpt.py",
+      "symbol": "DecisionModel.forward",
+      "start": 634,
+      "end": 634,
+      "hash": "8cd129db7421768c050f54905368332a184b8da9723ce6f9b564d6922bb89399",
+      "snippet": "        logits = logits.masked_fill(~marker_mask, -1e4)"
+    },
+    {
+      "id": "src:DecisionModel.forward:636:636",
+      "path": "tests/fixtures/laya_decision_excerpt.py",
+      "symbol": "DecisionModel.forward",
+      "start": 636,
+      "end": 636,
+      "hash": "8cd129db7421768c050f54905368332a184b8da9723ce6f9b564d6922bb89399",
+      "snippet": "        p = torch.softmax(logits.detach(), -1)"
+    },
+    {
+      "id": "src:DecisionModel.forward:637:637",
+      "path": "tests/fixtures/laya_decision_excerpt.py",
+      "symbol": "DecisionModel.forward",
+      "start": 637,
+      "end": 637,
+      "hash": "8cd129db7421768c050f54905368332a184b8da9723ce6f9b564d6922bb89399",
+      "snippet": "        k = marker_mask.sum(-1).clamp(min=2).float()"
+    },
+    {
+      "id": "src:DecisionModel.forward:638:638",
+      "path": "tests/fixtures/laya_decision_excerpt.py",
+      "symbol": "DecisionModel.forward",
+      "start": 638,
+      "end": 638,
+      "hash": "8cd129db7421768c050f54905368332a184b8da9723ce6f9b564d6922bb89399",
+      "snippet": "        ent = -(p * torch.log(p.clamp_min(1e-9))).sum(-1) / torch.log(k)"
+    },
+    {
+      "id": "src:DecisionModel.forward:639:649",
+      "path": "tests/fixtures/laya_decision_excerpt.py",
+      "symbol": "DecisionModel.forward",
+      "start": 639,
+      "end": 649,
+      "hash": "8cd129db7421768c050f54905368332a184b8da9723ce6f9b564d6922bb89399",
+      "snippet": "        if p.size(-1) >= 2:\n            top2 = p.topk(2, -1).values\n        else:\n            # A single-option question has exactly one marker, so p.topk(2, ...)\n            # has nothing to select for the second slot and raises. The answer\n            # is still well-defined: softmax over one logit is 1.0 regardless of\n            # its value, so pad the missing second entry with 0.0 - that gives\n            # the act head top1 - top2 == 1.0, the same \"fully decided\" signal\n            # it would see for any other unambiguous top-1-vs-rest gap.\n            top1 = p.topk(1, -1).values\n            top2 = torch.cat([top1, torch.zeros_like(top1)], dim=-1)"
+    },
+    {
+      "id": "src:DecisionModel.forward:650:650",
+      "path": "tests/fixtures/laya_decision_excerpt.py",
+      "symbol": "DecisionModel.forward",
+      "start": 650,
+      "end": 650,
+      "hash": "8cd129db7421768c050f54905368332a184b8da9723ce6f9b564d6922bb89399",
+      "snippet": "        feats = torch.stack([top2[:, 0], top2[:, 0] - top2[:, 1], ent, k / 255.0], -1)"
+    },
+    {
+      "id": "src:DecisionModel.forward:651:651",
+      "path": "tests/fixtures/laya_decision_excerpt.py",
+      "symbol": "DecisionModel.forward",
+      "start": 651,
+      "end": 651,
+      "hash": "8cd129db7421768c050f54905368332a184b8da9723ce6f9b564d6922bb89399",
+      "snippet": "        pooled = h[:, 0].float()"
+    },
+    {
+      "id": "src:DecisionModel.forward:652:652",
+      "path": "tests/fixtures/laya_decision_excerpt.py",
+      "symbol": "DecisionModel.forward",
+      "start": 652,
+      "end": 652,
+      "hash": "8cd129db7421768c050f54905368332a184b8da9723ce6f9b564d6922bb89399",
+      "snippet": "        act_input = torch.cat([pooled, feats], -1)"
+    },
+    {
+      "id": "src:DecisionModel.forward:655:656",
+      "path": "tests/fixtures/laya_decision_excerpt.py",
+      "symbol": "DecisionModel.forward",
+      "start": 655,
+      "end": 656,
+      "hash": "8cd129db7421768c050f54905368332a184b8da9723ce6f9b564d6922bb89399",
+      "snippet": "        if not _autocast_enabled(h.device.type):\n            act_input = act_input.to(self.act_head[0].weight.dtype)"
+    },
+    {
+      "id": "src:DecisionModel.forward:657:657",
+      "path": "tests/fixtures/laya_decision_excerpt.py",
+      "symbol": "DecisionModel.forward",
+      "start": 657,
+      "end": 657,
+      "hash": "8cd129db7421768c050f54905368332a184b8da9723ce6f9b564d6922bb89399",
+      "snippet": "        act_logits = self.act_head(act_input)"
+    },
+    {
+      "id": "src:DecisionModel.forward:658:658",
+      "path": "tests/fixtures/laya_decision_excerpt.py",
+      "symbol": "DecisionModel.forward",
+      "start": 658,
+      "end": 658,
+      "hash": "8cd129db7421768c050f54905368332a184b8da9723ce6f9b564d6922bb89399",
+      "snippet": "        return logits, act_logits"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "ev:model/input:input_ids:tensor",
+      "kind": "unknown",
+      "target": "/tensors/0/shape",
+      "sourceRefs": [
+        "src:DecisionModel.forward:609:658"
+      ],
+      "assumptions": [],
+      "text": "有未确认的结构或形状维度，详见 unknownReason"
+    },
+    {
+      "id": "ev:fact:model/input:input_ids",
+      "kind": "source",
+      "target": "/nodes/0/sourceRef",
+      "sourceRefs": [
+        "src:DecisionModel.forward:609:658"
+      ],
+      "assumptions": [],
+      "text": "该静态调用/运算对应 AST 源码位置；适配器子步骤可共享同一表达式范围"
+    },
+    {
+      "id": "ev:model/input:attention_mask:tensor",
+      "kind": "unknown",
+      "target": "/tensors/1/shape",
+      "sourceRefs": [
+        "src:DecisionModel.forward:609:658"
+      ],
+      "assumptions": [],
+      "text": "有未确认的结构或形状维度，详见 unknownReason"
+    },
+    {
+      "id": "ev:fact:model/input:attention_mask",
+      "kind": "source",
+      "target": "/nodes/1/sourceRef",
+      "sourceRefs": [
+        "src:DecisionModel.forward:609:658"
+      ],
+      "assumptions": [],
+      "text": "该静态调用/运算对应 AST 源码位置；适配器子步骤可共享同一表达式范围"
+    },
+    {
+      "id": "ev:model/input:marker_pos:tensor",
+      "kind": "unknown",
+      "target": "/tensors/2/shape",
+      "sourceRefs": [
+        "src:DecisionModel.forward:609:658"
+      ],
+      "assumptions": [],
+      "text": "有未确认的结构或形状维度，详见 unknownReason"
+    },
+    {
+      "id": "ev:fact:model/input:marker_pos",
+      "kind": "source",
+      "target": "/nodes/2/sourceRef",
+      "sourceRefs": [
+        "src:DecisionModel.forward:609:658"
+      ],
+      "assumptions": [],
+      "text": "该静态调用/运算对应 AST 源码位置；适配器子步骤可共享同一表达式范围"
+    },
+    {
+      "id": "ev:model/input:marker_mask:tensor",
+      "kind": "unknown",
+      "target": "/tensors/3/shape",
+      "sourceRefs": [
+        "src:DecisionModel.forward:609:658"
+      ],
+      "assumptions": [],
+      "text": "有未确认的结构或形状维度，详见 unknownReason"
+    },
+    {
+      "id": "ev:fact:model/input:marker_mask",
+      "kind": "source",
+      "target": "/nodes/3/sourceRef",
+      "sourceRefs": [
+        "src:DecisionModel.forward:609:658"
+      ],
+      "assumptions": [],
+      "text": "该静态调用/运算对应 AST 源码位置；适配器子步骤可共享同一表达式范围"
+    },
+    {
+      "id": "ev:model/input:qtype:tensor",
+      "kind": "unknown",
+      "target": "/tensors/4/shape",
+      "sourceRefs": [
+        "src:DecisionModel.forward:609:658"
+      ],
+      "assumptions": [],
+      "text": "有未确认的结构或形状维度，详见 unknownReason"
+    },
+    {
+      "id": "ev:fact:model/input:qtype",
+      "kind": "source",
+      "target": "/nodes/4/sourceRef",
+      "sourceRefs": [
+        "src:DecisionModel.forward:609:658"
+      ],
+      "assumptions": [],
+      "text": "该静态调用/运算对应 AST 源码位置；适配器子步骤可共享同一表达式范围"
+    },
+    {
+      "id": "ev:model/input:detach_encoder:tensor",
+      "kind": "unknown",
+      "target": "/tensors/5/shape",
+      "sourceRefs": [
+        "src:DecisionModel.forward:609:658"
+      ],
+      "assumptions": [],
+      "text": "有未确认的结构或形状维度，详见 unknownReason"
+    },
+    {
+      "id": "ev:fact:model/input:detach_encoder",
+      "kind": "source",
+      "target": "/nodes/5/sourceRef",
+      "sourceRefs": [
+        "src:DecisionModel.forward:609:658"
+      ],
+      "assumptions": [],
+      "text": "该静态调用/运算对应 AST 源码位置；适配器子步骤可共享同一表达式范围"
+    },
+    {
+      "id": "ev:model/input:position_ids:tensor",
+      "kind": "unknown",
+      "target": "/tensors/6/shape",
+      "sourceRefs": [
+        "src:DecisionModel.forward:609:658"
+      ],
+      "assumptions": [],
+      "text": "有未确认的结构或形状维度，详见 unknownReason"
+    },
+    {
+      "id": "ev:fact:model/input:position_ids",
+      "kind": "source",
+      "target": "/nodes/6/sourceRef",
+      "sourceRefs": [
+        "src:DecisionModel.forward:609:658"
+      ],
+      "assumptions": [],
+      "text": "该静态调用/运算对应 AST 源码位置；适配器子步骤可共享同一表达式范围"
+    },
+    {
+      "id": "ev:model/input:option_ids:tensor",
+      "kind": "unknown",
+      "target": "/tensors/7/shape",
+      "sourceRefs": [
+        "src:DecisionModel.forward:609:658"
+      ],
+      "assumptions": [],
+      "text": "有未确认的结构或形状维度，详见 unknownReason"
+    },
+    {
+      "id": "ev:fact:model/input:option_ids",
+      "kind": "source",
+      "target": "/nodes/7/sourceRef",
+      "sourceRefs": [
+        "src:DecisionModel.forward:609:658"
+      ],
+      "assumptions": [],
+      "text": "该静态调用/运算对应 AST 源码位置；适配器子步骤可共享同一表达式范围"
+    },
+    {
+      "id": "ev:model/call:1:tensor",
+      "kind": "unknown",
+      "target": "/tensors/8/shape",
+      "sourceRefs": [
+        "src:DecisionModel.forward:611:618"
+      ],
+      "assumptions": [],
+      "text": "有未确认的结构或形状维度，详见 unknownReason"
+    },
+    {
+      "id": "ev:fact:model/call:1",
+      "kind": "source",
+      "target": "/nodes/8/sourceRef",
+      "sourceRefs": [
+        "src:DecisionModel.forward:611:618"
+      ],
+      "assumptions": [],
+      "text": "该静态调用/运算对应 AST 源码位置；适配器子步骤可共享同一表达式范围"
+    },
+    {
+      "id": "ev:model/call:2:tensor",
+      "kind": "unknown",
+      "target": "/tensors/9/shape",
+      "sourceRefs": [
+        "src:DecisionModel.forward:611:618"
+      ],
+      "assumptions": [],
+      "text": "有未确认的结构或形状维度，详见 unknownReason"
+    },
+    {
+      "id": "ev:fact:model/call:2",
+      "kind": "source",
+      "target": "/nodes/9/sourceRef",
+      "sourceRefs": [
+        "src:DecisionModel.forward:611:618"
+      ],
+      "assumptions": [],
+      "text": "该静态调用/运算对应 AST 源码位置；适配器子步骤可共享同一表达式范围"
+    },
+    {
+      "id": "ev:model/call:3:tensor",
+      "kind": "unknown",
+      "target": "/tensors/10/shape",
+      "sourceRefs": [
+        "src:DecisionModel.forward:619:620"
+      ],
+      "assumptions": [],
+      "text": "有未确认的结构或形状维度，详见 unknownReason"
+    },
+    {
+      "id": "ev:fact:model/call:3",
+      "kind": "source",
+      "target": "/nodes/10/sourceRef",
+      "sourceRefs": [
+        "src:DecisionModel.forward:619:620"
+      ],
+      "assumptions": [],
+      "text": "该静态调用/运算对应 AST 源码位置；适配器子步骤可共享同一表达式范围"
+    },
+    {
+      "id": "ev:model/call:4:tensor",
+      "kind": "unknown",
+      "target": "/tensors/11/shape",
+      "sourceRefs": [
+        "src:DecisionModel.forward:619:620"
+      ],
+      "assumptions": [],
+      "text": "有未确认的结构或形状维度，详见 unknownReason"
+    },
+    {
+      "id": "ev:fact:model/call:4",
+      "kind": "source",
+      "target": "/nodes/11/sourceRef",
+      "sourceRefs": [
+        "src:DecisionModel.forward:619:620"
+      ],
+      "assumptions": [],
+      "text": "该静态调用/运算对应 AST 源码位置；适配器子步骤可共享同一表达式范围"
+    },
+    {
+      "id": "ev:model/call:5:tensor",
+      "kind": "unknown",
+      "target": "/tensors/12/shape",
+      "sourceRefs": [
+        "src:DecisionModel.forward:621:621"
+      ],
+      "assumptions": [],
+      "text": "有未确认的结构或形状维度，详见 unknownReason"
+    },
+    {
+      "id": "ev:fact:model/call:5",
+      "kind": "source",
+      "target": "/nodes/12/sourceRef",
+      "sourceRefs": [
+        "src:DecisionModel.forward:621:621"
+      ],
+      "assumptions": [],
+      "text": "该静态调用/运算对应 AST 源码位置；适配器子步骤可共享同一表达式范围"
+    },
+    {
+      "id": "ev:model/call:6:tensor",
+      "kind": "unknown",
+      "target": "/tensors/13/shape",
+      "sourceRefs": [
+        "src:DecisionModel.forward:621:621"
+      ],
+      "assumptions": [],
+      "text": "有未确认的结构或形状维度，详见 unknownReason"
+    },
+    {
+      "id": "ev:fact:model/call:6",
+      "kind": "source",
+      "target": "/nodes/13/sourceRef",
+      "sourceRefs": [
+        "src:DecisionModel.forward:621:621"
+      ],
+      "assumptions": [],
+      "text": "该静态调用/运算对应 AST 源码位置；适配器子步骤可共享同一表达式范围"
+    },
+    {
+      "id": "ev:model/call:7:tensor",
+      "kind": "unknown",
+      "target": "/tensors/14/shape",
+      "sourceRefs": [
+        "src:DecisionModel.forward:621:621"
+      ],
+      "assumptions": [],
+      "text": "有未确认的结构或形状维度，详见 unknownReason"
+    },
+    {
+      "id": "ev:fact:model/call:7",
+      "kind": "source",
+      "target": "/nodes/14/sourceRef",
+      "sourceRefs": [
+        "src:DecisionModel.forward:621:621"
+      ],
+      "assumptions": [],
+      "text": "该静态调用/运算对应 AST 源码位置；适配器子步骤可共享同一表达式范围"
+    },
+    {
+      "id": "ev:model/call:8:tensor",
+      "kind": "unknown",
+      "target": "/tensors/15/shape",
+      "sourceRefs": [
+        "src:DecisionModel.forward:622:630"
+      ],
+      "assumptions": [],
+      "text": "有未确认的结构或形状维度，详见 unknownReason"
+    },
+    {
+      "id": "ev:fact:model/call:8",
+      "kind": "source",
+      "target": "/nodes/15/sourceRef",
+      "sourceRefs": [
+        "src:DecisionModel.forward:622:630"
+      ],
+      "assumptions": [],
+      "text": "该静态调用/运算对应 AST 源码位置；适配器子步骤可共享同一表达式范围"
+    },
+    {
+      "id": "ev:model/call:9:tensor",
+      "kind": "unknown",
+      "target": "/tensors/16/shape",
+      "sourceRefs": [
+        "src:DecisionModel.forward:622:630"
+      ],
+      "assumptions": [],
+      "text": "有未确认的结构或形状维度，详见 unknownReason"
+    },
+    {
+      "id": "ev:fact:model/call:9",
+      "kind": "source",
+      "target": "/nodes/16/sourceRef",
+      "sourceRefs": [
+        "src:DecisionModel.forward:622:630"
+      ],
+      "assumptions": [],
+      "text": "该静态调用/运算对应 AST 源码位置；适配器子步骤可共享同一表达式范围"
+    },
+    {
+      "id": "ev:model/call:10:tensor",
+      "kind": "unknown",
+      "target": "/tensors/17/shape",
+      "sourceRefs": [
+        "src:DecisionModel.forward:631:631"
+      ],
+      "assumptions": [],
+      "text": "有未确认的结构或形状维度，详见 unknownReason"
+    },
+    {
+      "id": "ev:fact:model/call:10",
+      "kind": "source",
+      "target": "/nodes/17/sourceRef",
+      "sourceRefs": [
+        "src:DecisionModel.forward:631:631"
+      ],
+      "assumptions": [],
+      "text": "该静态调用/运算对应 AST 源码位置；适配器子步骤可共享同一表达式范围"
+    },
+    {
+      "id": "ev:model/call:11:tensor",
+      "kind": "unknown",
+      "target": "/tensors/18/shape",
+      "sourceRefs": [
+        "src:DecisionModel.forward:631:631"
+      ],
+      "assumptions": [],
+      "text": "有未确认的结构或形状维度，详见 unknownReason"
+    },
+    {
+      "id": "ev:fact:model/call:11",
+      "kind": "source",
+      "target": "/nodes/18/sourceRef",
+      "sourceRefs": [
+        "src:DecisionModel.forward:631:631"
+      ],
+      "assumptions": [],
+      "text": "该静态调用/运算对应 AST 源码位置；适配器子步骤可共享同一表达式范围"
+    },
+    {
+      "id": "ev:model/call:12:tensor",
+      "kind": "unknown",
+      "target": "/tensors/19/shape",
+      "sourceRefs": [
+        "src:DecisionModel.forward:631:631"
+      ],
+      "assumptions": [],
+      "text": "有未确认的结构或形状维度，详见 unknownReason"
+    },
+    {
+      "id": "ev:fact:model/call:12",
+      "kind": "source",
+      "target": "/nodes/19/sourceRef",
+      "sourceRefs": [
+        "src:DecisionModel.forward:631:631"
+      ],
+      "assumptions": [],
+      "text": "该静态调用/运算对应 AST 源码位置；适配器子步骤可共享同一表达式范围"
+    },
+    {
+      "id": "ev:model/call:13:tensor",
+      "kind": "unknown",
+      "target": "/tensors/20/shape",
+      "sourceRefs": [
+        "src:DecisionModel.forward:631:631"
+      ],
+      "assumptions": [],
+      "text": "有未确认的结构或形状维度，详见 unknownReason"
+    },
+    {
+      "id": "ev:fact:model/call:13",
+      "kind": "source",
+      "target": "/nodes/20/sourceRef",
+      "sourceRefs": [
+        "src:DecisionModel.forward:631:631"
+      ],
+      "assumptions": [],
+      "text": "该静态调用/运算对应 AST 源码位置；适配器子步骤可共享同一表达式范围"
+    },
+    {
+      "id": "ev:model/call:14:tensor",
+      "kind": "unknown",
+      "target": "/tensors/21/shape",
+      "sourceRefs": [
+        "src:DecisionModel.forward:632:632"
+      ],
+      "assumptions": [],
+      "text": "有未确认的结构或形状维度，详见 unknownReason"
+    },
+    {
+      "id": "ev:fact:model/call:14",
+      "kind": "source",
+      "target": "/nodes/21/sourceRef",
+      "sourceRefs": [
+        "src:DecisionModel.forward:632:632"
+      ],
+      "assumptions": [],
+      "text": "该静态调用/运算对应 AST 源码位置；适配器子步骤可共享同一表达式范围"
+    },
+    {
+      "id": "ev:model/call:15:tensor",
+      "kind": "unknown",
+      "target": "/tensors/22/shape",
+      "sourceRefs": [
+        "src:DecisionModel.forward:633:633"
+      ],
+      "assumptions": [],
+      "text": "有未确认的结构或形状维度，详见 unknownReason"
+    },
+    {
+      "id": "ev:fact:model/call:15",
+      "kind": "source",
+      "target": "/nodes/22/sourceRef",
+      "sourceRefs": [
+        "src:DecisionModel.forward:633:633"
+      ],
+      "assumptions": [],
+      "text": "该静态调用/运算对应 AST 源码位置；适配器子步骤可共享同一表达式范围"
+    },
+    {
+      "id": "ev:model/sequence:15/call:16:tensor",
+      "kind": "unknown",
+      "target": "/tensors/23/shape",
+      "sourceRefs": [
+        "src:DecisionModel.forward:633:633"
+      ],
+      "assumptions": [],
+      "text": "有未确认的结构或形状维度，详见 unknownReason"
+    },
+    {
+      "id": "ev:fact:model/sequence:15/call:16",
+      "kind": "source",
+      "target": "/nodes/23/sourceRef",
+      "sourceRefs": [
+        "src:DecisionModel.forward:633:633"
+      ],
+      "assumptions": [],
+      "text": "该静态调用/运算对应 AST 源码位置；适配器子步骤可共享同一表达式范围"
+    },
+    {
+      "id": "ev:model/sequence:15/call:17:tensor",
+      "kind": "unknown",
+      "target": "/tensors/24/shape",
+      "sourceRefs": [
+        "src:DecisionModel.__init__:597:597"
+      ],
+      "assumptions": [],
+      "text": "有未确认的结构或形状维度，详见 unknownReason"
+    },
+    {
+      "id": "ev:fact:model/sequence:15/call:17",
+      "kind": "source",
+      "target": "/nodes/24/sourceRef",
+      "sourceRefs": [
+        "src:DecisionModel.__init__:597:597"
+      ],
+      "assumptions": [],
+      "text": "该静态调用/运算对应 AST 源码位置；适配器子步骤可共享同一表达式范围"
+    },
+    {
+      "id": "ev:model/sequence:15/call:18:tensor",
+      "kind": "unknown",
+      "target": "/tensors/25/shape",
+      "sourceRefs": [
+        "src:DecisionModel.__init__:597:597"
+      ],
+      "assumptions": [],
+      "text": "有未确认的结构或形状维度，详见 unknownReason"
+    },
+    {
+      "id": "ev:fact:model/sequence:15/call:18",
+      "kind": "source",
+      "target": "/nodes/25/sourceRef",
+      "sourceRefs": [
+        "src:DecisionModel.__init__:597:597"
+      ],
+      "assumptions": [],
+      "text": "该静态调用/运算对应 AST 源码位置；适配器子步骤可共享同一表达式范围"
+    },
+    {
+      "id": "ev:model/sequence:15/call:19:tensor",
+      "kind": "unknown",
+      "target": "/tensors/26/shape",
+      "sourceRefs": [
+        "src:DecisionModel.__init__:597:597"
+      ],
+      "assumptions": [],
+      "text": "有未确认的结构或形状维度，详见 unknownReason"
+    },
+    {
+      "id": "ev:fact:model/sequence:15/call:19",
+      "kind": "source",
+      "target": "/nodes/26/sourceRef",
+      "sourceRefs": [
+        "src:DecisionModel.__init__:597:597"
+      ],
+      "assumptions": [],
+      "text": "该静态调用/运算对应 AST 源码位置；适配器子步骤可共享同一表达式范围"
+    },
+    {
+      "id": "ev:model/sequence:15/call:20:tensor",
+      "kind": "unknown",
+      "target": "/tensors/27/shape",
+      "sourceRefs": [
+        "src:DecisionModel.__init__:597:597"
+      ],
+      "assumptions": [],
+      "text": "有未确认的结构或形状维度，详见 unknownReason"
+    },
+    {
+      "id": "ev:fact:model/sequence:15/call:20",
+      "kind": "source",
+      "target": "/nodes/27/sourceRef",
+      "sourceRefs": [
+        "src:DecisionModel.__init__:597:597"
+      ],
+      "assumptions": [],
+      "text": "该静态调用/运算对应 AST 源码位置；适配器子步骤可共享同一表达式范围"
+    },
+    {
+      "id": "ev:model/sequence:15/call:21:tensor",
+      "kind": "unknown",
+      "target": "/tensors/28/shape",
+      "sourceRefs": [
+        "src:DecisionModel.forward:633:633"
+      ],
+      "assumptions": [],
+      "text": "有未确认的结构或形状维度，详见 unknownReason"
+    },
+    {
+      "id": "ev:fact:model/sequence:15/call:21",
+      "kind": "source",
+      "target": "/nodes/28/sourceRef",
+      "sourceRefs": [
+        "src:DecisionModel.forward:633:633"
+      ],
+      "assumptions": [],
+      "text": "该静态调用/运算对应 AST 源码位置；适配器子步骤可共享同一表达式范围"
+    },
+    {
+      "id": "ev:model/call:22:tensor",
+      "kind": "unknown",
+      "target": "/tensors/29/shape",
+      "sourceRefs": [
+        "src:DecisionModel.forward:633:633"
+      ],
+      "assumptions": [],
+      "text": "有未确认的结构或形状维度，详见 unknownReason"
+    },
+    {
+      "id": "ev:fact:model/call:22",
+      "kind": "source",
+      "target": "/nodes/29/sourceRef",
+      "sourceRefs": [
+        "src:DecisionModel.forward:633:633"
+      ],
+      "assumptions": [],
+      "text": "该静态调用/运算对应 AST 源码位置；适配器子步骤可共享同一表达式范围"
+    },
+    {
+      "id": "ev:model/call:23:tensor",
+      "kind": "unknown",
+      "target": "/tensors/30/shape",
+      "sourceRefs": [
+        "src:DecisionModel.forward:633:633"
+      ],
+      "assumptions": [],
+      "text": "有未确认的结构或形状维度，详见 unknownReason"
+    },
+    {
+      "id": "ev:fact:model/call:23",
+      "kind": "source",
+      "target": "/nodes/30/sourceRef",
+      "sourceRefs": [
+        "src:DecisionModel.forward:633:633"
+      ],
+      "assumptions": [],
+      "text": "该静态调用/运算对应 AST 源码位置；适配器子步骤可共享同一表达式范围"
+    },
+    {
+      "id": "ev:model/call:24:tensor",
+      "kind": "unknown",
+      "target": "/tensors/31/shape",
+      "sourceRefs": [
+        "src:DecisionModel.forward:634:634"
+      ],
+      "assumptions": [],
+      "text": "有未确认的结构或形状维度，详见 unknownReason"
+    },
+    {
+      "id": "ev:fact:model/call:24",
+      "kind": "source",
+      "target": "/nodes/31/sourceRef",
+      "sourceRefs": [
+        "src:DecisionModel.forward:634:634"
+      ],
+      "assumptions": [],
+      "text": "该静态调用/运算对应 AST 源码位置；适配器子步骤可共享同一表达式范围"
+    },
+    {
+      "id": "ev:model/call:25:tensor",
+      "kind": "unknown",
+      "target": "/tensors/32/shape",
+      "sourceRefs": [
+        "src:DecisionModel.forward:634:634"
+      ],
+      "assumptions": [],
+      "text": "有未确认的结构或形状维度，详见 unknownReason"
+    },
+    {
+      "id": "ev:fact:model/call:25",
+      "kind": "source",
+      "target": "/nodes/32/sourceRef",
+      "sourceRefs": [
+        "src:DecisionModel.forward:634:634"
+      ],
+      "assumptions": [],
+      "text": "该静态调用/运算对应 AST 源码位置；适配器子步骤可共享同一表达式范围"
+    },
+    {
+      "id": "ev:model/call:26:tensor",
+      "kind": "unknown",
+      "target": "/tensors/33/shape",
+      "sourceRefs": [
+        "src:DecisionModel.forward:636:636"
+      ],
+      "assumptions": [],
+      "text": "有未确认的结构或形状维度，详见 unknownReason"
+    },
+    {
+      "id": "ev:fact:model/call:26",
+      "kind": "source",
+      "target": "/nodes/33/sourceRef",
+      "sourceRefs": [
+        "src:DecisionModel.forward:636:636"
+      ],
+      "assumptions": [],
+      "text": "该静态调用/运算对应 AST 源码位置；适配器子步骤可共享同一表达式范围"
+    },
+    {
+      "id": "ev:model/call:27:tensor",
+      "kind": "unknown",
+      "target": "/tensors/34/shape",
+      "sourceRefs": [
+        "src:DecisionModel.forward:636:636"
+      ],
+      "assumptions": [],
+      "text": "有未确认的结构或形状维度，详见 unknownReason"
+    },
+    {
+      "id": "ev:fact:model/call:27",
+      "kind": "source",
+      "target": "/nodes/34/sourceRef",
+      "sourceRefs": [
+        "src:DecisionModel.forward:636:636"
+      ],
+      "assumptions": [],
+      "text": "该静态调用/运算对应 AST 源码位置；适配器子步骤可共享同一表达式范围"
+    },
+    {
+      "id": "ev:model/call:28:tensor",
+      "kind": "unknown",
+      "target": "/tensors/35/shape",
+      "sourceRefs": [
+        "src:DecisionModel.forward:637:637"
+      ],
+      "assumptions": [],
+      "text": "有未确认的结构或形状维度，详见 unknownReason"
+    },
+    {
+      "id": "ev:fact:model/call:28",
+      "kind": "source",
+      "target": "/nodes/35/sourceRef",
+      "sourceRefs": [
+        "src:DecisionModel.forward:637:637"
+      ],
+      "assumptions": [],
+      "text": "该静态调用/运算对应 AST 源码位置；适配器子步骤可共享同一表达式范围"
+    },
+    {
+      "id": "ev:model/call:29:tensor",
+      "kind": "unknown",
+      "target": "/tensors/36/shape",
+      "sourceRefs": [
+        "src:DecisionModel.forward:637:637"
+      ],
+      "assumptions": [],
+      "text": "有未确认的结构或形状维度，详见 unknownReason"
+    },
+    {
+      "id": "ev:fact:model/call:29",
+      "kind": "source",
+      "target": "/nodes/36/sourceRef",
+      "sourceRefs": [
+        "src:DecisionModel.forward:637:637"
+      ],
+      "assumptions": [],
+      "text": "该静态调用/运算对应 AST 源码位置；适配器子步骤可共享同一表达式范围"
+    },
+    {
+      "id": "ev:model/call:30:tensor",
+      "kind": "unknown",
+      "target": "/tensors/37/shape",
+      "sourceRefs": [
+        "src:DecisionModel.forward:637:637"
+      ],
+      "assumptions": [],
+      "text": "有未确认的结构或形状维度，详见 unknownReason"
+    },
+    {
+      "id": "ev:fact:model/call:30",
+      "kind": "source",
+      "target": "/nodes/37/sourceRef",
+      "sourceRefs": [
+        "src:DecisionModel.forward:637:637"
+      ],
+      "assumptions": [],
+      "text": "该静态调用/运算对应 AST 源码位置；适配器子步骤可共享同一表达式范围"
+    },
+    {
+      "id": "ev:model/call:31:tensor",
+      "kind": "unknown",
+      "target": "/tensors/38/shape",
+      "sourceRefs": [
+        "src:DecisionModel.forward:638:638"
+      ],
+      "assumptions": [],
+      "text": "有未确认的结构或形状维度，详见 unknownReason"
+    },
+    {
+      "id": "ev:fact:model/call:31",
+      "kind": "source",
+      "target": "/nodes/38/sourceRef",
+      "sourceRefs": [
+        "src:DecisionModel.forward:638:638"
+      ],
+      "assumptions": [],
+      "text": "该静态调用/运算对应 AST 源码位置；适配器子步骤可共享同一表达式范围"
+    },
+    {
+      "id": "ev:model/call:32:tensor",
+      "kind": "unknown",
+      "target": "/tensors/39/shape",
+      "sourceRefs": [
+        "src:DecisionModel.forward:638:638"
+      ],
+      "assumptions": [],
+      "text": "有未确认的结构或形状维度，详见 unknownReason"
+    },
+    {
+      "id": "ev:fact:model/call:32",
+      "kind": "source",
+      "target": "/nodes/39/sourceRef",
+      "sourceRefs": [
+        "src:DecisionModel.forward:638:638"
+      ],
+      "assumptions": [],
+      "text": "该静态调用/运算对应 AST 源码位置；适配器子步骤可共享同一表达式范围"
+    },
+    {
+      "id": "ev:model/call:33:tensor",
+      "kind": "unknown",
+      "target": "/tensors/40/shape",
+      "sourceRefs": [
+        "src:DecisionModel.forward:638:638"
+      ],
+      "assumptions": [],
+      "text": "有未确认的结构或形状维度，详见 unknownReason"
+    },
+    {
+      "id": "ev:fact:model/call:33",
+      "kind": "source",
+      "target": "/nodes/40/sourceRef",
+      "sourceRefs": [
+        "src:DecisionModel.forward:638:638"
+      ],
+      "assumptions": [],
+      "text": "该静态调用/运算对应 AST 源码位置；适配器子步骤可共享同一表达式范围"
+    },
+    {
+      "id": "ev:model/call:34:tensor",
+      "kind": "unknown",
+      "target": "/tensors/41/shape",
+      "sourceRefs": [
+        "src:DecisionModel.forward:638:638"
+      ],
+      "assumptions": [],
+      "text": "有未确认的结构或形状维度，详见 unknownReason"
+    },
+    {
+      "id": "ev:fact:model/call:34",
+      "kind": "source",
+      "target": "/nodes/41/sourceRef",
+      "sourceRefs": [
+        "src:DecisionModel.forward:638:638"
+      ],
+      "assumptions": [],
+      "text": "该静态调用/运算对应 AST 源码位置；适配器子步骤可共享同一表达式范围"
+    },
+    {
+      "id": "ev:model/call:35:tensor",
+      "kind": "unknown",
+      "target": "/tensors/42/shape",
+      "sourceRefs": [
+        "src:DecisionModel.forward:638:638"
+      ],
+      "assumptions": [],
+      "text": "有未确认的结构或形状维度，详见 unknownReason"
+    },
+    {
+      "id": "ev:fact:model/call:35",
+      "kind": "source",
+      "target": "/nodes/42/sourceRef",
+      "sourceRefs": [
+        "src:DecisionModel.forward:638:638"
+      ],
+      "assumptions": [],
+      "text": "该静态调用/运算对应 AST 源码位置；适配器子步骤可共享同一表达式范围"
+    },
+    {
+      "id": "ev:model/call:36:tensor",
+      "kind": "unknown",
+      "target": "/tensors/43/shape",
+      "sourceRefs": [
+        "src:DecisionModel.forward:638:638"
+      ],
+      "assumptions": [],
+      "text": "有未确认的结构或形状维度，详见 unknownReason"
+    },
+    {
+      "id": "ev:fact:model/call:36",
+      "kind": "source",
+      "target": "/nodes/43/sourceRef",
+      "sourceRefs": [
+        "src:DecisionModel.forward:638:638"
+      ],
+      "assumptions": [],
+      "text": "该静态调用/运算对应 AST 源码位置；适配器子步骤可共享同一表达式范围"
+    },
+    {
+      "id": "ev:model/call:37:tensor",
+      "kind": "unknown",
+      "target": "/tensors/44/shape",
+      "sourceRefs": [
+        "src:DecisionModel.forward:638:638"
+      ],
+      "assumptions": [],
+      "text": "有未确认的结构或形状维度，详见 unknownReason"
+    },
+    {
+      "id": "ev:fact:model/call:37",
+      "kind": "source",
+      "target": "/nodes/44/sourceRef",
+      "sourceRefs": [
+        "src:DecisionModel.forward:638:638"
+      ],
+      "assumptions": [],
+      "text": "该静态调用/运算对应 AST 源码位置；适配器子步骤可共享同一表达式范围"
+    },
+    {
+      "id": "ev:model/call:38:tensor",
+      "kind": "unknown",
+      "target": "/tensors/45/shape",
+      "sourceRefs": [
+        "src:DecisionModel.forward:639:649"
+      ],
+      "assumptions": [],
+      "text": "有未确认的结构或形状维度，详见 unknownReason"
+    },
+    {
+      "id": "ev:fact:model/call:38",
+      "kind": "source",
+      "target": "/nodes/45/sourceRef",
+      "sourceRefs": [
+        "src:DecisionModel.forward:639:649"
+      ],
+      "assumptions": [],
+      "text": "该静态调用/运算对应 AST 源码位置；适配器子步骤可共享同一表达式范围"
+    },
+    {
+      "id": "ev:model/call:39:tensor",
+      "kind": "unknown",
+      "target": "/tensors/46/shape",
+      "sourceRefs": [
+        "src:DecisionModel.forward:639:649"
+      ],
+      "assumptions": [],
+      "text": "有未确认的结构或形状维度，详见 unknownReason"
+    },
+    {
+      "id": "ev:fact:model/call:39",
+      "kind": "source",
+      "target": "/nodes/46/sourceRef",
+      "sourceRefs": [
+        "src:DecisionModel.forward:639:649"
+      ],
+      "assumptions": [],
+      "text": "该静态调用/运算对应 AST 源码位置；适配器子步骤可共享同一表达式范围"
+    },
+    {
+      "id": "ev:model/call:40:tensor",
+      "kind": "unknown",
+      "target": "/tensors/47/shape",
+      "sourceRefs": [
+        "src:DecisionModel.forward:650:650"
+      ],
+      "assumptions": [],
+      "text": "有未确认的结构或形状维度，详见 unknownReason"
+    },
+    {
+      "id": "ev:fact:model/call:40",
+      "kind": "source",
+      "target": "/nodes/47/sourceRef",
+      "sourceRefs": [
+        "src:DecisionModel.forward:650:650"
+      ],
+      "assumptions": [],
+      "text": "该静态调用/运算对应 AST 源码位置；适配器子步骤可共享同一表达式范围"
+    },
+    {
+      "id": "ev:model/call:41:tensor",
+      "kind": "unknown",
+      "target": "/tensors/48/shape",
+      "sourceRefs": [
+        "src:DecisionModel.forward:650:650"
+      ],
+      "assumptions": [],
+      "text": "有未确认的结构或形状维度，详见 unknownReason"
+    },
+    {
+      "id": "ev:fact:model/call:41",
+      "kind": "source",
+      "target": "/nodes/48/sourceRef",
+      "sourceRefs": [
+        "src:DecisionModel.forward:650:650"
+      ],
+      "assumptions": [],
+      "text": "该静态调用/运算对应 AST 源码位置；适配器子步骤可共享同一表达式范围"
+    },
+    {
+      "id": "ev:model/call:42:tensor",
+      "kind": "unknown",
+      "target": "/tensors/49/shape",
+      "sourceRefs": [
+        "src:DecisionModel.forward:650:650"
+      ],
+      "assumptions": [],
+      "text": "有未确认的结构或形状维度，详见 unknownReason"
+    },
+    {
+      "id": "ev:fact:model/call:42",
+      "kind": "source",
+      "target": "/nodes/49/sourceRef",
+      "sourceRefs": [
+        "src:DecisionModel.forward:650:650"
+      ],
+      "assumptions": [],
+      "text": "该静态调用/运算对应 AST 源码位置；适配器子步骤可共享同一表达式范围"
+    },
+    {
+      "id": "ev:model/call:43:tensor",
+      "kind": "unknown",
+      "target": "/tensors/50/shape",
+      "sourceRefs": [
+        "src:DecisionModel.forward:650:650"
+      ],
+      "assumptions": [],
+      "text": "有未确认的结构或形状维度，详见 unknownReason"
+    },
+    {
+      "id": "ev:fact:model/call:43",
+      "kind": "source",
+      "target": "/nodes/50/sourceRef",
+      "sourceRefs": [
+        "src:DecisionModel.forward:650:650"
+      ],
+      "assumptions": [],
+      "text": "该静态调用/运算对应 AST 源码位置；适配器子步骤可共享同一表达式范围"
+    },
+    {
+      "id": "ev:model/call:44:tensor",
+      "kind": "static",
+      "target": "/tensors/51/shape",
+      "sourceRefs": [
+        "src:DecisionModel.forward:650:650"
+      ],
+      "assumptions": [
+        "仅静态 AST 和明确配置/模块声明；未运行模型",
+        "没有输入契约时不假设完整 rank/shape/dtype；条件分支未选择"
+      ],
+      "text": "形状来自受支持运算和配置推导"
+    },
+    {
+      "id": "ev:fact:model/call:44",
+      "kind": "source",
+      "target": "/nodes/51/sourceRef",
+      "sourceRefs": [
+        "src:DecisionModel.forward:650:650"
+      ],
+      "assumptions": [],
+      "text": "该静态调用/运算对应 AST 源码位置；适配器子步骤可共享同一表达式范围"
+    },
+    {
+      "id": "ev:model/call:45:tensor",
+      "kind": "unknown",
+      "target": "/tensors/52/shape",
+      "sourceRefs": [
+        "src:DecisionModel.forward:650:650"
+      ],
+      "assumptions": [],
+      "text": "有未确认的结构或形状维度，详见 unknownReason"
+    },
+    {
+      "id": "ev:fact:model/call:45",
+      "kind": "source",
+      "target": "/nodes/52/sourceRef",
+      "sourceRefs": [
+        "src:DecisionModel.forward:650:650"
+      ],
+      "assumptions": [],
+      "text": "该静态调用/运算对应 AST 源码位置；适配器子步骤可共享同一表达式范围"
+    },
+    {
+      "id": "ev:model/call:46:tensor",
+      "kind": "unknown",
+      "target": "/tensors/53/shape",
+      "sourceRefs": [
+        "src:DecisionModel.forward:650:650"
+      ],
+      "assumptions": [],
+      "text": "有未确认的结构或形状维度，详见 unknownReason"
+    },
+    {
+      "id": "ev:fact:model/call:46",
+      "kind": "source",
+      "target": "/nodes/53/sourceRef",
+      "sourceRefs": [
+        "src:DecisionModel.forward:650:650"
+      ],
+      "assumptions": [],
+      "text": "该静态调用/运算对应 AST 源码位置；适配器子步骤可共享同一表达式范围"
+    },
+    {
+      "id": "ev:model/call:47:tensor",
+      "kind": "unknown",
+      "target": "/tensors/54/shape",
+      "sourceRefs": [
+        "src:DecisionModel.forward:651:651"
+      ],
+      "assumptions": [],
+      "text": "有未确认的结构或形状维度，详见 unknownReason"
+    },
+    {
+      "id": "ev:fact:model/call:47",
+      "kind": "source",
+      "target": "/nodes/54/sourceRef",
+      "sourceRefs": [
+        "src:DecisionModel.forward:651:651"
+      ],
+      "assumptions": [],
+      "text": "该静态调用/运算对应 AST 源码位置；适配器子步骤可共享同一表达式范围"
+    },
+    {
+      "id": "ev:model/call:48:tensor",
+      "kind": "unknown",
+      "target": "/tensors/55/shape",
+      "sourceRefs": [
+        "src:DecisionModel.forward:651:651"
+      ],
+      "assumptions": [],
+      "text": "有未确认的结构或形状维度，详见 unknownReason"
+    },
+    {
+      "id": "ev:fact:model/call:48",
+      "kind": "source",
+      "target": "/nodes/55/sourceRef",
+      "sourceRefs": [
+        "src:DecisionModel.forward:651:651"
+      ],
+      "assumptions": [],
+      "text": "该静态调用/运算对应 AST 源码位置；适配器子步骤可共享同一表达式范围"
+    },
+    {
+      "id": "ev:model/call:49:tensor",
+      "kind": "unknown",
+      "target": "/tensors/56/shape",
+      "sourceRefs": [
+        "src:DecisionModel.forward:652:652"
+      ],
+      "assumptions": [],
+      "text": "有未确认的结构或形状维度，详见 unknownReason"
+    },
+    {
+      "id": "ev:fact:model/call:49",
+      "kind": "source",
+      "target": "/nodes/56/sourceRef",
+      "sourceRefs": [
+        "src:DecisionModel.forward:652:652"
+      ],
+      "assumptions": [],
+      "text": "该静态调用/运算对应 AST 源码位置；适配器子步骤可共享同一表达式范围"
+    },
+    {
+      "id": "ev:model/call:50:tensor",
+      "kind": "unknown",
+      "target": "/tensors/57/shape",
+      "sourceRefs": [
+        "src:DecisionModel.forward:655:656"
+      ],
+      "assumptions": [],
+      "text": "有未确认的结构或形状维度，详见 unknownReason"
+    },
+    {
+      "id": "ev:fact:model/call:50",
+      "kind": "source",
+      "target": "/nodes/57/sourceRef",
+      "sourceRefs": [
+        "src:DecisionModel.forward:655:656"
+      ],
+      "assumptions": [],
+      "text": "该静态调用/运算对应 AST 源码位置；适配器子步骤可共享同一表达式范围"
+    },
+    {
+      "id": "ev:model/call:51:tensor",
+      "kind": "unknown",
+      "target": "/tensors/58/shape",
+      "sourceRefs": [
+        "src:DecisionModel.forward:655:656"
+      ],
+      "assumptions": [],
+      "text": "有未确认的结构或形状维度，详见 unknownReason"
+    },
+    {
+      "id": "ev:fact:model/call:51",
+      "kind": "source",
+      "target": "/nodes/58/sourceRef",
+      "sourceRefs": [
+        "src:DecisionModel.forward:655:656"
+      ],
+      "assumptions": [],
+      "text": "该静态调用/运算对应 AST 源码位置；适配器子步骤可共享同一表达式范围"
+    },
+    {
+      "id": "ev:model/call:52:tensor",
+      "kind": "unknown",
+      "target": "/tensors/59/shape",
+      "sourceRefs": [
+        "src:DecisionModel.forward:657:657"
+      ],
+      "assumptions": [],
+      "text": "有未确认的结构或形状维度，详见 unknownReason"
+    },
+    {
+      "id": "ev:fact:model/call:52",
+      "kind": "source",
+      "target": "/nodes/59/sourceRef",
+      "sourceRefs": [
+        "src:DecisionModel.forward:657:657"
+      ],
+      "assumptions": [],
+      "text": "该静态调用/运算对应 AST 源码位置；适配器子步骤可共享同一表达式范围"
+    },
+    {
+      "id": "ev:model/sequence:52/call:53:tensor",
+      "kind": "unknown",
+      "target": "/tensors/60/shape",
+      "sourceRefs": [
+        "src:DecisionModel.forward:657:657"
+      ],
+      "assumptions": [],
+      "text": "有未确认的结构或形状维度，详见 unknownReason"
+    },
+    {
+      "id": "ev:fact:model/sequence:52/call:53",
+      "kind": "source",
+      "target": "/nodes/60/sourceRef",
+      "sourceRefs": [
+        "src:DecisionModel.forward:657:657"
+      ],
+      "assumptions": [],
+      "text": "该静态调用/运算对应 AST 源码位置；适配器子步骤可共享同一表达式范围"
+    },
+    {
+      "id": "ev:model/sequence:52/call:54:tensor",
+      "kind": "unknown",
+      "target": "/tensors/61/shape",
+      "sourceRefs": [
+        "src:DecisionModel.__init__:598:598"
+      ],
+      "assumptions": [],
+      "text": "有未确认的结构或形状维度，详见 unknownReason"
+    },
+    {
+      "id": "ev:fact:model/sequence:52/call:54",
+      "kind": "source",
+      "target": "/nodes/61/sourceRef",
+      "sourceRefs": [
+        "src:DecisionModel.__init__:598:598"
+      ],
+      "assumptions": [],
+      "text": "该静态调用/运算对应 AST 源码位置；适配器子步骤可共享同一表达式范围"
+    },
+    {
+      "id": "ev:model/sequence:52/call:55:tensor",
+      "kind": "unknown",
+      "target": "/tensors/62/shape",
+      "sourceRefs": [
+        "src:DecisionModel.__init__:598:598"
+      ],
+      "assumptions": [],
+      "text": "有未确认的结构或形状维度，详见 unknownReason"
+    },
+    {
+      "id": "ev:fact:model/sequence:52/call:55",
+      "kind": "source",
+      "target": "/nodes/62/sourceRef",
+      "sourceRefs": [
+        "src:DecisionModel.__init__:598:598"
+      ],
+      "assumptions": [],
+      "text": "该静态调用/运算对应 AST 源码位置；适配器子步骤可共享同一表达式范围"
+    },
+    {
+      "id": "ev:model/sequence:52/call:56:tensor",
+      "kind": "unknown",
+      "target": "/tensors/63/shape",
+      "sourceRefs": [
+        "src:DecisionModel.__init__:598:598"
+      ],
+      "assumptions": [],
+      "text": "有未确认的结构或形状维度，详见 unknownReason"
+    },
+    {
+      "id": "ev:fact:model/sequence:52/call:56",
+      "kind": "source",
+      "target": "/nodes/63/sourceRef",
+      "sourceRefs": [
+        "src:DecisionModel.__init__:598:598"
+      ],
+      "assumptions": [],
+      "text": "该静态调用/运算对应 AST 源码位置；适配器子步骤可共享同一表达式范围"
+    },
+    {
+      "id": "ev:model/sequence:52/call:57:tensor",
+      "kind": "unknown",
+      "target": "/tensors/64/shape",
+      "sourceRefs": [
+        "src:DecisionModel.forward:657:657"
+      ],
+      "assumptions": [],
+      "text": "有未确认的结构或形状维度，详见 unknownReason"
+    },
+    {
+      "id": "ev:fact:model/sequence:52/call:57",
+      "kind": "source",
+      "target": "/nodes/64/sourceRef",
+      "sourceRefs": [
+        "src:DecisionModel.forward:657:657"
+      ],
+      "assumptions": [],
+      "text": "该静态调用/运算对应 AST 源码位置；适配器子步骤可共享同一表达式范围"
+    },
+    {
+      "id": "ev:model/call:58:tensor",
+      "kind": "unknown",
+      "target": "/tensors/65/shape",
+      "sourceRefs": [
+        "src:DecisionModel.forward:658:658"
+      ],
+      "assumptions": [],
+      "text": "有未确认的结构或形状维度，详见 unknownReason"
+    },
+    {
+      "id": "ev:fact:model/call:58",
+      "kind": "source",
+      "target": "/nodes/65/sourceRef",
+      "sourceRefs": [
+        "src:DecisionModel.forward:658:658"
+      ],
+      "assumptions": [],
+      "text": "该静态调用/运算对应 AST 源码位置；适配器子步骤可共享同一表达式范围"
+    },
+    {
+      "id": "ev:model/call:59:tensor",
+      "kind": "unknown",
+      "target": "/tensors/66/shape",
+      "sourceRefs": [
+        "src:DecisionModel.forward:658:658"
+      ],
+      "assumptions": [],
+      "text": "有未确认的结构或形状维度，详见 unknownReason"
+    },
+    {
+      "id": "ev:fact:model/call:59",
+      "kind": "source",
+      "target": "/nodes/66/sourceRef",
+      "sourceRefs": [
+        "src:DecisionModel.forward:658:658"
+      ],
+      "assumptions": [],
+      "text": "该静态调用/运算对应 AST 源码位置；适配器子步骤可共享同一表达式范围"
+    }
+  ],
+  "claims": [],
+  "explanations": [
+    {
+      "id": "ex:model/input:input_ids",
+      "intuition": "按实际源码读取该计算，选择边可核对依赖。",
+      "calculation": "输出形状 [None]；B=batch，T=序列长度。未知尺寸不作猜测。",
+      "implementation": "对应生成时源码快照；静态推导未做运行验证。",
+      "evidence": [
+        "ev:fact:model/input:input_ids",
+        "ev:model/input:input_ids:tensor"
+      ]
+    },
+    {
+      "id": "ex:model/input:attention_mask",
+      "intuition": "按实际源码读取该计算，选择边可核对依赖。",
+      "calculation": "输出形状 [None]；B=batch，T=序列长度。未知尺寸不作猜测。",
+      "implementation": "对应生成时源码快照；静态推导未做运行验证。",
+      "evidence": [
+        "ev:fact:model/input:attention_mask",
+        "ev:model/input:attention_mask:tensor"
+      ]
+    },
+    {
+      "id": "ex:model/input:marker_pos",
+      "intuition": "按实际源码读取该计算，选择边可核对依赖。",
+      "calculation": "输出形状 [None]；B=batch，T=序列长度。未知尺寸不作猜测。",
+      "implementation": "对应生成时源码快照；静态推导未做运行验证。",
+      "evidence": [
+        "ev:fact:model/input:marker_pos",
+        "ev:model/input:marker_pos:tensor"
+      ]
+    },
+    {
+      "id": "ex:model/input:marker_mask",
+      "intuition": "按实际源码读取该计算，选择边可核对依赖。",
+      "calculation": "输出形状 [None]；B=batch，T=序列长度。未知尺寸不作猜测。",
+      "implementation": "对应生成时源码快照；静态推导未做运行验证。",
+      "evidence": [
+        "ev:fact:model/input:marker_mask",
+        "ev:model/input:marker_mask:tensor"
+      ]
+    },
+    {
+      "id": "ex:model/input:qtype",
+      "intuition": "按实际源码读取该计算，选择边可核对依赖。",
+      "calculation": "输出形状 [None]；B=batch，T=序列长度。未知尺寸不作猜测。",
+      "implementation": "对应生成时源码快照；静态推导未做运行验证。",
+      "evidence": [
+        "ev:fact:model/input:qtype",
+        "ev:model/input:qtype:tensor"
+      ]
+    },
+    {
+      "id": "ex:model/input:detach_encoder",
+      "intuition": "按实际源码读取该计算，选择边可核对依赖。",
+      "calculation": "输出形状 [None]；B=batch，T=序列长度。未知尺寸不作猜测。",
+      "implementation": "对应生成时源码快照；静态推导未做运行验证。",
+      "evidence": [
+        "ev:fact:model/input:detach_encoder",
+        "ev:model/input:detach_encoder:tensor"
+      ]
+    },
+    {
+      "id": "ex:model/input:position_ids",
+      "intuition": "按实际源码读取该计算，选择边可核对依赖。",
+      "calculation": "输出形状 [None]；B=batch，T=序列长度。未知尺寸不作猜测。",
+      "implementation": "对应生成时源码快照；静态推导未做运行验证。",
+      "evidence": [
+        "ev:fact:model/input:position_ids",
+        "ev:model/input:position_ids:tensor"
+      ]
+    },
+    {
+      "id": "ex:model/input:option_ids",
+      "intuition": "按实际源码读取该计算，选择边可核对依赖。",
+      "calculation": "输出形状 [None]；B=batch，T=序列长度。未知尺寸不作猜测。",
+      "implementation": "对应生成时源码快照；静态推导未做运行验证。",
+      "evidence": [
+        "ev:fact:model/input:option_ids",
+        "ev:model/input:option_ids:tensor"
+      ]
+    },
+    {
+      "id": "ex:model/call:1",
+      "intuition": "按实际源码读取该计算，选择边可核对依赖。",
+      "calculation": "输出形状 [None]；B=batch，T=序列长度。未知尺寸不作猜测。",
+      "implementation": "对应生成时源码快照；静态推导未做运行验证。",
+      "evidence": [
+        "ev:fact:model/call:1",
+        "ev:model/call:1:tensor"
+      ]
+    },
+    {
+      "id": "ex:model/call:2",
+      "intuition": "按实际源码读取该计算，选择边可核对依赖。",
+      "calculation": "分支/循环结果及可能保留的旧值；未判断条件，未确认尺寸。",
+      "implementation": "对应生成时源码快照；静态推导未做运行验证。",
+      "evidence": [
+        "ev:fact:model/call:2",
+        "ev:model/call:2:tensor"
+      ]
+    },
+    {
+      "id": "ex:model/call:3",
+      "intuition": "按实际源码读取该计算，选择边可核对依赖。",
+      "calculation": "输出形状 [None]；B=batch，T=序列长度。未知尺寸不作猜测。",
+      "implementation": "对应生成时源码快照；静态推导未做运行验证。",
+      "evidence": [
+        "ev:fact:model/call:3",
+        "ev:model/call:3:tensor"
+      ]
+    },
+    {
+      "id": "ex:model/call:4",
+      "intuition": "按实际源码读取该计算，选择边可核对依赖。",
+      "calculation": "分支/循环结果及可能保留的旧值；未判断条件，未确认尺寸。",
+      "implementation": "对应生成时源码快照；静态推导未做运行验证。",
+      "evidence": [
+        "ev:fact:model/call:4",
+        "ev:model/call:4:tensor"
+      ]
+    },
+    {
+      "id": "ex:model/call:5",
+      "intuition": "按实际源码读取该计算，选择边可核对依赖。",
+      "calculation": "输出形状 [None]；B=batch，T=序列长度。未知尺寸不作猜测。",
+      "implementation": "对应生成时源码快照；静态推导未做运行验证。",
+      "evidence": [
+        "ev:fact:model/call:5",
+        "ev:model/call:5:tensor"
+      ]
+    },
+    {
+      "id": "ex:model/call:6",
+      "intuition": "按实际源码读取该计算，选择边可核对依赖。",
+      "calculation": "输出形状 [None]；B=batch，T=序列长度。未知尺寸不作猜测。",
+      "implementation": "对应生成时源码快照；静态推导未做运行验证。",
+      "evidence": [
+        "ev:fact:model/call:6",
+        "ev:model/call:6:tensor"
+      ]
+    },
+    {
+      "id": "ex:model/call:7",
+      "intuition": "保留旁路信息，再加上本分支的变换。",
+      "calculation": "输出形状 [None]；B=batch，T=序列长度。未知尺寸不作猜测。",
+      "implementation": "对应生成时源码快照；静态推导未做运行验证。",
+      "evidence": [
+        "ev:fact:model/call:7",
+        "ev:model/call:7:tensor"
+      ]
+    },
+    {
+      "id": "ex:model/call:8",
+      "intuition": "按实际源码读取该计算，选择边可核对依赖。",
+      "calculation": "输出形状 [None]；B=batch，T=序列长度。未知尺寸不作猜测。",
+      "implementation": "对应生成时源码快照；静态推导未做运行验证。",
+      "evidence": [
+        "ev:fact:model/call:8",
+        "ev:model/call:8:tensor"
+      ]
+    },
+    {
+      "id": "ex:model/call:9",
+      "intuition": "按实际源码读取该计算，选择边可核对依赖。",
+      "calculation": "分支/循环结果及可能保留的旧值；未判断条件，未确认尺寸。",
+      "implementation": "对应生成时源码快照；静态推导未做运行验证。",
+      "evidence": [
+        "ev:fact:model/call:9",
+        "ev:model/call:9:tensor"
+      ]
+    },
+    {
+      "id": "ex:model/call:10",
+      "intuition": "按实际源码读取该计算，选择边可核对依赖。",
+      "calculation": "输出形状 [None]；B=batch，T=序列长度。未知尺寸不作猜测。",
+      "implementation": "对应生成时源码快照；静态推导未做运行验证。",
+      "evidence": [
+        "ev:fact:model/call:10",
+        "ev:model/call:10:tensor"
+      ]
+    },
+    {
+      "id": "ex:model/call:11",
+      "intuition": "按实际源码读取该计算，选择边可核对依赖。",
+      "calculation": "输出形状 [None]；B=batch，T=序列长度。未知尺寸不作猜测。",
+      "implementation": "对应生成时源码快照；静态推导未做运行验证。",
+      "evidence": [
+        "ev:fact:model/call:11",
+        "ev:model/call:11:tensor"
+      ]
+    },
+    {
+      "id": "ex:model/call:12",
+      "intuition": "按实际源码读取该计算，选择边可核对依赖。",
+      "calculation": "输出形状 [None]；B=batch，T=序列长度。未知尺寸不作猜测。",
+      "implementation": "对应生成时源码快照；静态推导未做运行验证。",
+      "evidence": [
+        "ev:fact:model/call:12",
+        "ev:model/call:12:tensor"
+      ]
+    },
+    {
+      "id": "ex:model/call:13",
+      "intuition": "按实际源码读取该计算，选择边可核对依赖。",
+      "calculation": "输出形状 [None]；B=batch，T=序列长度。未知尺寸不作猜测。",
+      "implementation": "对应生成时源码快照；静态推导未做运行验证。",
+      "evidence": [
+        "ev:fact:model/call:13",
+        "ev:model/call:13:tensor"
+      ]
+    },
+    {
+      "id": "ex:model/call:14",
+      "intuition": "按实际源码读取该计算，选择边可核对依赖。",
+      "calculation": "输出形状 [None]；B=batch，T=序列长度。未知尺寸不作猜测。",
+      "implementation": "对应生成时源码快照；静态推导未做运行验证。",
+      "evidence": [
+        "ev:fact:model/call:14",
+        "ev:model/call:14:tensor"
+      ]
+    },
+    {
+      "id": "ex:model/call:15",
+      "intuition": "按实际源码读取该计算，选择边可核对依赖。",
+      "calculation": "输出形状 [None]；B=batch，T=序列长度。未知尺寸不作猜测。",
+      "implementation": "对应生成时源码快照；静态推导未做运行验证。",
+      "evidence": [
+        "ev:fact:model/call:15",
+        "ev:model/call:15:tensor"
+      ]
+    },
+    {
+      "id": "ex:model/sequence:15/call:16",
+      "intuition": "按实际源码读取该计算，选择边可核对依赖。",
+      "calculation": "输出形状 [None]；B=batch，T=序列长度。未知尺寸不作猜测。",
+      "implementation": "对应生成时源码快照；静态推导未做运行验证。",
+      "evidence": [
+        "ev:fact:model/sequence:15/call:16",
+        "ev:model/sequence:15/call:16:tensor"
+      ]
+    },
+    {
+      "id": "ex:model/sequence:15/call:17",
+      "intuition": "按实际源码读取该计算，选择边可核对依赖。",
+      "calculation": "输出形状 [None]；B=batch，T=序列长度。未知尺寸不作猜测。",
+      "implementation": "对应生成时源码快照；静态推导未做运行验证。",
+      "evidence": [
+        "ev:fact:model/sequence:15/call:17",
+        "ev:model/sequence:15/call:17:tensor"
+      ]
+    },
+    {
+      "id": "ex:model/sequence:15/call:18",
+      "intuition": "按实际源码读取该计算，选择边可核对依赖。",
+      "calculation": "输出形状 [None]；B=batch，T=序列长度。未知尺寸不作猜测。",
+      "implementation": "对应生成时源码快照；静态推导未做运行验证。",
+      "evidence": [
+        "ev:fact:model/sequence:15/call:18",
+        "ev:model/sequence:15/call:18:tensor"
+      ]
+    },
+    {
+      "id": "ex:model/sequence:15/call:19",
+      "intuition": "按实际源码读取该计算，选择边可核对依赖。",
+      "calculation": "输出形状 [None]；B=batch，T=序列长度。未知尺寸不作猜测。",
+      "implementation": "对应生成时源码快照；静态推导未做运行验证。",
+      "evidence": [
+        "ev:fact:model/sequence:15/call:19",
+        "ev:model/sequence:15/call:19:tensor"
+      ]
+    },
+    {
+      "id": "ex:model/sequence:15/call:20",
+      "intuition": "按实际源码读取该计算，选择边可核对依赖。",
+      "calculation": "源码声明输出末维为 1；输入 rank/前缀未提供时，完整形状保留未知，不假设为二维或三维。",
+      "implementation": "对应生成时源码快照；静态推导未做运行验证。",
+      "evidence": [
+        "ev:fact:model/sequence:15/call:20",
+        "ev:model/sequence:15/call:20:tensor"
+      ]
+    },
+    {
+      "id": "ex:model/sequence:15/call:21",
+      "intuition": "按实际源码读取该计算，选择边可核对依赖。",
+      "calculation": "输出形状 [None]；B=batch，T=序列长度。未知尺寸不作猜测。",
+      "implementation": "对应生成时源码快照；静态推导未做运行验证。",
+      "evidence": [
+        "ev:fact:model/sequence:15/call:21",
+        "ev:model/sequence:15/call:21:tensor"
+      ]
+    },
+    {
+      "id": "ex:model/call:22",
+      "intuition": "按实际源码读取该计算，选择边可核对依赖。",
+      "calculation": "输出形状 [None]；B=batch，T=序列长度。未知尺寸不作猜测。",
+      "implementation": "对应生成时源码快照；静态推导未做运行验证。",
+      "evidence": [
+        "ev:fact:model/call:22",
+        "ev:model/call:22:tensor"
+      ]
+    },
+    {
+      "id": "ex:model/call:23",
+      "intuition": "按实际源码读取该计算，选择边可核对依赖。",
+      "calculation": "输出形状 [None]；B=batch，T=序列长度。未知尺寸不作猜测。",
+      "implementation": "对应生成时源码快照；静态推导未做运行验证。",
+      "evidence": [
+        "ev:fact:model/call:23",
+        "ev:model/call:23:tensor"
+      ]
+    },
+    {
+      "id": "ex:model/call:24",
+      "intuition": "按实际源码读取该计算，选择边可核对依赖。",
+      "calculation": "输出形状 [None]；B=batch，T=序列长度。未知尺寸不作猜测。",
+      "implementation": "对应生成时源码快照；静态推导未做运行验证。",
+      "evidence": [
+        "ev:fact:model/call:24",
+        "ev:model/call:24:tensor"
+      ]
+    },
+    {
+      "id": "ex:model/call:25",
+      "intuition": "按实际源码读取该计算，选择边可核对依赖。",
+      "calculation": "输出形状 [None]；B=batch，T=序列长度。未知尺寸不作猜测。",
+      "implementation": "对应生成时源码快照；静态推导未做运行验证。",
+      "evidence": [
+        "ev:fact:model/call:25",
+        "ev:model/call:25:tensor"
+      ]
+    },
+    {
+      "id": "ex:model/call:26",
+      "intuition": "按实际源码读取该计算，选择边可核对依赖。",
+      "calculation": "输出形状 [None]；B=batch，T=序列长度。未知尺寸不作猜测。",
+      "implementation": "对应生成时源码快照；静态推导未做运行验证。",
+      "evidence": [
+        "ev:fact:model/call:26",
+        "ev:model/call:26:tensor"
+      ]
+    },
+    {
+      "id": "ex:model/call:27",
+      "intuition": "把当前允许关注的位置的分数转为权重。",
+      "calculation": "输出形状 [None]；B=batch，T=序列长度。未知尺寸不作猜测。",
+      "implementation": "对应生成时源码快照；静态推导未做运行验证。",
+      "evidence": [
+        "ev:fact:model/call:27",
+        "ev:model/call:27:tensor"
+      ]
+    },
+    {
+      "id": "ex:model/call:28",
+      "intuition": "按实际源码读取该计算，选择边可核对依赖。",
+      "calculation": "输出形状 [None]；B=batch，T=序列长度。未知尺寸不作猜测。",
+      "implementation": "对应生成时源码快照；静态推导未做运行验证。",
+      "evidence": [
+        "ev:fact:model/call:28",
+        "ev:model/call:28:tensor"
+      ]
+    },
+    {
+      "id": "ex:model/call:29",
+      "intuition": "按实际源码读取该计算，选择边可核对依赖。",
+      "calculation": "输出形状 [None]；B=batch，T=序列长度。未知尺寸不作猜测。",
+      "implementation": "对应生成时源码快照；静态推导未做运行验证。",
+      "evidence": [
+        "ev:fact:model/call:29",
+        "ev:model/call:29:tensor"
+      ]
+    },
+    {
+      "id": "ex:model/call:30",
+      "intuition": "按实际源码读取该计算，选择边可核对依赖。",
+      "calculation": "输出形状 [None]；B=batch，T=序列长度。未知尺寸不作猜测。",
+      "implementation": "对应生成时源码快照；静态推导未做运行验证。",
+      "evidence": [
+        "ev:fact:model/call:30",
+        "ev:model/call:30:tensor"
+      ]
+    },
+    {
+      "id": "ex:model/call:31",
+      "intuition": "按实际源码读取该计算，选择边可核对依赖。",
+      "calculation": "输出形状 [None]；B=batch，T=序列长度。未知尺寸不作猜测。",
+      "implementation": "对应生成时源码快照；静态推导未做运行验证。",
+      "evidence": [
+        "ev:fact:model/call:31",
+        "ev:model/call:31:tensor"
+      ]
+    },
+    {
+      "id": "ex:model/call:32",
+      "intuition": "按实际源码读取该计算，选择边可核对依赖。",
+      "calculation": "输出形状 [None]；B=batch，T=序列长度。未知尺寸不作猜测。",
+      "implementation": "对应生成时源码快照；静态推导未做运行验证。",
+      "evidence": [
+        "ev:fact:model/call:32",
+        "ev:model/call:32:tensor"
+      ]
+    },
+    {
+      "id": "ex:model/call:33",
+      "intuition": "两个分支逐元素相乘。",
+      "calculation": "输出形状 [None]；B=batch，T=序列长度。未知尺寸不作猜测。",
+      "implementation": "对应生成时源码快照；静态推导未做运行验证。",
+      "evidence": [
+        "ev:fact:model/call:33",
+        "ev:model/call:33:tensor"
+      ]
+    },
+    {
+      "id": "ex:model/call:34",
+      "intuition": "按实际源码读取该计算，选择边可核对依赖。",
+      "calculation": "输出形状 [None]；B=batch，T=序列长度。未知尺寸不作猜测。",
+      "implementation": "对应生成时源码快照；静态推导未做运行验证。",
+      "evidence": [
+        "ev:fact:model/call:34",
+        "ev:model/call:34:tensor"
+      ]
+    },
+    {
+      "id": "ex:model/call:35",
+      "intuition": "按实际源码读取该计算，选择边可核对依赖。",
+      "calculation": "输出形状 [None]；B=batch，T=序列长度。未知尺寸不作猜测。",
+      "implementation": "对应生成时源码快照；静态推导未做运行验证。",
+      "evidence": [
+        "ev:fact:model/call:35",
+        "ev:model/call:35:tensor"
+      ]
+    },
+    {
+      "id": "ex:model/call:36",
+      "intuition": "按实际源码读取该计算，选择边可核对依赖。",
+      "calculation": "输出形状 [None]；B=batch，T=序列长度。未知尺寸不作猜测。",
+      "implementation": "对应生成时源码快照；静态推导未做运行验证。",
+      "evidence": [
+        "ev:fact:model/call:36",
+        "ev:model/call:36:tensor"
+      ]
+    },
+    {
+      "id": "ex:model/call:37",
+      "intuition": "按实际源码读取该计算，选择边可核对依赖。",
+      "calculation": "输出形状 [None]；B=batch，T=序列长度。未知尺寸不作猜测。",
+      "implementation": "对应生成时源码快照；静态推导未做运行验证。",
+      "evidence": [
+        "ev:fact:model/call:37",
+        "ev:model/call:37:tensor"
+      ]
+    },
+    {
+      "id": "ex:model/call:38",
+      "intuition": "按实际源码读取该计算，选择边可核对依赖。",
+      "calculation": "输出形状 [None]；B=batch，T=序列长度。未知尺寸不作猜测。",
+      "implementation": "对应生成时源码快照；静态推导未做运行验证。",
+      "evidence": [
+        "ev:fact:model/call:38",
+        "ev:model/call:38:tensor"
+      ]
+    },
+    {
+      "id": "ex:model/call:39",
+      "intuition": "按实际源码读取该计算，选择边可核对依赖。",
+      "calculation": "分支/循环结果及可能保留的旧值；未判断条件，未确认尺寸。",
+      "implementation": "对应生成时源码快照；静态推导未做运行验证。",
+      "evidence": [
+        "ev:fact:model/call:39",
+        "ev:model/call:39:tensor"
+      ]
+    },
+    {
+      "id": "ex:model/call:40",
+      "intuition": "按实际源码读取该计算，选择边可核对依赖。",
+      "calculation": "输出形状 [None]；B=batch，T=序列长度。未知尺寸不作猜测。",
+      "implementation": "对应生成时源码快照；静态推导未做运行验证。",
+      "evidence": [
+        "ev:fact:model/call:40",
+        "ev:model/call:40:tensor"
+      ]
+    },
+    {
+      "id": "ex:model/call:41",
+      "intuition": "按实际源码读取该计算，选择边可核对依赖。",
+      "calculation": "输出形状 [None]；B=batch，T=序列长度。未知尺寸不作猜测。",
+      "implementation": "对应生成时源码快照；静态推导未做运行验证。",
+      "evidence": [
+        "ev:fact:model/call:41",
+        "ev:model/call:41:tensor"
+      ]
+    },
+    {
+      "id": "ex:model/call:42",
+      "intuition": "按实际源码读取该计算，选择边可核对依赖。",
+      "calculation": "输出形状 [None]；B=batch，T=序列长度。未知尺寸不作猜测。",
+      "implementation": "对应生成时源码快照；静态推导未做运行验证。",
+      "evidence": [
+        "ev:fact:model/call:42",
+        "ev:model/call:42:tensor"
+      ]
+    },
+    {
+      "id": "ex:model/call:43",
+      "intuition": "按实际源码读取该计算，选择边可核对依赖。",
+      "calculation": "输出形状 [None]；B=batch，T=序列长度。未知尺寸不作猜测。",
+      "implementation": "对应生成时源码快照；静态推导未做运行验证。",
+      "evidence": [
+        "ev:fact:model/call:43",
+        "ev:model/call:43:tensor"
+      ]
+    },
+    {
+      "id": "ex:model/call:44",
+      "intuition": "按实际源码读取该计算，选择边可核对依赖。",
+      "calculation": "输出形状 []；B=batch，T=序列长度。未知尺寸不作猜测。",
+      "implementation": "对应生成时源码快照；静态推导未做运行验证。",
+      "evidence": [
+        "ev:fact:model/call:44",
+        "ev:model/call:44:tensor"
+      ]
+    },
+    {
+      "id": "ex:model/call:45",
+      "intuition": "按实际源码读取该计算，选择边可核对依赖。",
+      "calculation": "输出形状 [None]；B=batch，T=序列长度。未知尺寸不作猜测。",
+      "implementation": "对应生成时源码快照；静态推导未做运行验证。",
+      "evidence": [
+        "ev:fact:model/call:45",
+        "ev:model/call:45:tensor"
+      ]
+    },
+    {
+      "id": "ex:model/call:46",
+      "intuition": "按实际源码读取该计算，选择边可核对依赖。",
+      "calculation": "输出形状 [None]；B=batch，T=序列长度。未知尺寸不作猜测。",
+      "implementation": "对应生成时源码快照；静态推导未做运行验证。",
+      "evidence": [
+        "ev:fact:model/call:46",
+        "ev:model/call:46:tensor"
+      ]
+    },
+    {
+      "id": "ex:model/call:47",
+      "intuition": "按实际源码读取该计算，选择边可核对依赖。",
+      "calculation": "输出形状 [None]；B=batch，T=序列长度。未知尺寸不作猜测。",
+      "implementation": "对应生成时源码快照；静态推导未做运行验证。",
+      "evidence": [
+        "ev:fact:model/call:47",
+        "ev:model/call:47:tensor"
+      ]
+    },
+    {
+      "id": "ex:model/call:48",
+      "intuition": "按实际源码读取该计算，选择边可核对依赖。",
+      "calculation": "输出形状 [None]；B=batch，T=序列长度。未知尺寸不作猜测。",
+      "implementation": "对应生成时源码快照；静态推导未做运行验证。",
+      "evidence": [
+        "ev:fact:model/call:48",
+        "ev:model/call:48:tensor"
+      ]
+    },
+    {
+      "id": "ex:model/call:49",
+      "intuition": "按实际源码读取该计算，选择边可核对依赖。",
+      "calculation": "输出形状 [None]；B=batch，T=序列长度。未知尺寸不作猜测。",
+      "implementation": "对应生成时源码快照；静态推导未做运行验证。",
+      "evidence": [
+        "ev:fact:model/call:49",
+        "ev:model/call:49:tensor"
+      ]
+    },
+    {
+      "id": "ex:model/call:50",
+      "intuition": "按实际源码读取该计算，选择边可核对依赖。",
+      "calculation": "输出形状 [None]；B=batch，T=序列长度。未知尺寸不作猜测。",
+      "implementation": "对应生成时源码快照；静态推导未做运行验证。",
+      "evidence": [
+        "ev:fact:model/call:50",
+        "ev:model/call:50:tensor"
+      ]
+    },
+    {
+      "id": "ex:model/call:51",
+      "intuition": "按实际源码读取该计算，选择边可核对依赖。",
+      "calculation": "分支/循环结果及可能保留的旧值；未判断条件，未确认尺寸。",
+      "implementation": "对应生成时源码快照；静态推导未做运行验证。",
+      "evidence": [
+        "ev:fact:model/call:51",
+        "ev:model/call:51:tensor"
+      ]
+    },
+    {
+      "id": "ex:model/call:52",
+      "intuition": "按实际源码读取该计算，选择边可核对依赖。",
+      "calculation": "输出形状 [None]；B=batch，T=序列长度。未知尺寸不作猜测。",
+      "implementation": "对应生成时源码快照；静态推导未做运行验证。",
+      "evidence": [
+        "ev:fact:model/call:52",
+        "ev:model/call:52:tensor"
+      ]
+    },
+    {
+      "id": "ex:model/sequence:52/call:53",
+      "intuition": "按实际源码读取该计算，选择边可核对依赖。",
+      "calculation": "输出形状 [None]；B=batch，T=序列长度。未知尺寸不作猜测。",
+      "implementation": "对应生成时源码快照；静态推导未做运行验证。",
+      "evidence": [
+        "ev:fact:model/sequence:52/call:53",
+        "ev:model/sequence:52/call:53:tensor"
+      ]
+    },
+    {
+      "id": "ex:model/sequence:52/call:54",
+      "intuition": "按实际源码读取该计算，选择边可核对依赖。",
+      "calculation": "源码声明输出末维为 256；输入 rank/前缀未提供时，完整形状保留未知，不假设为二维或三维。",
+      "implementation": "对应生成时源码快照；静态推导未做运行验证。",
+      "evidence": [
+        "ev:fact:model/sequence:52/call:54",
+        "ev:model/sequence:52/call:54:tensor"
+      ]
+    },
+    {
+      "id": "ex:model/sequence:52/call:55",
+      "intuition": "按实际源码读取该计算，选择边可核对依赖。",
+      "calculation": "输出形状 [None]；B=batch，T=序列长度。未知尺寸不作猜测。",
+      "implementation": "对应生成时源码快照；静态推导未做运行验证。",
+      "evidence": [
+        "ev:fact:model/sequence:52/call:55",
+        "ev:model/sequence:52/call:55:tensor"
+      ]
+    },
+    {
+      "id": "ex:model/sequence:52/call:56",
+      "intuition": "按实际源码读取该计算，选择边可核对依赖。",
+      "calculation": "输出形状 [None]；B=batch，T=序列长度。未知尺寸不作猜测。",
+      "implementation": "对应生成时源码快照；静态推导未做运行验证。",
+      "evidence": [
+        "ev:fact:model/sequence:52/call:56",
+        "ev:model/sequence:52/call:56:tensor"
+      ]
+    },
+    {
+      "id": "ex:model/sequence:52/call:57",
+      "intuition": "按实际源码读取该计算，选择边可核对依赖。",
+      "calculation": "输出形状 [None]；B=batch，T=序列长度。未知尺寸不作猜测。",
+      "implementation": "对应生成时源码快照；静态推导未做运行验证。",
+      "evidence": [
+        "ev:fact:model/sequence:52/call:57",
+        "ev:model/sequence:52/call:57:tensor"
+      ]
+    },
+    {
+      "id": "ex:model/call:58",
+      "intuition": "按实际源码读取该计算，选择边可核对依赖。",
+      "calculation": "输出形状 [None]；B=batch，T=序列长度。未知尺寸不作猜测。",
+      "implementation": "对应生成时源码快照；静态推导未做运行验证。",
+      "evidence": [
+        "ev:fact:model/call:58",
+        "ev:model/call:58:tensor"
+      ]
+    },
+    {
+      "id": "ex:model/call:59",
+      "intuition": "按实际源码读取该计算，选择边可核对依赖。",
+      "calculation": "输出形状 [None]；B=batch，T=序列长度。未知尺寸不作猜测。",
+      "implementation": "对应生成时源码快照；静态推导未做运行验证。",
+      "evidence": [
+        "ev:fact:model/call:59",
+        "ev:model/call:59:tensor"
+      ]
+    }
+  ],
+  "views": [],
+  "limitations": [
+    {
+      "reason": "模块内部未解析: external:encoder；不推断其参数或子结构",
+      "sourceRef": "src:DecisionModel.__init__:580:580",
+      "scope": "model"
+    },
+    {
+      "reason": "构造器 with 上下文：提取其中声明，保留进入上下文条件；未执行 torch.device('meta') if no_init else nullcontext()",
+      "sourceRef": "src:DecisionModel.__init__:589:599",
+      "scope": "model"
+    },
+    {
+      "reason": "模块内部未解析: nn.TransformerEncoder；不推断其参数或子结构",
+      "sourceRef": "src:DecisionModel.__init__:595:595",
+      "scope": "model"
+    },
+    {
+      "reason": "条件模块注册：保留候选，未判断 head_layers > 0",
+      "sourceRef": "src:DecisionModel.__init__:595:595",
+      "scope": "model"
+    },
+    {
+      "reason": "type_emb 的模块尺寸/结构未确认: 符号未提供: d",
+      "sourceRef": "src:DecisionModel.__init__:596:596",
+      "scope": "model"
+    },
+    {
+      "reason": "scorer.0 的模块尺寸/结构未确认: 符号未提供: d",
+      "sourceRef": "src:DecisionModel.__init__:597:597",
+      "scope": "model"
+    },
+    {
+      "reason": "scorer.1 的模块尺寸/结构未确认: 符号未提供: d",
+      "sourceRef": "src:DecisionModel.__init__:597:597",
+      "scope": "model"
+    },
+    {
+      "reason": "scorer.3 的模块尺寸/结构未确认: 符号未提供: d",
+      "sourceRef": "src:DecisionModel.__init__:597:597",
+      "scope": "model"
+    },
+    {
+      "reason": "act_head.0 的模块尺寸/结构未确认: 符号未提供: d",
+      "sourceRef": "src:DecisionModel.__init__:598:598",
+      "scope": "model"
+    },
+    {
+      "reason": "act_head.2 的模块尺寸/结构未确认: 符号未提供: n_act",
+      "sourceRef": "src:DecisionModel.__init__:598:598",
+      "scope": "model"
+    },
+    {
+      "reason": "构造器动态控制流：保留条件模块声明，参数统计未确认: no_init",
+      "sourceRef": "src:DecisionModel.__init__:600:606",
+      "scope": "model"
+    },
+    {
+      "reason": "构造器动态控制流：循环/异常中的注册及共享关系未确认",
+      "sourceRef": "src:DecisionModel.__init__:603:605",
+      "scope": "model"
+    },
+    {
+      "reason": "属性调用结果的类型未确认，不当作模块注册: self.temperature",
+      "sourceRef": "src:DecisionModel.__init__:606:606",
+      "scope": "model"
+    },
+    {
+      "reason": "动态控制流/循环：内部 opaque，保留变量出口并继续读取后续源码；未选择路径或枚举重复层",
+      "sourceRef": "src:DecisionModel.forward:611:618",
+      "scope": "model"
+    },
+    {
+      "reason": "动态控制流/循环：内部 opaque，保留变量出口并继续读取后续源码；未选择路径或枚举重复层",
+      "sourceRef": "src:DecisionModel.forward:619:620",
+      "scope": "model"
+    },
+    {
+      "reason": "动态控制流/循环：内部 opaque，保留变量出口并继续读取后续源码；未选择路径或枚举重复层",
+      "sourceRef": "src:DecisionModel.forward:622:630",
+      "scope": "model"
+    },
+    {
+      "reason": "动态控制流/循环：内部 opaque，保留变量出口并继续读取后续源码；未选择路径或枚举重复层",
+      "sourceRef": "src:DecisionModel.forward:639:649",
+      "scope": "model"
+    },
+    {
+      "reason": "动态控制流/循环：内部 opaque，保留变量出口并继续读取后续源码；未选择路径或枚举重复层",
+      "sourceRef": "src:DecisionModel.forward:655:656",
+      "scope": "model"
+    },
+    {
+      "reason": "通用 AST 局部提取：条件/循环内部不展开；继续保留后续计算和多输出。仅直接声明的 nn.Sequential 可进入。外部注入模块、未知尺寸、共享及训练条件不作运行验证或参数估算。",
+      "sourceRef": "src:DecisionModel:574:658",
+      "scope": "model"
+    },
+    {
+      "reason": "本次仅从用户 HTML 恢复 DecisionModel 嵌入片段，并保留原始行号。不是完整 common.py；原文件完整内容哈希无法复核，encoder 与辅助函数源码未提供。修复后仍是局部静态提取，没有运行 laya。",
+      "sourceRef": null,
+      "scope": "model"
+    }
+  ]
+}

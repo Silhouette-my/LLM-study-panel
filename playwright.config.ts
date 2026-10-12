@@ -1,0 +1,2 @@
+import {defineConfig} from '@playwright/test';
+export default defineConfig({testDir:'tests/e2e',timeout:30000,workers:1,webServer:process.env.MODEL_ATLAS_E2E_HTTP?{command:'python -m http.server 8765 --bind 127.0.0.1',url:'http://127.0.0.1:8765',reuseExistingServer:false}:undefined,use:{browserName:'chromium',headless:true,launchOptions:{executablePath:process.env.MODEL_ATLAS_CHROMIUM||undefined}},reporter:[['list'],['json',{outputFile:process.env.MODEL_ATLAS_E2E_HTTP?'build/playwright-http-results.json':'build/playwright-file-results.json'}]]});

@@ -1,0 +1,142 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "kind": {
+      "const": "comparison"
+    },
+    "schemaVersion": {
+      "const": "1.0"
+    },
+    "leftSnapshot": {
+      "type": "string",
+      "minLength": 1
+    },
+    "rightSnapshot": {
+      "type": "string",
+      "minLength": 1
+    },
+    "matches": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "left": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "maxItems": 20000
+          },
+          "right": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "maxItems": 20000
+          },
+          "status": {
+            "enum": [
+              "suggested",
+              "accepted",
+              "rejected"
+            ]
+          },
+          "origin": {
+            "enum": [
+              "rule",
+              "manual"
+            ]
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "id",
+          "left",
+          "right",
+          "status",
+          "origin",
+          "reason"
+        ],
+        "additionalProperties": false
+      },
+      "maxItems": 20000
+    },
+    "differences": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "enum": [
+              "configuration",
+              "shape",
+              "parameters",
+              "topology",
+              "sharing",
+              "implementation",
+              "unknown"
+            ]
+          },
+          "match": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "text": {
+            "type": "string",
+            "minLength": 1
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "maxItems": 20000
+          }
+        },
+        "required": [
+          "type",
+          "match",
+          "text",
+          "evidence"
+        ],
+        "additionalProperties": false
+      },
+      "maxItems": 20000
+    },
+    "summary": {
+      "type": "object"
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "maxItems": 20000
+    }
+  },
+  "required": [
+    "kind",
+    "schemaVersion",
+    "leftSnapshot",
+    "rightSnapshot",
+    "matches",
+    "differences",
+    "summary",
+    "limitations"
+  ],
+  "additionalProperties": false
+}

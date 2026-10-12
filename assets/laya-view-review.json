@@ -1,0 +1,112 @@
+{
+  "kind": "teaching-view-review",
+  "sourceHash": "f8e4c7408fb72e4088f4ac6db3c6764b387a955aea978e8360e0c189615a9505",
+  "model": "DecisionModel",
+  "scope": "model",
+  "reviewer": "Codex source review 2026-10-12",
+  "groups": [
+    {
+      "id": "representation",
+      "label": "表征处理",
+      "basis": "输入、qtype embedding 与包含 head 的条件结果；不展开外部 encoder。",
+      "sourceNodeIds": [
+        "model/input:input_ids",
+        "model/input:attention_mask",
+        "model/input:marker_pos",
+        "model/input:marker_mask",
+        "model/input:qtype",
+        "model/input:detach_encoder",
+        "model/input:position_ids",
+        "model/input:option_ids",
+        "model/call:5",
+        "model/call:1",
+        "model/call:2",
+        "model/call:3",
+        "model/call:4",
+        "model/call:6",
+        "model/call:7",
+        "model/call:8",
+        "model/call:9"
+      ],
+      "sourceRefs": [
+        "src:DecisionModel.forward:609:658",
+        "src:DecisionModel.forward:621:621",
+        "src:DecisionModel.forward:611:618",
+        "src:DecisionModel.forward:619:620",
+        "src:DecisionModel.forward:622:630"
+      ]
+    },
+    {
+      "id": "scoring",
+      "label": "评分路径",
+      "basis": "gather → scorer → mask → logits，依据 DecisionModel.forward 的实际源码。",
+      "sourceNodeIds": [
+        "model/call:10",
+        "model/call:11",
+        "model/call:12",
+        "model/call:13",
+        "model/call:14",
+        "model/call:15",
+        "model/call:22",
+        "model/call:23",
+        "model/call:24",
+        "model/call:25",
+        "model/call:58"
+      ],
+      "sourceRefs": [
+        "src:DecisionModel.forward:631:631",
+        "src:DecisionModel.forward:632:632",
+        "src:DecisionModel.forward:633:633",
+        "src:DecisionModel.forward:634:634",
+        "src:DecisionModel.forward:658:658"
+      ]
+    },
+    {
+      "id": "action",
+      "label": "动作预测",
+      "basis": "logits 的 Softmax 与置信度特征依赖评分路径，再拼接 pooled 表示进入 act_head；不是独立并行任务。",
+      "sourceNodeIds": [
+        "model/call:26",
+        "model/call:27",
+        "model/call:28",
+        "model/call:29",
+        "model/call:30",
+        "model/call:31",
+        "model/call:32",
+        "model/call:33",
+        "model/call:34",
+        "model/call:35",
+        "model/call:36",
+        "model/call:37",
+        "model/call:38",
+        "model/call:39",
+        "model/call:40",
+        "model/call:41",
+        "model/call:42",
+        "model/call:43",
+        "model/call:44",
+        "model/call:45",
+        "model/call:46",
+        "model/call:47",
+        "model/call:48",
+        "model/call:49",
+        "model/call:50",
+        "model/call:51",
+        "model/call:52",
+        "model/call:59"
+      ],
+      "sourceRefs": [
+        "src:DecisionModel.forward:636:636",
+        "src:DecisionModel.forward:637:637",
+        "src:DecisionModel.forward:638:638",
+        "src:DecisionModel.forward:639:649",
+        "src:DecisionModel.forward:650:650",
+        "src:DecisionModel.forward:651:651",
+        "src:DecisionModel.forward:652:652",
+        "src:DecisionModel.forward:655:656",
+        "src:DecisionModel.forward:657:657",
+        "src:DecisionModel.forward:658:658"
+      ]
+    }
+  ]
+}

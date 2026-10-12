@@ -1,0 +1,121 @@
+{
+  "kind": "runtime-test-report",
+  "torchVersion": "2.9.0+cpu",
+  "device": "cpu",
+  "dtype": "float32",
+  "seed": 2026,
+  "input": [
+    2,
+    4
+  ],
+  "mode": "eval",
+  "scope": "项目自带教学模型；不代表分析器执行过目标源码",
+  "records": [
+    {
+      "kvProjectionParametersPerLayer": 8192,
+      "model": "mha",
+      "output": [
+        2,
+        4,
+        128
+      ],
+      "projections": {
+        "q_proj": [
+          2,
+          4,
+          64
+        ],
+        "k_proj": [
+          2,
+          4,
+          64
+        ],
+        "v_proj": [
+          2,
+          4,
+          64
+        ]
+      },
+      "kv": {
+        "before_repeat": [
+          2,
+          8,
+          4,
+          8
+        ],
+        "before_repeat_v": [
+          2,
+          8,
+          4,
+          8
+        ],
+        "after_repeat": [
+          2,
+          8,
+          4,
+          8
+        ],
+        "after_repeat_v": [
+          2,
+          8,
+          4,
+          8
+        ]
+      },
+      "parameters": 98624
+    },
+    {
+      "kvProjectionParametersPerLayer": 2048,
+      "model": "gqa",
+      "output": [
+        2,
+        4,
+        128
+      ],
+      "projections": {
+        "q_proj": [
+          2,
+          4,
+          64
+        ],
+        "k_proj": [
+          2,
+          4,
+          16
+        ],
+        "v_proj": [
+          2,
+          4,
+          16
+        ]
+      },
+      "kv": {
+        "before_repeat": [
+          2,
+          2,
+          4,
+          8
+        ],
+        "before_repeat_v": [
+          2,
+          2,
+          4,
+          8
+        ],
+        "after_repeat": [
+          2,
+          8,
+          4,
+          8
+        ],
+        "after_repeat_v": [
+          2,
+          8,
+          4,
+          8
+        ]
+      },
+      "parameters": 86336
+    }
+  ]
+}

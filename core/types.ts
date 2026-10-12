@@ -1,0 +1,14 @@
+export type Shape = (string | number | null)[];
+export type SourceRef = {id:string;path:string;symbol:string;start:number;end:number;hash:string;snippet:string};
+export type Node = {id:string;scope:string;label:string;role:string;instance:string|null;childScope:string|null;sourceRef:string;explanation:string;opaque:boolean};
+export type Port = {id:string;node:string;direction:'in'|'out';name:string;tensor:string};
+export type Tensor = {id:string;name:string;shape:Shape;dtype:string;unknownReason:string|null;producer:string;consumers:string[];evidence:string};
+export type Edge = {id:string;scope:string;source:string;target:string;tensor:string;condition:string|null};
+export type Scope = {id:string;label:string;parent:string|null;owner:string|null;bindings:{parentPort:string;childPort:string}[];sourceRef:string};
+export type Architecture = {kind:'architecture';schemaVersion:'1.0';snapshot:{id:string;model:string;sourceHash:string;config:Record<string,unknown>;mode:'static';toolVersion:string;executed:false;parameterCount:number|null};definitions:{id:string;symbol:string;sourceRef:string}[];instances:{id:string;path:string;definition:string|null;config:Record<string,unknown>;parameterIds:string[]}[];parameters:{id:string;name:string;shape:number[];count:number;instances:string[];shared:boolean;evidence:string}[];scopes:Scope[];nodes:Node[];ports:Port[];edges:Edge[];tensors:Tensor[];sourceRefs:SourceRef[];evidence:{id:string;kind:string;target:string;sourceRefs:string[];assumptions:string[];text:string}[];claims:{id:string;target:string;text:string;evidence:string[]}[];explanations:{id:string;intuition:string;calculation:string;implementation:string;evidence:string[]}[];views:{id:string;instances:string[];relation:string;checked:boolean}[];limitations:{reason:string;scope:string|null;sourceRef:string|null}[]};
+export type Match = {id:string;left:string[];right:string[];status:'suggested'|'accepted'|'rejected';origin:'rule'|'manual';reason:string};
+export type Difference = {type:'configuration'|'shape'|'parameters'|'topology'|'sharing'|'implementation'|'unknown';match:string|null;text:string;evidence:string[]};
+export type Comparison = {kind:'comparison';schemaVersion:'1.0';leftSnapshot:string;rightSnapshot:string;matches:Match[];differences:Difference[];summary:Record<string,unknown>;limitations:string[]};
+export type Note = {snapshot:string;anchor:string;status:'understood'|'review'|'question';text:string;association:'exact'|'pending'};
+export type Session = {kind:'session';schemaVersion:'1.0';notes:Note[]};
+export type Bundle = {architectures:Architecture[];comparison:Comparison|null};

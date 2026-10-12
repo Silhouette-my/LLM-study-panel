@@ -1,0 +1,9 @@
+{
+  "kind": "source-excerpt-provenance",
+  "originalSnapshot": "5d76708faf0112a4bcb3c4b5e5787738a9e5d36dfd5a23552ef6969c506c47f6",
+  "reportedOriginalSourceHash": "f8e4c7408fb72e4088f4ac6db3c6764b387a955aea978e8360e0c189615a9505",
+  "originalPath": "work/laya/laya/common.py",
+  "originalStart": 574,
+  "originalEnd": 658,
+  "scope": "只有 DecisionModel 的嵌入片段。完整文件哈希无法复核；不代表本地最新版，不执行。"
+}

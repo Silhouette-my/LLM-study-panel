@@ -1,0 +1,1184 @@
+{
+  "kind": "comparison",
+  "schemaVersion": "1.0",
+  "leftSnapshot": "043e95d64e6cd448c7af6a6119711ec06802d8dcda075c8e96241b9f7b84e9ad",
+  "rightSnapshot": "ded4bd7d8fef7c96c91246a0116dd963b37b1deb5c3ff88949ca8fb0f936638a",
+  "matches": [
+    {
+      "id": "match:model/tokens",
+      "left": [
+        "model/tokens"
+      ],
+      "right": [
+        "model/tokens"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:model/embedding",
+      "left": [
+        "model/embedding"
+      ],
+      "right": [
+        "model/embedding"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:model/blocks.0",
+      "left": [
+        "model/blocks.0"
+      ],
+      "right": [
+        "model/blocks.0"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:blocks.0/x",
+      "left": [
+        "blocks.0/x"
+      ],
+      "right": [
+        "blocks.0/x"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:blocks.0/norm1",
+      "left": [
+        "blocks.0/norm1"
+      ],
+      "right": [
+        "blocks.0/norm1"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:blocks.0/attention",
+      "left": [
+        "blocks.0/attention"
+      ],
+      "right": [
+        "blocks.0/attention"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:blocks.0.attention/x",
+      "left": [
+        "blocks.0.attention/x"
+      ],
+      "right": [
+        "blocks.0.attention/x"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:blocks.0.attention/q_proj",
+      "left": [
+        "blocks.0.attention/q_proj"
+      ],
+      "right": [
+        "blocks.0.attention/q_proj"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:blocks.0.attention/q_reshape",
+      "left": [
+        "blocks.0.attention/q_reshape"
+      ],
+      "right": [
+        "blocks.0.attention/q_reshape"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:blocks.0.attention/q_transpose",
+      "left": [
+        "blocks.0.attention/q_transpose"
+      ],
+      "right": [
+        "blocks.0.attention/q_transpose"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:blocks.0.attention/k_proj",
+      "left": [
+        "blocks.0.attention/k_proj"
+      ],
+      "right": [
+        "blocks.0.attention/k_proj"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:blocks.0.attention/k_reshape",
+      "left": [
+        "blocks.0.attention/k_reshape"
+      ],
+      "right": [
+        "blocks.0.attention/k_reshape"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:blocks.0.attention/k_transpose",
+      "left": [
+        "blocks.0.attention/k_transpose"
+      ],
+      "right": [
+        "blocks.0.attention/k_transpose"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:blocks.0.attention/v_proj",
+      "left": [
+        "blocks.0.attention/v_proj"
+      ],
+      "right": [
+        "blocks.0.attention/v_proj"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:blocks.0.attention/v_reshape",
+      "left": [
+        "blocks.0.attention/v_reshape"
+      ],
+      "right": [
+        "blocks.0.attention/v_reshape"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:blocks.0.attention/v_transpose",
+      "left": [
+        "blocks.0.attention/v_transpose"
+      ],
+      "right": [
+        "blocks.0.attention/v_transpose"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:blocks.0.attention/k_repeat",
+      "left": [
+        "blocks.0.attention/k_repeat"
+      ],
+      "right": [
+        "blocks.0.attention/k_repeat"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:blocks.0.attention/v_repeat",
+      "left": [
+        "blocks.0.attention/v_repeat"
+      ],
+      "right": [
+        "blocks.0.attention/v_repeat"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:blocks.0.attention/k_score_transpose",
+      "left": [
+        "blocks.0.attention/k_score_transpose"
+      ],
+      "right": [
+        "blocks.0.attention/k_score_transpose"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:blocks.0.attention/qk_scaled",
+      "left": [
+        "blocks.0.attention/qk_scaled"
+      ],
+      "right": [
+        "blocks.0.attention/qk_scaled"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:blocks.0.attention/causal_mask",
+      "left": [
+        "blocks.0.attention/causal_mask"
+      ],
+      "right": [
+        "blocks.0.attention/causal_mask"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:blocks.0.attention/masked_scores",
+      "left": [
+        "blocks.0.attention/masked_scores"
+      ],
+      "right": [
+        "blocks.0.attention/masked_scores"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:blocks.0.attention/softmax",
+      "left": [
+        "blocks.0.attention/softmax"
+      ],
+      "right": [
+        "blocks.0.attention/softmax"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:blocks.0.attention/weighted_sum",
+      "left": [
+        "blocks.0.attention/weighted_sum"
+      ],
+      "right": [
+        "blocks.0.attention/weighted_sum"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:blocks.0.attention/context_transpose",
+      "left": [
+        "blocks.0.attention/context_transpose"
+      ],
+      "right": [
+        "blocks.0.attention/context_transpose"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:blocks.0.attention/context_merge",
+      "left": [
+        "blocks.0.attention/context_merge"
+      ],
+      "right": [
+        "blocks.0.attention/context_merge"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:blocks.0.attention/o_proj",
+      "left": [
+        "blocks.0.attention/o_proj"
+      ],
+      "right": [
+        "blocks.0.attention/o_proj"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:blocks.0.attention/output",
+      "left": [
+        "blocks.0.attention/output"
+      ],
+      "right": [
+        "blocks.0.attention/output"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:blocks.0/residual1",
+      "left": [
+        "blocks.0/residual1"
+      ],
+      "right": [
+        "blocks.0/residual1"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:blocks.0/norm2",
+      "left": [
+        "blocks.0/norm2"
+      ],
+      "right": [
+        "blocks.0/norm2"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:blocks.0/mlp",
+      "left": [
+        "blocks.0/mlp"
+      ],
+      "right": [
+        "blocks.0/mlp"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:blocks.0.mlp/x",
+      "left": [
+        "blocks.0.mlp/x"
+      ],
+      "right": [
+        "blocks.0.mlp/x"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:blocks.0.mlp/gate_proj",
+      "left": [
+        "blocks.0.mlp/gate_proj"
+      ],
+      "right": [
+        "blocks.0.mlp/gate_proj"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:blocks.0.mlp/up_proj",
+      "left": [
+        "blocks.0.mlp/up_proj"
+      ],
+      "right": [
+        "blocks.0.mlp/up_proj"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:blocks.0.mlp/silu",
+      "left": [
+        "blocks.0.mlp/silu"
+      ],
+      "right": [
+        "blocks.0.mlp/silu"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:blocks.0.mlp/gated_product",
+      "left": [
+        "blocks.0.mlp/gated_product"
+      ],
+      "right": [
+        "blocks.0.mlp/gated_product"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:blocks.0.mlp/down_proj",
+      "left": [
+        "blocks.0.mlp/down_proj"
+      ],
+      "right": [
+        "blocks.0.mlp/down_proj"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:blocks.0.mlp/output",
+      "left": [
+        "blocks.0.mlp/output"
+      ],
+      "right": [
+        "blocks.0.mlp/output"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:blocks.0/residual2",
+      "left": [
+        "blocks.0/residual2"
+      ],
+      "right": [
+        "blocks.0/residual2"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:blocks.0/output",
+      "left": [
+        "blocks.0/output"
+      ],
+      "right": [
+        "blocks.0/output"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:model/blocks.1",
+      "left": [
+        "model/blocks.1"
+      ],
+      "right": [
+        "model/blocks.1"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:blocks.1/x",
+      "left": [
+        "blocks.1/x"
+      ],
+      "right": [
+        "blocks.1/x"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:blocks.1/norm1",
+      "left": [
+        "blocks.1/norm1"
+      ],
+      "right": [
+        "blocks.1/norm1"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:blocks.1/attention",
+      "left": [
+        "blocks.1/attention"
+      ],
+      "right": [
+        "blocks.1/attention"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:blocks.1.attention/x",
+      "left": [
+        "blocks.1.attention/x"
+      ],
+      "right": [
+        "blocks.1.attention/x"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:blocks.1.attention/q_proj",
+      "left": [
+        "blocks.1.attention/q_proj"
+      ],
+      "right": [
+        "blocks.1.attention/q_proj"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:blocks.1.attention/q_reshape",
+      "left": [
+        "blocks.1.attention/q_reshape"
+      ],
+      "right": [
+        "blocks.1.attention/q_reshape"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:blocks.1.attention/q_transpose",
+      "left": [
+        "blocks.1.attention/q_transpose"
+      ],
+      "right": [
+        "blocks.1.attention/q_transpose"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:blocks.1.attention/k_proj",
+      "left": [
+        "blocks.1.attention/k_proj"
+      ],
+      "right": [
+        "blocks.1.attention/k_proj"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:blocks.1.attention/k_reshape",
+      "left": [
+        "blocks.1.attention/k_reshape"
+      ],
+      "right": [
+        "blocks.1.attention/k_reshape"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:blocks.1.attention/k_transpose",
+      "left": [
+        "blocks.1.attention/k_transpose"
+      ],
+      "right": [
+        "blocks.1.attention/k_transpose"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:blocks.1.attention/v_proj",
+      "left": [
+        "blocks.1.attention/v_proj"
+      ],
+      "right": [
+        "blocks.1.attention/v_proj"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:blocks.1.attention/v_reshape",
+      "left": [
+        "blocks.1.attention/v_reshape"
+      ],
+      "right": [
+        "blocks.1.attention/v_reshape"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:blocks.1.attention/v_transpose",
+      "left": [
+        "blocks.1.attention/v_transpose"
+      ],
+      "right": [
+        "blocks.1.attention/v_transpose"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:blocks.1.attention/k_repeat",
+      "left": [
+        "blocks.1.attention/k_repeat"
+      ],
+      "right": [
+        "blocks.1.attention/k_repeat"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:blocks.1.attention/v_repeat",
+      "left": [
+        "blocks.1.attention/v_repeat"
+      ],
+      "right": [
+        "blocks.1.attention/v_repeat"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:blocks.1.attention/k_score_transpose",
+      "left": [
+        "blocks.1.attention/k_score_transpose"
+      ],
+      "right": [
+        "blocks.1.attention/k_score_transpose"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:blocks.1.attention/qk_scaled",
+      "left": [
+        "blocks.1.attention/qk_scaled"
+      ],
+      "right": [
+        "blocks.1.attention/qk_scaled"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:blocks.1.attention/causal_mask",
+      "left": [
+        "blocks.1.attention/causal_mask"
+      ],
+      "right": [
+        "blocks.1.attention/causal_mask"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:blocks.1.attention/masked_scores",
+      "left": [
+        "blocks.1.attention/masked_scores"
+      ],
+      "right": [
+        "blocks.1.attention/masked_scores"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:blocks.1.attention/softmax",
+      "left": [
+        "blocks.1.attention/softmax"
+      ],
+      "right": [
+        "blocks.1.attention/softmax"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:blocks.1.attention/weighted_sum",
+      "left": [
+        "blocks.1.attention/weighted_sum"
+      ],
+      "right": [
+        "blocks.1.attention/weighted_sum"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:blocks.1.attention/context_transpose",
+      "left": [
+        "blocks.1.attention/context_transpose"
+      ],
+      "right": [
+        "blocks.1.attention/context_transpose"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:blocks.1.attention/context_merge",
+      "left": [
+        "blocks.1.attention/context_merge"
+      ],
+      "right": [
+        "blocks.1.attention/context_merge"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:blocks.1.attention/o_proj",
+      "left": [
+        "blocks.1.attention/o_proj"
+      ],
+      "right": [
+        "blocks.1.attention/o_proj"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:blocks.1.attention/output",
+      "left": [
+        "blocks.1.attention/output"
+      ],
+      "right": [
+        "blocks.1.attention/output"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:blocks.1/residual1",
+      "left": [
+        "blocks.1/residual1"
+      ],
+      "right": [
+        "blocks.1/residual1"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:blocks.1/norm2",
+      "left": [
+        "blocks.1/norm2"
+      ],
+      "right": [
+        "blocks.1/norm2"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:blocks.1/mlp",
+      "left": [
+        "blocks.1/mlp"
+      ],
+      "right": [
+        "blocks.1/mlp"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:blocks.1.mlp/x",
+      "left": [
+        "blocks.1.mlp/x"
+      ],
+      "right": [
+        "blocks.1.mlp/x"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:blocks.1.mlp/gate_proj",
+      "left": [
+        "blocks.1.mlp/gate_proj"
+      ],
+      "right": [
+        "blocks.1.mlp/gate_proj"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:blocks.1.mlp/up_proj",
+      "left": [
+        "blocks.1.mlp/up_proj"
+      ],
+      "right": [
+        "blocks.1.mlp/up_proj"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:blocks.1.mlp/silu",
+      "left": [
+        "blocks.1.mlp/silu"
+      ],
+      "right": [
+        "blocks.1.mlp/silu"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:blocks.1.mlp/gated_product",
+      "left": [
+        "blocks.1.mlp/gated_product"
+      ],
+      "right": [
+        "blocks.1.mlp/gated_product"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:blocks.1.mlp/down_proj",
+      "left": [
+        "blocks.1.mlp/down_proj"
+      ],
+      "right": [
+        "blocks.1.mlp/down_proj"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:blocks.1.mlp/output",
+      "left": [
+        "blocks.1.mlp/output"
+      ],
+      "right": [
+        "blocks.1.mlp/output"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:blocks.1/residual2",
+      "left": [
+        "blocks.1/residual2"
+      ],
+      "right": [
+        "blocks.1/residual2"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:blocks.1/output",
+      "left": [
+        "blocks.1/output"
+      ],
+      "right": [
+        "blocks.1/output"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:model/final_norm",
+      "left": [
+        "model/final_norm"
+      ],
+      "right": [
+        "model/final_norm"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:model/lm_head",
+      "left": [
+        "model/lm_head"
+      ],
+      "right": [
+        "model/lm_head"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    },
+    {
+      "id": "match:model/logits",
+      "left": [
+        "model/logits"
+      ],
+      "right": [
+        "model/logits"
+      ],
+      "status": "suggested",
+      "origin": "rule",
+      "reason": "作用域位置、角色和静态调用结构对应；建议不是等价证明"
+    }
+  ],
+  "differences": [
+    {
+      "type": "configuration",
+      "text": "num_key_value_heads: 8 → 2",
+      "match": null,
+      "evidence": [
+        "left:/snapshot/config/num_key_value_heads",
+        "right:/snapshot/config/num_key_value_heads"
+      ]
+    },
+    {
+      "type": "shape",
+      "text": "k_proj: [[\"B\",\"T\",64]] → [[\"B\",\"T\",16]]",
+      "match": "match:blocks.0.attention/k_proj",
+      "evidence": [
+        "left:src:Attention.forward:35:35",
+        "right:src:Attention.forward:35:35"
+      ]
+    },
+    {
+      "type": "parameters",
+      "text": "注册独立参数（本节点直属模块）：4096 → 1024，Δ=-3072",
+      "match": "match:blocks.0.attention/k_proj",
+      "evidence": [
+        "left:src:Attention.forward:35:35",
+        "right:src:Attention.forward:35:35"
+      ]
+    },
+    {
+      "type": "shape",
+      "text": "k_reshape: [[\"B\",\"T\",8,8]] → [[\"B\",\"T\",2,8]]",
+      "match": "match:blocks.0.attention/k_reshape",
+      "evidence": [
+        "left:src:Attention.forward:38:38",
+        "right:src:Attention.forward:38:38"
+      ]
+    },
+    {
+      "type": "shape",
+      "text": "k_transpose: [[\"B\",8,\"T\",8]] → [[\"B\",2,\"T\",8]]",
+      "match": "match:blocks.0.attention/k_transpose",
+      "evidence": [
+        "left:src:Attention.forward:38:38",
+        "right:src:Attention.forward:38:38"
+      ]
+    },
+    {
+      "type": "shape",
+      "text": "v_proj: [[\"B\",\"T\",64]] → [[\"B\",\"T\",16]]",
+      "match": "match:blocks.0.attention/v_proj",
+      "evidence": [
+        "left:src:Attention.forward:36:36",
+        "right:src:Attention.forward:36:36"
+      ]
+    },
+    {
+      "type": "parameters",
+      "text": "注册独立参数（本节点直属模块）：4096 → 1024，Δ=-3072",
+      "match": "match:blocks.0.attention/v_proj",
+      "evidence": [
+        "left:src:Attention.forward:36:36",
+        "right:src:Attention.forward:36:36"
+      ]
+    },
+    {
+      "type": "shape",
+      "text": "v_reshape: [[\"B\",\"T\",8,8]] → [[\"B\",\"T\",2,8]]",
+      "match": "match:blocks.0.attention/v_reshape",
+      "evidence": [
+        "left:src:Attention.forward:39:39",
+        "right:src:Attention.forward:39:39"
+      ]
+    },
+    {
+      "type": "shape",
+      "text": "v_transpose: [[\"B\",8,\"T\",8]] → [[\"B\",2,\"T\",8]]",
+      "match": "match:blocks.0.attention/v_transpose",
+      "evidence": [
+        "left:src:Attention.forward:39:39",
+        "right:src:Attention.forward:39:39"
+      ]
+    },
+    {
+      "type": "shape",
+      "text": "k_proj: [[\"B\",\"T\",64]] → [[\"B\",\"T\",16]]",
+      "match": "match:blocks.1.attention/k_proj",
+      "evidence": [
+        "left:src:Attention.forward:35:35",
+        "right:src:Attention.forward:35:35"
+      ]
+    },
+    {
+      "type": "parameters",
+      "text": "注册独立参数（本节点直属模块）：4096 → 1024，Δ=-3072",
+      "match": "match:blocks.1.attention/k_proj",
+      "evidence": [
+        "left:src:Attention.forward:35:35",
+        "right:src:Attention.forward:35:35"
+      ]
+    },
+    {
+      "type": "shape",
+      "text": "k_reshape: [[\"B\",\"T\",8,8]] → [[\"B\",\"T\",2,8]]",
+      "match": "match:blocks.1.attention/k_reshape",
+      "evidence": [
+        "left:src:Attention.forward:38:38",
+        "right:src:Attention.forward:38:38"
+      ]
+    },
+    {
+      "type": "shape",
+      "text": "k_transpose: [[\"B\",8,\"T\",8]] → [[\"B\",2,\"T\",8]]",
+      "match": "match:blocks.1.attention/k_transpose",
+      "evidence": [
+        "left:src:Attention.forward:38:38",
+        "right:src:Attention.forward:38:38"
+      ]
+    },
+    {
+      "type": "shape",
+      "text": "v_proj: [[\"B\",\"T\",64]] → [[\"B\",\"T\",16]]",
+      "match": "match:blocks.1.attention/v_proj",
+      "evidence": [
+        "left:src:Attention.forward:36:36",
+        "right:src:Attention.forward:36:36"
+      ]
+    },
+    {
+      "type": "parameters",
+      "text": "注册独立参数（本节点直属模块）：4096 → 1024，Δ=-3072",
+      "match": "match:blocks.1.attention/v_proj",
+      "evidence": [
+        "left:src:Attention.forward:36:36",
+        "right:src:Attention.forward:36:36"
+      ]
+    },
+    {
+      "type": "shape",
+      "text": "v_reshape: [[\"B\",\"T\",8,8]] → [[\"B\",\"T\",2,8]]",
+      "match": "match:blocks.1.attention/v_reshape",
+      "evidence": [
+        "left:src:Attention.forward:39:39",
+        "right:src:Attention.forward:39:39"
+      ]
+    },
+    {
+      "type": "shape",
+      "text": "v_transpose: [[\"B\",8,\"T\",8]] → [[\"B\",2,\"T\",8]]",
+      "match": "match:blocks.1.attention/v_transpose",
+      "evidence": [
+        "left:src:Attention.forward:39:39",
+        "right:src:Attention.forward:39:39"
+      ]
+    }
+  ],
+  "summary": {
+    "projectionEffects": [
+      {
+        "qOutput": 64,
+        "kvOutput": 64,
+        "kvWeightParametersPerLayer": 8192,
+        "explanation": "Q 输出 heads×head_dim=8×8=64；K/V 各输出 kv_heads×head_dim=8×8=64；无 bias 时 K/V 合计参数 2×hidden_size×kv_heads×head_dim=8192。静态推导，未测量。",
+        "evidence": [
+          "/snapshot/config/num_key_value_heads",
+          "/snapshot/config/hidden_size",
+          "/snapshot/config/head_dim",
+          "源码 Attention.__init__/forward"
+        ]
+      },
+      {
+        "qOutput": 64,
+        "kvOutput": 16,
+        "kvWeightParametersPerLayer": 2048,
+        "explanation": "Q 输出 heads×head_dim=8×8=64；K/V 各输出 kv_heads×head_dim=2×8=16；无 bias 时 K/V 合计参数 2×hidden_size×kv_heads×head_dim=2048。静态推导，未测量。",
+        "evidence": [
+          "/snapshot/config/num_key_value_heads",
+          "/snapshot/config/hidden_size",
+          "/snapshot/config/head_dim",
+          "源码 Attention.__init__/forward"
+        ]
+      }
+    ],
+    "kvProjectionWeightDeltaPerLayer": -6144,
+    "unmatchedLeft": [],
+    "unmatchedRight": [],
+    "parameterCounts": [
+      98624,
+      86336
+    ],
+    "parameterDelta": -12288,
+    "theoreticalCache": {
+      "formula": "2 × layers × B × T_cache × kv_heads × head_dim × bytes_per_element",
+      "assumptions": "理论估算，未测量；未复制 KV 存储；B=2，T_cache=4，float32=4 bytes；示例未实现 cache",
+      "bytes": [
+        8192,
+        2048
+      ],
+      "ratio": 0.25
+    }
+  },
+  "limitations": [
+    "自动对应是建议，不是数学等价证明。",
+    "无真实显存、速度或效果测量；未知统计口径不作数值比较。"
+  ]
+}

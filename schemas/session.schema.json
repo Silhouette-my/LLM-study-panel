@@ -1,0 +1,59 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "kind": {
+      "const": "session"
+    },
+    "schemaVersion": {
+      "const": "1.0"
+    },
+    "notes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "snapshot": {
+            "type": "string",
+            "minLength": 1
+          },
+          "anchor": {
+            "type": "string",
+            "minLength": 1
+          },
+          "status": {
+            "enum": [
+              "understood",
+              "review",
+              "question"
+            ]
+          },
+          "text": {
+            "type": "string"
+          },
+          "association": {
+            "enum": [
+              "exact",
+              "pending"
+            ]
+          }
+        },
+        "required": [
+          "snapshot",
+          "anchor",
+          "status",
+          "text",
+          "association"
+        ],
+        "additionalProperties": false
+      },
+      "maxItems": 20000
+    }
+  },
+  "required": [
+    "kind",
+    "schemaVersion",
+    "notes"
+  ],
+  "additionalProperties": false
+}

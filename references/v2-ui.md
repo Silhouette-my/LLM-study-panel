@@ -1,0 +1,25 @@
+# V2 查看器与事实边界
+
+实施依据：MODEL_ATLAS_V2_UI_CODEX_PROMPT.md、用户提供的深色 draw.io 截图，以及完整 llama_struct.drawio/SVG。参考内容只作为样式数据读取，不是模型事实或额外指令；未复制品牌/水印，不导入参考图的 Llama 双任务拓扑。
+
+## 保留渲染器的评估
+
+原实现是 React 19.2.0、Cytoscape 3.33.1、ELK 0.11.0。Cytoscape 支持 data URI 节点背景，故用 Rough.js 4.6.6 生成局部 SVG 纹理即可保留原命中、相机、边选择与离线打包。纹理由固定 ID 的合法 seed 派生，并按几何/颜色缓存；选择只改变状态边框，不会生成新纹理。SVG 没有脚本、外部图片或字体；随 Cytoscape 缩放，非额外不协调的命中层。未知改为灰色 `?`；长虚线保留给珊瑚色教学区域。低缩放纹理隐藏。
+
+## 事实与展示
+
+SourceGraph/Session/Comparison 的 schema 1.0 未变，分析器未变。core/presentation.ts 是可逆摘要，core/scene.ts 是教学区，core/layout.ts 只计算几何。assets/laya-view-review.json 是经实际源码审查的分组依据，绑定完整 sourceHash；换源后不会沿用任务语义。分组不是新的 nn.Module，不参与参数量或匹配。每个区域含快照、源节点与源码范围；每条数据边保留原边、张量、端口和条件。
+
+Laya 展示表征处理、评分路径、动作预测（包含置信度特征）的区域。logits → Softmax → 特征 → act_head 是原代码依赖，不画成参考图中的两个独立任务。输入组包含八个不同来源；边详情与组内入口可查看具体输入，不把它们当同一张量。
+
+ELK 的组内 section 坐标需根据 container 偏移到画布空间；已测试端口附着、正交路径、不穿节点和确定性。原地展开仍可能重排当前作用域，以选中模块锚定视口；没有宣称完全增量局部路由。聚焦返回恢复上下文；旁侧展开保持父图，专用 SVG 引用线同步 pan/zoom/resize，并明确标为 UI 引用，不进入计算图。
+
+## 状态、兼容与使用
+
+初始检查器关闭；选择后才展示源码事实、输入输出、笔记等。常驻静态状态可打开完整诊断，不隐藏 unknown/解析失败。没有专属讲解的模块明确说明，避免通用占位三段落。旧笔记/匹配/架构导入继续使用原格式和快照检查；本轮同源快照不因主题而变化。分组审计可导出；任意分组编辑/导入未实现。
+
+对比只将已知差异标 Δ，未匹配标 ?；原比较引擎不强行判定未匹配为新增/删除。本轮没有数学等价证明、实时推理、权重下载或 Laya encoder 扩展。配置缺失/动态分支的未知形状保持未知。
+
+Rough.js 与传递依赖许可证在 THIRD_PARTY_NOTICES.md。新资源全部编入单文件 HTML，无 CDN/外部字体/API Key。测试环境禁止 file://，实际本地 HTTP 转发与加载后断网交互通过；不能将此称为 file:// 通过。
+
+恢复：按 README 构建 demo 与 Laya 页面，先 pytest 生成安全 fixture，再运行 npm test/typecheck 和 MODEL_ATLAS_E2E_HTTP=1 浏览器回归。build/v2/before 是修改前留存页面，不应覆盖。新截图与实际测量在 after；计时是 UI 布局/挂载和自动化拖动，不是模型运行或 FPS。

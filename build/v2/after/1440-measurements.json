@@ -1,0 +1,149 @@
+{
+  "browser": "154.0.8037.57",
+  "viewport": {
+    "width": 1440,
+    "height": 900
+  },
+  "laya": [
+    {
+      "snapshot": "2aec8d25d50d0181f17e48306ded73ed02219533d69156eb1a1e4d5abc0103c1",
+      "scope": "model",
+      "nodes": 12,
+      "edges": 17,
+      "groups": 3,
+      "layoutAndMountMs": 333.40000000596046
+    }
+  ],
+  "expansion": [
+    {
+      "snapshot": "043e95d64e6cd448c7af6a6119711ec06802d8dcda075c8e96241b9f7b84e9ad",
+      "scope": "model",
+      "nodes": 7,
+      "edges": 6,
+      "groups": 1,
+      "layoutAndMountMs": 251.80000000447035
+    },
+    {
+      "snapshot": "043e95d64e6cd448c7af6a6119711ec06802d8dcda075c8e96241b9f7b84e9ad",
+      "scope": "blocks.0",
+      "nodes": 8,
+      "edges": 9,
+      "groups": 1,
+      "layoutAndMountMs": 133.89999999850988
+    },
+    {
+      "snapshot": "043e95d64e6cd448c7af6a6119711ec06802d8dcda075c8e96241b9f7b84e9ad",
+      "scope": "blocks.0.attention",
+      "nodes": 22,
+      "edges": 23,
+      "groups": 1,
+      "layoutAndMountMs": 264.8999999985099
+    },
+    {
+      "snapshot": "043e95d64e6cd448c7af6a6119711ec06802d8dcda075c8e96241b9f7b84e9ad",
+      "scope": "blocks.0",
+      "nodes": 8,
+      "edges": 9,
+      "groups": 1,
+      "layoutAndMountMs": 47.80000000447035
+    },
+    {
+      "snapshot": "043e95d64e6cd448c7af6a6119711ec06802d8dcda075c8e96241b9f7b84e9ad",
+      "scope": "model",
+      "nodes": 7,
+      "edges": 6,
+      "groups": 1,
+      "layoutAndMountMs": 27.399999998509884
+    },
+    {
+      "snapshot": "043e95d64e6cd448c7af6a6119711ec06802d8dcda075c8e96241b9f7b84e9ad",
+      "scope": "blocks.0",
+      "nodes": 8,
+      "edges": 9,
+      "groups": 1,
+      "layoutAndMountMs": 114.79999999701977
+    }
+  ],
+  "automatedDragMs": 210,
+  "dragMeasurement": "Playwright 12 mouse steps; not FPS or a model runtime measurement",
+  "comparison": [
+    {
+      "snapshot": "043e95d64e6cd448c7af6a6119711ec06802d8dcda075c8e96241b9f7b84e9ad",
+      "scope": "model",
+      "nodes": 7,
+      "edges": 6,
+      "groups": 1,
+      "layoutAndMountMs": 256.3999999985099
+    },
+    {
+      "snapshot": "ded4bd7d8fef7c96c91246a0116dd963b37b1deb5c3ff88949ca8fb0f936638a",
+      "scope": "model",
+      "nodes": 7,
+      "edges": 6,
+      "groups": 1,
+      "layoutAndMountMs": 242.60000000149012
+    },
+    {
+      "snapshot": "ded4bd7d8fef7c96c91246a0116dd963b37b1deb5c3ff88949ca8fb0f936638a",
+      "scope": "model",
+      "nodes": 7,
+      "edges": 6,
+      "groups": 1,
+      "layoutAndMountMs": 32.20000000298023
+    },
+    {
+      "snapshot": "043e95d64e6cd448c7af6a6119711ec06802d8dcda075c8e96241b9f7b84e9ad",
+      "scope": "blocks.0",
+      "nodes": 8,
+      "edges": 9,
+      "groups": 1,
+      "layoutAndMountMs": 171.60000000149012
+    },
+    {
+      "snapshot": "ded4bd7d8fef7c96c91246a0116dd963b37b1deb5c3ff88949ca8fb0f936638a",
+      "scope": "blocks.0",
+      "nodes": 8,
+      "edges": 9,
+      "groups": 1,
+      "layoutAndMountMs": 178.89999999850988
+    },
+    {
+      "snapshot": "ded4bd7d8fef7c96c91246a0116dd963b37b1deb5c3ff88949ca8fb0f936638a",
+      "scope": "blocks.0",
+      "nodes": 8,
+      "edges": 9,
+      "groups": 1,
+      "layoutAndMountMs": 27.19999999552965
+    },
+    {
+      "snapshot": "043e95d64e6cd448c7af6a6119711ec06802d8dcda075c8e96241b9f7b84e9ad",
+      "scope": "blocks.0.attention",
+      "nodes": 22,
+      "edges": 23,
+      "groups": 1,
+      "layoutAndMountMs": 343.40000000596046
+    },
+    {
+      "snapshot": "ded4bd7d8fef7c96c91246a0116dd963b37b1deb5c3ff88949ca8fb0f936638a",
+      "scope": "blocks.0.attention",
+      "nodes": 22,
+      "edges": 23,
+      "groups": 1,
+      "layoutAndMountMs": 383.70000000298023
+    },
+    {
+      "snapshot": "ded4bd7d8fef7c96c91246a0116dd963b37b1deb5c3ff88949ca8fb0f936638a",
+      "scope": "blocks.0.attention",
+      "nodes": 22,
+      "edges": 23,
+      "groups": 1,
+      "layoutAndMountMs": 67.90000000596046
+    }
+  ],
+  "hardware": {
+    "cores": 5,
+    "memory": 16
+  },
+  "errors": [],
+  "requests": []
+}
