@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Model Atlas 宣传片</title>
+<style>
+/* Dark launch-film look in CSS 3D: one 1920×1080 stage scaled to the window; every frame is a pure function of t. */
+:root{
+ --ground:#0b0910; --ink:#f3f1f8; --muted:#8d899c; --edge:#e9e7f0;
+ --module:#4aa3dc; --method:#3fb6a8; --loop:#7d8cf2; --io:#d6b13e; --accent:#e2702c;
+ --sans:-apple-system,"PingFang SC","Hiragino Sans GB","Noto Sans SC","Microsoft YaHei",system-ui,sans-serif;
+ --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+ color-scheme:dark;
+}
+html,body{margin:0;height:100%;background:var(--ground);color:var(--ink);overflow:hidden}
+#frame{position:fixed;inset:0;overflow:hidden}
+#stage{position:absolute;left:50%;top:50%;width:1920px;height:1080px;transform-origin:center;font-family:var(--sans);overflow:hidden;background:radial-gradient(90% 70% at 60% 40%,#15121f,var(--ground) 70%)}
+.scene{position:absolute;inset:0;visibility:hidden}
+.view{position:absolute;inset:0;perspective:2300px;perspective-origin:50% 46%}
+.world{position:absolute;left:50%;top:50%;width:0;height:0;transform-style:preserve-3d}
+.world *{transform-style:preserve-3d}
+.words{position:absolute;display:flex;flex-direction:column;gap:22px;margin:0;z-index:5}
+.words>*{margin:0}
+.hero{font-size:156px;font-weight:700;letter-spacing:-.03em;line-height:1}
+.line{font-size:92px;font-weight:700;letter-spacing:-.015em;line-height:1.1}
+.sub{font-size:34px;color:var(--muted);font-weight:400;letter-spacing:.01em;line-height:1.45}
+.count{font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:200px;font-weight:600;letter-spacing:-.04em;line-height:1;color:var(--loop)}
+/* 3D slab faces */
+.box{position:absolute;left:0;top:0}
+.f{position:absolute;box-sizing:border-box;border:2px solid var(--c);backface-visibility:hidden;opacity:var(--o,1)}
+.f.front{background:linear-gradient(color-mix(in srgb,var(--c) 18%,#0b0910),color-mix(in srgb,var(--c) 10%,#0b0910)),#0b0910;display:grid;place-items:center;font-size:var(--fs,30px);font-weight:500;color:var(--ink);white-space:nowrap}
+.f.front::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(-41deg,color-mix(in srgb,var(--c) 34%,transparent) 0 1.4px,transparent 1.4px 12px)}
+.f.front span{position:relative}
+.f.back{background:color-mix(in srgb,var(--c) 12%,#0b0910)}
+.f.side{background:color-mix(in srgb,var(--c) 26%,#0b0910)}
+.f.top{background:color-mix(in srgb,var(--c) 34%,#0b0910)}
+.f.bottom{background:color-mix(in srgb,var(--c) 8%,#0b0910)}
+.bar{position:absolute;left:-1.5px;top:0;width:3px;background:var(--edge);transform-origin:50% 0;opacity:var(--o,1)}
+.bar::after{content:"";position:absolute;left:-7px;bottom:-2px;width:17px;height:16px;background:var(--edge);clip-path:polygon(0 0,50% 100%,100% 0,50% 30%)}
+.hbar{position:absolute;top:-1.5px;left:0;height:3px;background:var(--edge);transform-origin:0 50%;opacity:var(--o,1)}
+.hbar::after{content:"";position:absolute;right:-2px;top:-7px;width:16px;height:17px;background:var(--edge);clip-path:polygon(0 0,100% 50%,0 100%,30% 50%)}
+.tag3{position:absolute;left:0;top:0;white-space:nowrap;font-family:var(--mono);font-size:24px;line-height:1.3;color:#c9c6d8;background:color-mix(in srgb,#0b0910 88%,transparent);border:1px solid #ffffff1f;border-radius:6px;padding:6px 12px;opacity:var(--o,1)}
+.tag3 b{display:block;color:var(--ink);font-weight:500}
+.floor{position:absolute;left:0;top:0;background:repeating-linear-gradient(0deg,#ffffff0d 0 1px,transparent 1px 80px),repeating-linear-gradient(90deg,#ffffff0d 0 1px,transparent 1px 80px);-webkit-mask:radial-gradient(closest-side,#000 40%,transparent);mask:radial-gradient(closest-side,#000 40%,transparent);opacity:var(--o,1)}
+.pad{position:absolute;left:0;top:0;border:2px dashed #8f8ea0;border-radius:18px;background:color-mix(in srgb,var(--loop) 5%,transparent);opacity:var(--o,1)}
+.pad-label{position:absolute;white-space:nowrap;font-size:26px;color:#b9b6c8;letter-spacing:.04em;opacity:var(--o,1)}
+.panel{position:absolute;left:0;top:0;font-family:var(--mono);font-size:30px;line-height:58px;background:#15121d;border:1px solid #ffffff1a;border-radius:16px;padding:18px 0;box-shadow:0 40px 90px rgba(0,0,0,.5);opacity:var(--o,1)}
+.panel .file{font-size:22px;color:var(--muted);padding:0 28px 10px;font-family:var(--sans)}
+.panel .row{display:flex;gap:28px;padding:0 28px;white-space:pre;color:#cfcbe0}
+.panel .no{color:#5f5b70;width:60px;text-align:right}
+.panel .hl{background:color-mix(in srgb,var(--accent) 24%,transparent);box-shadow:inset 4px 0 0 var(--accent);color:var(--ink)}
+.formula{position:absolute;left:0;top:0;white-space:nowrap;font-family:"Times New Roman",Times,serif;font-size:66px;font-style:italic;color:var(--ink);opacity:var(--o,1)}
+.formula small{display:block;font-style:normal;font-family:var(--sans);font-size:24px;color:var(--muted);letter-spacing:.06em;margin-bottom:8px}
+.pill{position:absolute;left:0;top:0;white-space:nowrap;font-family:var(--mono);font-size:24px;color:var(--io);border:1.5px solid color-mix(in srgb,var(--io) 70%,transparent);border-radius:8px;padding:4px 12px;background:#0b0910;opacity:var(--o,1)}
+.lang{display:inline-flex;border:1px solid #ffffff2a;border-radius:10px;overflow:hidden;font-size:28px;vertical-align:middle}
+.lang span{padding:6px 18px;color:var(--muted)}
+.lang span.on{background:#ffffff22;color:var(--ink)}
+/* player chrome, outside the film */
+#bar{position:fixed;left:0;right:0;bottom:0;display:flex;align-items:center;gap:14px;padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px));background:linear-gradient(transparent,#000a);opacity:0;transition:opacity .3s;font-family:var(--sans);z-index:9}
+body:hover #bar,#bar:focus-within,body.paused #bar{opacity:1}
+#bar button{background:#ffffff1a;color:var(--ink);border:1px solid #ffffff22;border-radius:8px;padding:6px 14px;font-size:14px;cursor:pointer}
+#bar button:focus-visible,#seek:focus-visible{outline:2px solid var(--module);outline-offset:2px}
+#seek{flex:1;accent-color:var(--module)}
+#time{font-variant-numeric:tabular-nums;font-size:13px;color:var(--muted);min-width:84px;text-align:right}
+</style>
+</head>
+<body>
+<div id="frame"><div id="stage">
+
+ <section class="scene" id="s1">
+  <div class="view"><div class="world" id="w1"></div></div>
+  <div class="words" style="left:0;right:0;top:390px;align-items:center;text-align:center">
+   <h1 class="hero" id="s1-title">Model Atlas</h1>
+   <p class="sub" id="s1-sub" style="font-size:40px">可以逐级展开、可以核对源码的模型结构说明书</p>
+  </div>
+ </section>
+
+ <section class="scene" id="s2">
+  <div class="view"><div class="world" id="w2"></div></div>
+  <div class="words" style="left:150px;top:380px;width:760px">
+   <h2 class="line" id="s2-a">读懂一个模型，</h2>
+   <h2 class="line" id="s2-b">不必运行它。</h2>
+   <p class="sub" id="s2-c">静态读源码，画出每一层、每个张量的形状。</p>
+  </div>
+ </section>
+
+ <section class="scene" id="s3">
+  <div class="view"><div class="world" id="w3"></div></div>
+  <div class="words" style="left:150px;top:300px;width:800px">
+   <div class="count" id="s3-n">×1</div>
+   <h2 class="line" id="s3-a">40 层，同一结构。</h2>
+   <p class="sub" id="s3-b">各层参数独立，图里只画一遍。</p>
+  </div>
+ </section>
+
+ <section class="scene" id="s4">
+  <div class="view"><div class="world" id="w4"></div></div>
+  <div class="words" style="left:150px;top:400px;width:440px">
+   <h2 class="line" id="s4-a">逐级展开。</h2>
+   <p class="sub" id="s4-b">单击旁侧看，双击进入，右键原地展开。</p>
+  </div>
+ </section>
+
+ <section class="scene" id="s5">
+  <div class="view"><div class="world" id="w5"></div></div>
+  <div class="words" style="left:150px;top:360px;width:640px">
+   <h2 class="line" id="s5-a">每一个形状，</h2>
+   <h2 class="line" id="s5-b">都来自源码。</h2>
+   <p class="sub" id="s5-c">点哪一层，就看到哪一行。</p>
+  </div>
+ </section>
+
+ <section class="scene" id="s6">
+  <div class="view"><div class="world" id="w6"></div></div>
+  <div class="words" style="left:0;right:0;top:340px;align-items:center;text-align:center">
+   <h2 class="line" id="s6-a">完全离线。</h2>
+   <h2 class="line" id="s6-b">不执行任何模型代码。</h2>
+   <p class="sub" id="s6-c">一个 HTML 文件，打开就能读。</p>
+  </div>
+ </section>
+
+ <section class="scene" id="s7">
+  <div class="view"><div class="world" id="w7"></div></div>
+  <div class="words" style="left:0;right:0;top:400px;align-items:center;text-align:center" id="s7-w">
+   <h1 class="hero">Model Atlas</h1>
+   <p class="sub" style="display:flex;gap:22px;align-items:center;justify-content:center">模型结构说明书 <span class="lang"><span class="on" id="s7-en">EN</span><span id="s7-zh">中</span></span></p>
+  </div>
+ </section>
+
+</div></div>
+
+<div id="bar"><button id="play" type="button" aria-label="暂停">暂停</button><input id="seek" type="range" min="0" max="1000" value="0" aria-label="播放进度"><span id="time">0.0 / 40.0 s</span></div>
+
+<script>
+// ---------- timing helpers (pure) ----------
+const clamp01=x=>Math.max(0,Math.min(1,x));
+const seg=(t,a,b)=>clamp01((t-a)/(b-a));
+const eo=x=>1-Math.pow(1-x,3), eio=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
+const lerp=(a,b,p)=>a+(b-a)*p;
+const SCENES=[['s1',0,4],['s2',4,11],['s3',11,18],['s4',18,25],['s5',25,32],['s6',32,36],['s7',36,40]];
+const TOTAL=40;
+const $=id=>document.getElementById(id);
+const TONE={module:'#4aa3dc',method:'#3fb6a8',loop:'#7d8cf2',io:'#d6b13e',kernel:'#e2702c'};
+function rise(el,t,a,dist=26){const p=eo(seg(t,a,a+.8));el.style.opacity=p;el.style.transform=`translateY(${(1-p)*dist}px)`;}
+
+// ---------- 3D builders (run once) ----------
+function el(html){const d=document.createElement('div');d.innerHTML=html.trim();return d.firstElementChild;}
+// A slab of w×h (front) and depth d, centred on its own origin; faces carry the tone and fade with --o.
+function slab(label,kind,w,h,d,fs=30){
+ const c=TONE[kind],F=(cls,W,H,tf,txt='')=>`<div class="f ${cls}" style="width:${W}px;height:${H}px;left:${-W/2}px;top:${-H/2}px;transform:${tf}">${txt}</div>`;
+ return el(`<div class="box" style="--c:${c};--fs:${fs}px">`+
+  F('back',w,h,`rotateY(180deg) translateZ(${d/2}px)`)+
+  F('side',d,h,`rotateY(90deg) translateZ(${w/2}px)`)+F('side',d,h,`rotateY(-90deg) translateZ(${w/2}px)`)+
+  F('top',w,d,`rotateX(90deg) translateZ(${h/2}px)`)+F('bottom',w,d,`rotateX(-90deg) translateZ(${h/2}px)`)+
+  F('front',w,h,`translateZ(${d/2}px)`,label?`<span>${label}</span>`:'')+`</div>`);
+}
+const place=(e,x,y,z,extra='')=>{e.dataset.base=`translate3d(${x}px,${y}px,${z}px) ${extra}`;e.style.transform=e.dataset.base;return e;};
+function add(world,e,x,y,z,extra){world.appendChild(place(e,x,y,z,extra));return e;}
+const vbar=len=>el(`<div class="bar" style="height:${len}px"></div>`);
+const hbar=len=>el(`<div class="hbar" style="width:${len}px"></div>`);
+const tag=(name,shape)=>el(`<div class="tag3">${name?`<b>${name}</b>`:''}${shape}</div>`);
+const floor=(w,d)=>el(`<div class="floor" style="width:${w}px;height:${d}px;left:${-w/2}px;top:${-d/2}px"></div>`);
+// camera: the world is turned in front of a fixed perspective
+function cam(world,{ox=0,oy=0,rx=0,ry=0,cx=0,cy=0,cz=0,dist=0}){world.style.transform=`translate3d(${ox}px,${oy}px,${-dist}px) rotateX(${rx}deg) rotateY(${ry}deg) translate3d(${-cx}px,${-cy}px,${-cz}px)`;}
+const fade=(e,p)=>e.style.setProperty('--o',String(p));
+function growBar(e,p,axis='Y'){e.style.transform=`${e.dataset.base} scale${axis}(${Math.max(p,.0001)})`;fade(e,p>0?1:0);}
+
+// The top-level chain of DeepSeek-V4.1-Flash, shapes as the static analysis reports them.
+const CHAIN=[['输入 input_ids','io'],['Token Embedding','module'],['Transformer Block ×40','loop'],['Final RMSNorm','module'],['LM Head','module'],['Sampling','method']];
+const SHAPES=[['input_ids','[B, S]'],['h','[B, S, 5120]'],['h','[B, S, 4, 5120]'],['x','[B, S, 5120]'],['logits','[B, vocab]']];
+const SW=440,SH=86,SD=130,GAP=160,Y0=-(GAP*2.5);
+const slabZ=i=>CHAIN[i][1]==='loop'?SD/2-30:0;
+function tower(world,{labels=true}={}){
+ const o={slabs:[],bars:[],tags:[],ghosts:[]};
+ add(world,floor(2600,2600),0,Y0+GAP*5+SH/2+40,0,'rotateX(90deg)');
+ CHAIN.forEach(([l,k],i)=>{const y=Y0+i*GAP;
+  if(k==='loop')for(let g=1;g<=3;g++)o.ghosts.push(add(world,slab('',k,SW,SH,26),0,y,slabZ(i)-30-g*34));
+  o.slabs.push(add(world,slab(l,k,SW,SH,k==='loop'?60:SD),0,y,slabZ(i)));
+  if(i<5){o.bars.push(add(world,vbar(GAP-SH-4),0,y+SH/2,SD/2));if(labels)o.tags.push(add(world,tag(...SHAPES[i]),SW/2-170,y+SH/2+6,SD/2+20));}
+ });
+ return o;
+}
+
+const W1=$('w1'),W2=$('w2'),W3=$('w3'),W4=$('w4'),W5=$('w5'),W6=$('w6'),W7=$('w7');
+// 1: a floor and a faint tower behind the title
+const s1={tower:tower(W1,{labels:false})};
+// 2: the tower itself
+const s2=tower(W2);
+// 3: forty plates of the one block, spread in depth
+const s3={plates:[]};
+add(W3,floor(3000,3000),0,200,0,'rotateX(90deg)');
+for(let i=0;i<40;i++)s3.plates.push(add(W3,slab(i===0?'Transformer Block':'','loop',SW,SH,14,28),0,0,0));
+// 4: one block opened onto a pad: the two sublayers in source order
+const s4={rows:[],hbars:[]};
+add(W4,floor(3000,3000),0,0,0,'rotateX(90deg)');
+s4.pad=add(W4,el('<div class="pad" style="width:1300px;height:700px;left:-740px;top:-350px"></div>'),0,-1,0,'rotateX(90deg)');
+s4.padLabel=add(W4,el('<div class="pad-label">原地展开 · Transformer Block</div>'),-710,-6,330,'rotateX(90deg)');
+s4.block=add(W4,slab('Transformer Block ×40','loop',SW,SH,60),0,-470,0);
+s4.drop=add(W4,vbar(380),0,-427,0);
+[['Attention 子层',['HC Pre','RMSNorm (Attn)','Sparse Attention','HC Post'],-150],['MoE 子层',['HC Pre','RMSNorm (FFN)','MoE','HC Post'],170]].forEach(([title,items,z],r)=>{
+ const row={label:add(W4,el(`<div class="pad-label" style="font-size:24px">${title}</div>`),-715,-4,z-16,'rotateX(90deg)'),slabs:[],z};
+ items.forEach((it,i)=>{const kind=it.startsWith('RMSNorm')||i===2?'module':'method';row.slabs.push(add(W4,slab(it,kind,230,74,70,22),-375+i*250,-37,z));
+  if(i<3)s4.hbars.push(add(W4,hbar(16),-375+i*250+115,-37,z+36));});
+ s4.rows.push(row);
+});
+// 5: one layer, its shapes and the source line it was read from
+const s5={};
+add(W5,floor(3000,3000),0,430,0,'rotateX(90deg)');
+s5.inBar=add(W5,vbar(190),0,-400,50);
+s5.inTag=add(W5,tag('x','[B, S, 5120]'),24,-360,60);
+s5.slab=add(W5,slab('Q down-proj','module',400,90,110),0,-160,0);
+s5.w=add(W5,el('<div class="pill">W [1280, 5120]</div>'),220,-180,60);
+s5.outBar=add(W5,vbar(170),0,-115,50);
+s5.outTag=add(W5,tag('qr','[B, S, 1280]'),24,-70,60);
+s5.panel=add(W5,el('<div class="panel" style="width:900px"><div class="file">inference_model.py · Attention.forward</div><div class="row"><span class="no">769</span><span>rd = self.rope_head_dim</span></div><div class="row" id="s5-hl"><span class="no">771</span><span>qr = self.q_norm(self.wq_a(x))</span></div><div class="row"><span class="no">772</span><span>q = self.wq_b(qr).unflatten(-1, …)</span></div></div>'),-470,90,120,'rotateX(10deg)');
+s5.formula=add(W5,el('<div class="formula"><small>计算</small>q<sub>r</sub> = x W<sub>qa</sub><sup>⊤</sup></div>'),300,-60,20);
+// 6: the tower, receding
+const s6=tower(W6,{labels:false});
+// 7: an empty floor under the end card
+const s7f=add(W7,floor(3000,3000),0,300,0,'rotateX(90deg)');
+
+// ---------- render(t): every property from t alone ----------
+function towerIn(o,t,a,step){
+ o.slabs.forEach((s,i)=>{const p=eo(seg(t,a+i*step,a+i*step+.6));fade(s,p);s.style.transform=`translate3d(0px,${Y0+i*GAP-(1-p)*40}px,${slabZ(i)}px)`;});
+ o.ghosts.forEach((g,j)=>fade(g,.55*eo(seg(t,a+2*step+.3+j*.12,a+2*step+.8+j*.12))));
+ o.bars.forEach((b,i)=>growBar(b,eio(seg(t,a+i*step+.4,a+i*step+.75))));
+ o.tags.forEach((g,i)=>fade(g,eo(seg(t,a+i*step+.7,a+i*step+1.1))));
+}
+function dim(o,v){o.slabs.forEach(s=>fade(s,v));o.ghosts.forEach(s=>fade(s,v*.6));o.bars.forEach(b=>{b.style.transform=b.dataset.base;fade(b,v);});}
+const R={
+ s1(t){const p=eio(seg(t,.2,1.8)),ti=$('s1-title');ti.style.opacity=p;ti.style.transform=`scale(${lerp(1.08,1,p)})`;ti.style.filter=`blur(${(1-p)*10}px)`;rise($('s1-sub'),t,1.4);
+  dim(s1.tower,.16);cam(W1,{ry:lerp(-30,-16,t/4),rx:-14,dist:lerp(1500,1100,eo(t/4)),oy:40});},
+ s2(t){rise($('s2-a'),t,.2);rise($('s2-b'),t,.6);rise($('s2-c'),t,1.4);
+  towerIn(s2,t,.3,.42);
+  cam(W2,{ox:400,rx:-10,ry:lerp(-34,26,eio(seg(t,0,7))),dist:lerp(260,120,eo(seg(t,0,7))),cy:-10});},
+ s3(t){rise($('s3-a'),t,.4);rise($('s3-b'),t,1.2);
+  const spread=eio(seg(t,.6,3.6));
+  s3.plates.forEach((p,i)=>{p.style.transform=`translate3d(0px,0px,${lerp(-i*2,-i*34,spread)+300}px)`;fade(p,i===0?1:clamp01(spread*3-i*.06)*lerp(.95,.35,i/39));});
+  const n=$('s3-n');n.textContent='×'+Math.max(1,Math.round(1+39*spread));n.style.opacity=eo(seg(t,.3,.9));
+  cam(W3,{ox:330,oy:10,rx:-16,ry:lerp(58,34,eio(seg(t,0,7))),dist:lerp(700,420,eo(seg(t,0,7))),cz:-260});},
+ s4(t){rise($('s4-a'),t,.2);rise($('s4-b'),t,1);
+  const pad=eo(seg(t,.5,1.3));fade(s4.pad,pad);fade(s4.padLabel,pad);
+  growBar(s4.drop,eio(seg(t,.3,.9)));
+  s4.rows.forEach((row,r)=>{fade(row.label,eo(seg(t,1.2+r*.9,1.6+r*.9)));
+   row.slabs.forEach((s,i)=>{const a=1.3+r*.9+i*.2,p=eo(seg(t,a,a+.6));fade(s,p);s.style.transform=`translate3d(${-375+i*250}px,${-37+(1-p)*-80}px,${row.z}px)`;});});
+  s4.hbars.forEach((b,i)=>{const r=i>2?1:0,k=i%3,a=1.6+r*.9+k*.2;growBar(b,eio(seg(t,a,a+.35)),'X');});
+  cam(W4,{ox:420,oy:110,rx:lerp(-36,-30,t/7),ry:lerp(-24,-6,eio(seg(t,0,7))),dist:lerp(820,640,eo(seg(t,0,7))),cy:-60});},
+ s5(t){rise($('s5-a'),t,.2);rise($('s5-b'),t,.6);rise($('s5-c'),t,1.4);
+  growBar(s5.inBar,eio(seg(t,.3,.8)));fade(s5.inTag,eo(seg(t,.6,1)));
+  fade(s5.slab,eo(seg(t,.5,1)));growBar(s5.outBar,eio(seg(t,1,1.4)));fade(s5.outTag,eo(seg(t,1.3,1.7)));fade(s5.w,eo(seg(t,1.7,2.1)));
+  const pp=eo(seg(t,1.9,2.7));fade(s5.panel,pp);s5.panel.style.transform=`translate3d(-470px,${90+(1-pp)*40}px,120px) rotateX(10deg)`;
+  $('s5-hl').className='row'+(t>2.8?' hl':'');
+  fade(s5.formula,eo(seg(t,3.2,3.9)));
+  cam(W5,{ox:380,oy:-20,rx:-8,ry:lerp(26,-8,eio(seg(t,0,7))),dist:lerp(250,90,eo(seg(t,0,7)))});},
+ s6(t){rise($('s6-a'),t,.2);rise($('s6-b'),t,.7);rise($('s6-c'),t,1.4);
+  dim(s6,.3);cam(W6,{rx:-14,ry:lerp(-20,70,t/4),dist:lerp(900,2400,eio(seg(t,0,4)))});},
+ s7(t){const b=eio(seg(t,.2,1.2)),w=$('s7-w');w.style.opacity=b;w.style.transform=`scale(${lerp(1.05,1,b)})`;w.style.filter=`blur(${(1-b)*8}px)`;
+  const zh=t>1.9&&t<2.6;$('s7-en').className=zh?'':'on';$('s7-zh').className=zh?'on':'';
+  fade(s7f,.8);cam(W7,{rx:-14,ry:lerp(-10,10,t/4),dist:900});},
+};
+function render(t){
+ for(const [id,a,b] of SCENES){const e=$(id),local=t-a,on=t>=a-.001&&t<b+.001;
+  const o=on?Math.min(eo(seg(local,0,.45)),id==='s7'?1:1-eo(seg(t,b-.45,b))):0;
+  e.style.visibility=o>0?'visible':'hidden';e.style.opacity=o;if(o>0)R[id](local);}
+ seek.value=String(Math.round(t/TOTAL*1000));time.textContent=`${t.toFixed(1)} / ${TOTAL.toFixed(1)} s`;
+}
+
+// ---------- player (outside the film) ----------
+const stage=$('stage'),seek=$('seek'),time=$('time'),play=$('play');
+function fit(){const s=Math.min(innerWidth/1920,innerHeight/1080);stage.style.transform=`translate(-50%,-50%) scale(${s})`;}
+addEventListener('resize',fit);fit();
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+let playing=!reduce,origin=performance.now(),at=reduce?TOTAL-.01:0;
+function setPlaying(p){playing=p;document.body.classList.toggle('paused',!p);play.textContent=p?'暂停':'播放';play.setAttribute('aria-label',play.textContent);if(p)origin=performance.now()-at*1000;}
+function tick(now){if(playing){at=(now-origin)/1000;if(at>=TOTAL+1.2){origin=now;at=0;}}render(Math.min(at,TOTAL-.001));requestAnimationFrame(tick);}
+play.addEventListener('click',()=>setPlaying(!playing));
+seek.addEventListener('input',()=>{at=Number(seek.value)/1000*TOTAL;if(playing)origin=performance.now()-at*1000;});
+addEventListener('keydown',e=>{if(e.code==='Space'&&e.target===document.body){e.preventDefault();setPlaying(!playing);}});
+stage.addEventListener('click',()=>setPlaying(!playing));
+setPlaying(playing);requestAnimationFrame(tick);
+</script>
+</body>
+</html>

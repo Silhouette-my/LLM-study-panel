@@ -1,8 +1,29 @@
+<div align="center">
+
 # Model Atlas · 模型学习图谱
 
-> 把 PyTorch 单文件模型源码 + JSON 配置变成可双击打开的**离线**学习 HTML：分层架构图、张量形状、源码定位、学习笔记与 MHA/GQA 双模型对比。
+**读懂一个 PyTorch 模型，不该比跑它更难。**
 
-**文档导航**：[DESIGN.md](DESIGN.md) 实现取舍 · [SECURITY.md](SECURITY.md) 安全边界 · [SKILL.md](SKILL.md) Agent 工作流 · [CHANGELOG.md](CHANGELOG.md) 版本记录 · [references/](references) 证据口径、视觉规范、V2 与 Laya 说明 · [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)
+把 PyTorch 单文件源码 + JSON 配置，变成一个**双击即开、完全离线**的交互式学习页面。
+
+![Model Atlas 宣传片](docs/media/model-atlas-promo.gif)
+
+[▶ 完整交互宣传片](https://htmlpreview.github.io/?https://github.com/Silhouette-my/LLM-study-panel/blob/main/docs/promo/model-atlas-promo.html) · [快速开始](#快速开始) · [文档](#文档导航)
+
+</div>
+
+## 为什么用它
+
+- **逐级展开**：整体 → Decoder Block → Attention / Gated MLP，单击旁侧看、双击进入、右键原地展开。
+- **形状与源码联动**：点击任意边查看张量形状、输入端口与条件；每个节点一键定位到源码行。
+- **MHA / GQA 对比**：双栏联动，自动建议对应关系，可接受 / 拒绝 / 手工分组并重算差异，附理论 KV 缓存估算。
+- **学习笔记**：笔记独立导出为 JSON，重新生成页面不会丢。
+- **诚实的静态分析**：不执行你的代码、不下载权重、不需要 GPU；未知结构明确标“未解析”，绝不凭空补全。
+- **单文件离线**：无 CDN、无遥测、无网络请求，可直接分享（注意其中含源码快照）。
+
+## 文档导航
+
+[DESIGN.md](DESIGN.md) 实现取舍 · [SECURITY.md](SECURITY.md) 安全边界 · [SKILL.md](SKILL.md) Agent 工作流 · [CHANGELOG.md](CHANGELOG.md) 版本记录 · [references/](references) 证据口径、视觉规范、V2 与 Laya 说明 · [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)
 
 ## 快速开始
 
@@ -27,7 +48,7 @@ npm run demo          # 生成 build/model_atlas_demo.html，用浏览器直接�
 | `scripts/` | 构建、demo、Laya 回归、Skill 打包 |
 | `tests/` | pytest、vitest、Playwright e2e 与固定 fixture |
 
----
+## 详细说明
 
 从真实 PyTorch 单文件源码与 JSON 配置生成可双击打开的离线学习 HTML。这个仓库的教学 Decoder 是小型教学实现，不是官方 LLaMA 复现，不兼容官方权重。默认不下载权重、不需要 GPU、不执行输入源码。
 
