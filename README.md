@@ -6,9 +6,8 @@
 
 把 PyTorch 单文件源码 + JSON 配置，变成一个**双击即开、完全离线**的交互式学习页面。
 
-<video src="https://github.com/Silhouette-my/LLM-study-panel/raw/main/docs/media/model-atlas-promo.mp4" poster="https://github.com/Silhouette-my/LLM-study-panel/raw/main/docs/media/model-atlas-promo-poster.jpg" controls muted loop playsinline width="100%">
-  <a href="docs/media/model-atlas-promo.mp4"><img src="docs/media/model-atlas-promo-poster.jpg" alt="Model Atlas 宣传片（点击观看 1080p 60fps）"></a>
-</video>
+<a href="https://github.com/Silhouette-my/LLM-study-panel/blob/main/docs/media/model-atlas-promo.mp4"><img src="docs/media/model-atlas-promo-preview.webp" width="800" alt="Model Atlas 宣传片预览（点击观看 1080p 60fps 完整视频）"></a>
+<sub>预览为 15fps 动图 · <a href="https://github.com/Silhouette-my/LLM-study-panel/blob/main/docs/media/model-atlas-promo.mp4">完整 1080p 60fps 视频 (40 s)</a></sub>
 
 [▶ 完整交互宣传片](https://htmlpreview.github.io/?https://github.com/Silhouette-my/LLM-study-panel/blob/main/docs/promo/model-atlas-promo.html) · [快速开始](#快速开始) · [文档](#文档导航)
 
