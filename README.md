@@ -1,5 +1,34 @@
 # Model Atlas · 模型学习图谱
 
+> 把 PyTorch 单文件模型源码 + JSON 配置变成可双击打开的**离线**学习 HTML：分层架构图、张量形状、源码定位、学习笔记与 MHA/GQA 双模型对比。
+
+**文档导航**：[DESIGN.md](DESIGN.md) 实现取舍 · [SECURITY.md](SECURITY.md) 安全边界 · [SKILL.md](SKILL.md) Agent 工作流 · [CHANGELOG.md](CHANGELOG.md) 版本记录 · [references/](references) 证据口径、视觉规范、V2 与 Laya 说明 · [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)
+
+## 快速开始
+
+```bash
+git clone https://github.com/Silhouette-my/LLM-study-panel.git
+cd LLM-study-panel
+python -m venv .venv && source .venv/bin/activate
+pip install -e '.[test]'
+npm ci
+npm run demo          # 生成 build/model_atlas_demo.html，用浏览器直接打开
+```
+
+## 目录结构
+
+| 路径 | 说明 |
+| --- | --- |
+| `src/model_atlas/` | Python CLI（analyze / validate / compare / build）与静态 AST 分析器 |
+| `core/` | 纯 TypeScript：图投影、布局、教学分组、对比引擎 |
+| `web/` | React + Cytoscape 查看器与 Rough.js 纹理 |
+| `schemas/` | architecture / comparison / session JSON Schema |
+| `examples/` | 教学 MiniDecoder 与 MHA/GQA 配置 |
+| `scripts/` | 构建、demo、Laya 回归、Skill 打包 |
+| `tests/` | pytest、vitest、Playwright e2e 与固定 fixture |
+
+---
+
 从真实 PyTorch 单文件源码与 JSON 配置生成可双击打开的离线学习 HTML。这个仓库的教学 Decoder 是小型教学实现，不是官方 LLaMA 复现，不兼容官方权重。默认不下载权重、不需要 GPU、不执行输入源码。
 
 现有两个闭环：整体 → 第 i 个 Decoder Block → Attention / Gated MLP；源码、张量、证据、学习状态与笔记联动。MHA/GQA 双栏对比支持联动聚焦、建议接受/拒绝、一对多/多对一人工修正及差异重算、JSON 导入导出。
@@ -8,13 +37,15 @@
 
 V2 使用深紫黑画布、彩色手绘描边、稀疏斜线填充与珊瑚色教学区域。界面外壳保持常规字体；未知节点以灰色和 `? 未解析` 标记，可进入模块标注 `[+]`。节点纹理由固定 ID seed 的 Rough.js 生成并内联，Cytoscape 命中/缩放与 ELK 布局继续保留。来源分组、渲染决策和边界见 references/v2-ui.md。
 
-## 打开交付
+## 构建产物
+
+`build/` 是生成目录，已在 .gitignore 中，克隆后运行 `npm run demo` 生成。
 
 - `build/mha.html`：单模型学习包。
 - `build/model_atlas_demo.html`：双模型离线演示，直接用桌面浏览器打开，地址为 file://。
 - `build/{mha,gqa}.architecture.json`、对应 `.report.md`：静态结构及分析覆盖报告。
 - `build/mha_vs_gqa.comparison.json`：建议对应关系、配置/形状/参数/拓扑差异与理论缓存量。
-- `build/runtime_observations.json`：独立 CPU 测试观察，不能当成 analyze 的执行证据。
+- `build/runtime_observations.json`：pytest 生成的独立 CPU 测试观察（需安装 PyTorch），不能当成 analyze 的执行证据。
 
 学习包包含源码片段，分享前审查。离线页面无 HTTP(S) 依赖；生成阶段使用云端 Agent 不代表整个流程本地私密。
 
@@ -23,7 +54,8 @@ V2 使用深紫黑画布、彩色手绘描边、稀疏斜线填充与珊瑚色�
 实际验证版本：Python 3.12.14、Node 24.19.0（最低 22）、npm 11.9.0。Python >=3.11；运行 compare/build/validate 同时需要 Node。基本分析不需要 PyTorch。npm package-lock.json 锁定前端依赖；requirements.lock 记录本次测试环境，包含可选 CPU PyTorch。
 
 ```bash
-cd /workspace/LLM-study-panel
+git clone https://github.com/Silhouette-my/LLM-study-panel.git
+cd LLM-study-panel
 python -m venv .venv
 source .venv/bin/activate
 pip install -e '.[test]'
@@ -79,7 +111,7 @@ Laya 回归样例来自用户提供 HTML 的 DecisionModel 源码片段，不是
 
 “更多”提供导入、导出笔记/匹配/架构与分组来源审计。架构与 HTML 包含源码；笔记格式仍为原 schema 1.0。V2 未改分析器版本或已有事实 Schema，同一源码/配置的快照和锚点保持兼容；不覆盖用户文件。教学分组导出供审计，本轮未提供任意分组编辑/导入。
 
-V2 实际前后截图与验证记录在 build/v2/{before,after}，覆盖 1440×900 和 1920×1080 的总览、选择、进入、旁侧、未知诊断与双图差异。SOURCE 结构仍不含这些视觉状态。原地展开可能重排当前作用域，视口锚点会保留；需要完全保留父图时使用旁侧展开。
+浏览器回归在 1440×900 和 1920×1080 下覆盖总览、选择、进入、旁侧、未知诊断与双图差异，截图由 e2e 重新生成到 build/v2/after（build/ 不入库）。原地展开可能重排当前作用域，视口锚点会保留；需要完全保留父图时使用旁侧展开。
 
 ## MHA / GQA 的证据口径
 
@@ -106,7 +138,7 @@ npm run test:e2e
 
 PyTorch 仅 CPU 测试需要：固定 seed=2026、float32、eval、输入 [2,4]，输出与投影/复制前后尺寸、独立参数差得到运行验证。缺少 PyTorch 会明确 skip。测试仅执行本项目教学模型；任意用户模型没有 trace 命令。
 
-测试报告存入 build；file:// 检查两个桌面尺寸的功能、控制台、无 HTTP(S) 请求及恶意/非法导入，截图只是辅助证据。运行环境限制和确切结果见 PROGRESS.md。
+测试报告存入 build；file:// 检查两个桌面尺寸的功能、控制台、无 HTTP(S) 请求及恶意/非法导入，截图只是辅助证据。版本变更见 CHANGELOG.md。
 
 ## Skill 打包与本地使用
 
@@ -119,7 +151,7 @@ cd dist/model-atlas
 /tmp/atlas-skill-venv/bin/python scripts/demo.py
 ```
 
-自包含 Skill 包携带 SKILL.md、Python 工具、Schema、参考资料、教学输入和已编译资源，无 node_modules/.venv/密钥/权重。首次 pip 安装需要依赖源或预先缓存的依赖；生成 compare/build 需要本机 Node，单文件 HTML 查看不需要 Node/Python。打包结果在独立临时目录经过安装及全流程验证，见 PROGRESS。
+自包含 Skill 包携带 SKILL.md、Python 工具、Schema、参考资料、教学输入和已编译资源，无 node_modules/.venv/密钥/权重。首次 pip 安装需要依赖源或预先缓存的依赖；生成 compare/build 需要本机 Node，单文件 HTML 查看不需要 Node/Python。打包结果在独立临时目录经过安装及全流程验证。
 
 当前宿主是 Codex 桌面，技能可能通过受管插件而非本地目录加载；这里不擅自修改全局配置。对启用本地技能目录的 Codex CLI，可将解压后的 model-atlas 目录放到已配置的 `$CODEX_HOME/skills/model-atlas`（常见默认 `~/.codex/skills/model-atlas`），重启/重新加载后核对技能列表。其他宿主按其实际 Skill 安装机制导入。未在本会话激活新 Skill，也不宣称所有产品支持相同安装目录。当前可直接要求 Agent 阅读本仓库 SKILL.md 并使用 CLI。
 
@@ -136,4 +168,4 @@ python -m http.server 8787 --bind 127.0.0.1 --directory build
 MODEL_ATLAS_CHROMIUM=/usr/bin/chromium MODEL_ATLAS_E2E_HTTP=1 npm run test:e2e
 ```
 
-本次 file:// 验证被 Chromium 的宿主管理策略阻止，保留失败记录；本地转发模式 1366×768 / 1920×1080 的真实交互验证通过。测试只允许启动 HTML 的主文档请求，不存在额外 HTTP(S) 资源请求。`pytest` 先生成初始注入安全测试用的 attack-fixture.html，再运行浏览器测试。
+本地转发模式 1366×768 / 1920×1080 的真实交互验证通过。测试只允许启动 HTML 的主文档请求，不存在额外 HTTP(S) 资源请求。`pytest` 先生成初始注入安全测试用的 attack-fixture.html，再运行浏览器测试。

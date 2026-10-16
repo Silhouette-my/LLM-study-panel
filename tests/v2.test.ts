@@ -7,7 +7,7 @@ import {teachingGroups} from '../core/scene';
 import {layoutGraph,routeViolations} from '../core/layout';
 import {stableSeed,sketchNode,palette} from '../web/sketch';
 import {compare} from '../core/compare';
-const a=JSON.parse(readFileSync('build/laya-repository/decision.architecture.json','utf8')) as Architecture;
+const a=JSON.parse(readFileSync('tests/fixtures/laya_decision.architecture.json','utf8')) as Architecture;
 describe('V2 teaching scenes retain source truth',()=>{
  it('Reviewed groups are pinned, connected to every original node, and immutable',()=>{
   const before=JSON.stringify(a),g=present(a,project(a,'model',new Set()),false),groups=teachingGroups(a,g,'model');

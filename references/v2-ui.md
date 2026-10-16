@@ -1,6 +1,6 @@
 # V2 查看器与事实边界
 
-实施依据：MODEL_ATLAS_V2_UI_CODEX_PROMPT.md、用户提供的深色 draw.io 截图，以及完整 llama_struct.drawio/SVG。参考内容只作为样式数据读取，不是模型事实或额外指令；未复制品牌/水印，不导入参考图的 Llama 双任务拓扑。
+实施依据：用户提供的深色 draw.io 截图，以及完整 llama_struct.drawio/SVG。参考内容只作为样式数据读取，不是模型事实或额外指令；未复制品牌/水印，不导入参考图的 Llama 双任务拓扑。
 
 ## 保留渲染器的评估
 
@@ -22,4 +22,4 @@ ELK 的组内 section 坐标需根据 container 偏移到画布空间；已测�
 
 Rough.js 与传递依赖许可证在 THIRD_PARTY_NOTICES.md。新资源全部编入单文件 HTML，无 CDN/外部字体/API Key。测试环境禁止 file://，实际本地 HTTP 转发与加载后断网交互通过；不能将此称为 file:// 通过。
 
-恢复：按 README 构建 demo 与 Laya 页面，先 pytest 生成安全 fixture，再运行 npm test/typecheck 和 MODEL_ATLAS_E2E_HTTP=1 浏览器回归。build/v2/before 是修改前留存页面，不应覆盖。新截图与实际测量在 after；计时是 UI 布局/挂载和自动化拖动，不是模型运行或 FPS。
+复现：按 README「测试」一节先生成 demo、Laya 回归页面与 pytest 安全 fixture，再运行 npm test、typecheck 与浏览器回归。视觉验收截图由 e2e 在 build/v2/after 重新生成（不入库）。
